@@ -1,9 +1,9 @@
 
+
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import signal
 
-class integro_difference:
+class ide:
 
 	domain = np.array(0)
 	
@@ -11,6 +11,10 @@ class integro_difference:
 	
 	growth_function = None
 	dispersal_kernel = None
+	pdf_array = np.array([])
+	cdf_array_left = np.array([])
+	cdf_array_right = np.array([])
+	
 	
 	
 	
@@ -19,12 +23,30 @@ class integro_difference:
 		self.dispersal_kernel = dispersal_kernel
 	
 	
-	def set_domain(self,xmin,xmax,dx):
+	def set_domain(self,xmin,xmax,step_size):
 	
-		N = 1+int((xmax-xmin)/dx)
+		N = int((xmax-xmin)/step_size/2)
 		
-		self.domain = np.linspace(xmin,xmax,N)
+		self.domain = np.linspace(xmin,xmax,2*N+1)
 		
+		domain_large = np.linspace(2*xmin,2*xmax,4*N+1)
+		
+		k = self.dispersal_kernel
+		pdf_array_large = k(domain_large)
+		self.pdf_array = pdf_array_large[N:(3*N+1)]
+		
+		cdf_array_left = [0]
+		for i in range(2*N):
+			cdf_array_left.append(pdf_array_large[i]+cdf_array_left[i])
+		
+		cdf_array_right = [0]
+		for i in range(2*N):
+			cdf_array_right.append(pdf_array_large[4*N-i]+cdf_array_right[i])
+		cdf_array_right = cdf_array_right[::-1]
+		
+		self.cdf_array_left = step_size*np.array(cdf_array_left)
+		self.cdf_array_right = step_size*np.array(cdf_array_right)
+			
 		return
 	
 	def set_initial_density(self,u0):
@@ -34,21 +56,29 @@ class integro_difference:
 
 	def iterate(self,U):
 		X = self.domain
-		dx = X[1] - X[0]
+		step_size = X[1] - X[0]
 		
 		g = self.growth_function
-		k = self.dispersal_kernel
 		
-		U = dx * signal.fftconvolve(k(X), g(U), mode='same')
-		return U
+		N = int((len(X)-1)/2)
+		
+		pdf = self.pdf_array
+		cdf_left = self.cdf_array_left
+		cdf_right = self.cdf_array_right
+		
+		U_center = step_size * np.convolve(pdf, g(U), mode='same')
+		U_left = g(U[-1]) * cdf_left
+		U_right = g(U[0]) * cdf_right
+		
+		return U_center + U_left + U_right
 	
-	def run(self,steps):
+	def run(self,time_steps):
 		
 		U_sequence = self.density_sequence
 		
 		U = U_sequence[0]
 		
-		for t in range(steps):
+		for t in range(time_steps):
 			U = self.iterate(U)
 			U_sequence.append(U)
 			
