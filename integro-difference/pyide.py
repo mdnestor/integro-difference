@@ -10,14 +10,16 @@ class ide:
     def __init__(self, g, k, xmin, xmax, dx):
         self.g = g
         self.k = k
-        
+        self.xmin = xmin
+        self.xmax = xmax
+        self.dx = dx
         N = int((xmax-xmin)/dx/2)
         
         self.domain = np.linspace(xmin,xmax,2*N+1)
         
         domain_large = np.linspace(2*xmin,2*xmax,4*N+1)
         
-        k = self.dispersal_kernel
+        k = self.k
         pdf_array_large = k(domain_large)
         self.pdf_array = pdf_array_large[N:(3*N+1)]
         
@@ -37,14 +39,14 @@ class ide:
     
     def set_initial_density(self,u0):
         X = self.domain
-        self.density_sequence = [u0(X)]
+        self.seq = [u0(X)]
         return
 
     def iterate(self,U):
         X = self.domain
         step_size = X[1] - X[0]
         
-        g = self.growth_function
+        g = self.g
         
         N = int((len(X)-1)/2)
         
@@ -60,7 +62,7 @@ class ide:
     
     def run(self,time_steps):
         
-        U_sequence = self.density_sequence
+        U_sequence = self.seq
         
         U = U_sequence[0]
         
@@ -68,14 +70,16 @@ class ide:
             U = self.iterate(U)
             U_sequence.append(U)
             
-        self.density_sequence = U_sequence
+        self.seq = U_sequence
     
     def plot(self):
         X = self.domain
-        U_seq = self.density_sequence
+        U_seq = self.seq
         T = len(U_seq)
         
         for t in range(T):
             U = U_seq[t]
             plt.plot(X, U, color=(t/T,1-t/T,0))
         plt.show()
+        
+        
