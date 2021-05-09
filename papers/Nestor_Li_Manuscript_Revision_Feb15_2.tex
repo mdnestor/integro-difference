@@ -22,12 +22,6 @@
 
 \DeclareMathOperator\erf{erf}
 
-
-
-\newcommand{\winva}{{w_1^{-1}(a)}}
-\newcommand{\winvb}{{w_1^{-1}(b)}}
-
-
 \usepackage{authblk}
 
 \title{Periodic Traveling Waves in an Integro-Difference Equation With a Nonmonotone Growth Function and Strong Allee Effect}
@@ -79,8 +73,6 @@ Piecewise constant growth functions and uniform distributions have been used in 
 
 \section{Periodic traveling waves}
 
-In this section, we generalize the theory of traveling wave solutions of \ref{q} to the theory of periodic traveling waves.
-
 Let $C(\mathbb R)$ denote the space of continuous functions $\mathbb R\to\mathbb R$ equipped with the supremum-norm $||u||_\infty=\sup_{x\in\mathbb R}|u(x)|$ for any $u\in C(\mathbb R)$.
 
 For the remainder of the paper, we assume the following hypothesis on the dispersal kernel:
@@ -109,7 +101,7 @@ w_1(x) = \int_x^\infty k(y) \, dy
 \end{equation}
 and
 \begin{equation} \label{w2}
-w_2(x) = \int_{-\infty}^{\infty} k(y) g(w_1(x-y)) \, dy 
+w_2(x) = Q[w_1](x)
 \end{equation}
 
 Assuimption i. implies $w_1$ and $w_2$ have well-defined limits at $\pm\infty$ given by $w_1(\infty)=w_2(\infty)=0$, $w_1(-\infty)=1$, and $w_2(-\infty)=m$. Furthermore, $w_1$ is monotonically decreasing, while $w_2$ may be non-monotonic. Assumption iii. guarantees a unique right-inverse satisfying $w_1(w_1^{-1}(p))=p$ for $0<p<1$.
@@ -272,52 +264,6 @@ This theorem indicates that a solution with proper compactly supported initial d
 \section{Examples}
 
 In this section, we apply the results of Section 2 to three particular choices of dispersal kernel. We show that they satisfy Hypothesis \ref{hypothesis1}, and then provide an estimate of the wavespeed $c^*$.
-
-\begin{ex}
-The Laplace kernel,
-\begin{equation}
-k(x) = \frac{1}{2} e^{-|x|}
-\end{equation}
-
-The traveling waves are given by
-\begin{equation}
-w_1(x) =   \begin{cases} 
-1 - \frac{1}{2}e^{x} & x \leq 0 \\
-\frac{1}{2}e^{-x} & x > 0
-\end{cases}
-\end{equation}
-and
-\begin{equation}
-w_2(x) = \int_{-\infty}^\winvb mk(x-y)\,dy + \int_{\winvb}^\winva k(x-y)\,dy
-\end{equation}
-with
-$$ w_1^{-1}(p) = \begin{cases} -\log(2p) & p\leq \frac{1}{2} \\ \log(2-2p) & p > \frac{1}{2} \end{cases} $$
-Then
-$$ w_2(x) = \begin{cases}
-\int_{-\infty}^{-\log(2b)} \frac{m}{2}e^{-|x-y|}\,dy + \int_{-\log(2b)}^{-\log(2a)} \frac{1}{2}e^{-|x-y|} \,dy & a<\frac{1}{2}, b < \frac{1}{2} \\
-\int_{-\infty}^{\log(2-2b)} \frac{m}{2}e^{-|x-y|} \,dy + \int_{\log(2-2b)}^{-\log(2a)} \frac{1}{2}e^{-|x-y|} \,dy & a<\frac{1}{2}, b \geq \frac{1}{2} \\ 
-\int_{-\infty}^{\log(2-2b)} \frac{m}{2}e^{-|x-y|} \,dy + \int_{\log(2-2b)}^{\log(2-2a)} \frac{1}{2}e^{-|x-y|} \,dy & a\geq\frac{1}{2}, b \geq \frac{1}{2} \\
-\end{cases} $$
-Now make the substitution $y'=x-y$.
-$$ w_2(x) = \begin{cases}
-\int_{x+\log(2b)}^{\infty} \frac{m}{2}e^{-|y'|}\,dy' + \int_{x+\log(2b)}^{x+\log(2a)} \frac{1}{2}e^{-|y'|} \,dy' & a<\frac{1}{2}, b < \frac{1}{2} \\
-\int_{x-\log(2-2b)}^{\infty} \frac{m}{2}e^{-|y'|} \,dy' + \int_{x-\log(2-2b)}^{x+\log(2a)} \frac{1}{2}e^{-|y'|} \,dy' & a<\frac{1}{2}, b \geq \frac{1}{2} \\ 
-\int_{x-\log(2-2b)}^{\infty} \frac{m}{2}e^{-|y'|} \,dy' + \int_{x-\log(2-2b)}^{x-\log(2-2a)} \frac{1}{2}e^{-|y'|} \,dy' & a\geq\frac{1}{2}, b \geq \frac{1}{2} \\
-\end{cases} $$
-
-Conversely, we may define $\sigma_p=\text{sign}(p-\frac{1}{2})$. Then, we have $w_1^{-1}(p)=\sigma_p\log(\sigma_p(2p+1)+1)$. The above equation then simplifies to
-\begin{equation}
-w_2(x) = \int_{-\infty}^{\sigma_a\log(\sigma_a(2a+1)+1)} mk(x-y)\,dy + \int_{\sigma_b\log(\sigma_b(2p+1)+1)}^{\sigma_a\log(\sigma_a(2a+1)+1)} k(x-y)\,dy
-\end{equation}
-
-We will now split into further cases.
-
-Case 1: $a<b<\frac{1}{2}$. Then
-$$ w_2(x) = \int_{x+\log(2b)}^{\infty} \frac{m}{2}e^{-|y|}\,dy + \int_{x+\log(2b)}^{x+\log(2a)} \frac{1}{2}e^{-|y|} \,dy $$
-$$ = $$
-
-
-\end{ex}
 
 \begin{ex} Consider the Gaussian kernel with mean $0$ and variance $1$ given by
 $$ k(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} $$

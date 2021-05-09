@@ -137,20 +137,22 @@ Taking the derivative with respect to $x$, we find
 \begin{equation}
 \frac{dw_2}{dx} = -k(x-\alpha) + (1-m)k(x-\beta)
 \end{equation}
-It follows from assumption iv. of \ref{hypothesis1} that $dw_2/dx$ has at most one zero-crossing. Hence, $w_2$ has at most one turning point. Since $w_2(-\infty)=m$ and $w_2(\infty)=0$, and $w_2$ is non-negative, there are only two cases.
+It follows from assumption iv. of \ref{hypothesis1} that $dw_2/dx$ has at most one zero-crossing. Hence, $w_2$ has at most one turning point. This leaves two cases: either $w_2$ has no turning points and is monotonically decreasing, or it has one turning point, to the left of which $w_2$ is increasing and to the right it is decreasing. In both cases, $w_2$ has a continuous right inverse on the open interval $(0,m)$.
 
-First, $w_2$ has no turning point, and is monotone decreasing on $\mathbb R$. Then $w_2$ has a right inverse on $(0,m)$ satisfying $w_2(w_2^{-1}(p))=p$ for any $0<p<m$. Second, $w_2$ has a single turning point $x_0\in\mathbb R$. It follows that $w_2$ must be decreasing on $(x_0,\infty)$ and increasing on $(-\infty,x_0)$, with $w_2(x_0)\geq m$. In this case $w_2$ also has a well-defined right inverse on $(0,m)$, and furthermore $w_2^{-1}(p)>x_0$ for any $0<p<m$.
-
-In either case, $w_2$ has a right inverse $w_2^{-1}$ on the interval $(0,m)$. Since $0<a<m$, we can take $c^*=\frac{1}{2}w_2^{-1}(a)$, so that $w_2(x)<a$ if and only if $x>2c^*$. Furthermore, since $||w_2||_\infty \leq b$, we have $w_2(x)\leq b$ almost everywhere. Thus,
+Since $0<a<m$, we can take $x_0=w_2^{-1}(a)$  so that $w_2$ exceeds the Allee threshold to the left of $x_0$ and is below the Allee threshold on the right. Applying the growth function,
 \begin{equation} \label{gw2}
 g(w_2(x)) = \begin{cases}
-1 & x \leq 2c^* \\
-0 & x > 2c^*
-\end{cases}
+1 & x \leq w_2^{-1}(a) \\
+0 & x > w_2^{-1}(a)
+\end{cases} \quad \text{almost everywhere}
 \end{equation}
-almost everywhere. Applying the convolution operator, we obtain
+Applying the integro-difference operator, we obtain
 \begin{equation}
-Q[w_2](x) = \int_{x-2c^*}^{\infty} k(y)\,dy = w_1(x-2c^*).
+Q[w_2](x) = \int_{x-w_2^{-1}(a)}^{\infty} k(y)\,dy = w_1(x-w_2^{-1}(a)).
+\end{equation}
+By defining $c^* = \frac{1}{2}w_2^{-1}(a)$, and applying the integro-difference operator, we can see that $w_1$ and $w_2$ are both solutions to the periodic traveling wave equation with mean speed $c^*$:
+\begin{equation}
+Q^2[w_1](x) = w_1(x-2c^*); \quad Q^2[w_2](x) = w_2(x-2c^*)
 \end{equation}
 \end{proof}
 
@@ -177,17 +179,17 @@ u_{2n+3}(x) = w_2(x-2nc^*-2c^*) = Q[w_1](x-2nc^*-2c^*) = Q[u_{2n+2}](x).
 \end{proof}
 
 \begin{thm}  \label{theorem2}
-If $||w_2||_\infty\leq b$, the sequence $(u_n)_{n=0}^{\infty}$ defined in Theorem \ref{theorem1} satisfies
+For all $\epsilon>0$, the sequence $(u_n)_{n=0}^{\infty}$ defined in Theorem \ref{theorem1} satisfies
 \begin{equation}
-\lim_{n\to\infty}\inf_{x<2nc}u_{2n}(x)=1, \quad \forall c\in(0,c^*)
+\lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n}(x)=1
 \end{equation}
 and
 \begin{equation}
-\lim_{n\to\infty}\inf_{x<2nc}u_{2n+1}(x)=m, \quad \forall c\in(0,c^*)
+\lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n+1}(x)=m
 \end{equation}
 and 
 \begin{equation}
-\lim_{n\to\infty}\sup_{x>nc}u_n(x)=0, \quad \forall c\in(c^*,\infty).
+\lim_{n\to\infty}\sup_{x>n(c^*+\epsilon)}u_n(x)=0.
 \end{equation}
 \end{thm}
 
@@ -271,7 +273,7 @@ This theorem indicates that a solution with proper compactly supported initial d
 
 \section{Examples}
 
-In this section, we apply the results of Section 2 to three particular choices of dispersal kernel. We show that they satisfy Hypothesis \ref{hypothesis1}, and then provide an estimate of the wavespeed $c^*$.
+In this section, we construct the population density functions $w_1$ and $w_2$ for several choices of dispersal kernel.
 
 \begin{ex}
 The Laplace kernel,
@@ -313,9 +315,73 @@ w_2(x) = \int_{-\infty}^{\sigma_a\log(\sigma_a(2a+1)+1)} mk(x-y)\,dy + \int_{\si
 We will now split into further cases.
 
 Case 1: $a<b<\frac{1}{2}$. Then
-$$ w_2(x) = \int_{x+\log(2b)}^{\infty} \frac{m}{2}e^{-|y|}\,dy + \int_{x+\log(2b)}^{x+\log(2a)} \frac{1}{2}e^{-|y|} \,dy $$
-$$ = $$
+$$ w_2(x) = \int_{x-\log(2b)}^{\infty} \frac{m}{2}e^{-|y|}\,dy + \int_{x-\log(2b)}^{x-\log(2a)} \frac{1}{2}e^{-|y|} \,dy $$
+We can expand this out using $\min$ and $\max$ functions. Let $x_a=x-\log(2a)$ and $x_b=x-\log(2b)$. Then
+$$ w_2(x) = \int_{\min(x_b,0)}^0 \frac{m}{2} e^y \, dy + \int_{\max(x_b,0)}^{\infty} \frac{m}{2} e^{-y} \, dy
++ \int_{\min(x_b,0)}^{\min(x_a,0)} \frac{1}{2} e^y \, dy + \int_{\max(x_b,0)}^{\max(x_a,0)} \frac{1}{2} e^{-y} \, dy $$
+We can now take the integral:
+$$ \frac{m}{2} - \frac{m}{2} e^{\min(x_b,0)} - \frac{m}{2} e^{-\max(x_b,0)} + \frac{1}{2} e^{\min(x_a,0)} - \frac{1}{2} e^{\min(x_b,0)} - \frac{1}{2} e^{-\max(x_a,0)} + \frac{1}{2} e^{-\max(x_b,0)} $$
+This is equal to
+$$ \frac{m}{2} - \frac{m}{2} \min(e^{x_b},1) - \frac{m}{2} \min(e^{-x_b},1) + \frac{1}{2} \min(e^{x_a},1) - \frac{1}{2} \min(e^{x_b},1) - \frac{1}{2} \min(e^{-x_a},1) + \frac{1}{2} \min(e^{-x_b},1) $$
+$$ = \frac{m}{2} - \frac{m+1}{2} \min(e^{x_b},1) - \frac{m+1}{2} \min(e^{-x_b},1) - \frac{1}{2} \min(e^{x_a},1) - \frac{1}{2} \min(e^{-x_a},1)$$
+$$ = \frac{m}{2} - \frac{m+1}{2}\left( \min(e^{x_b},1) - \min(e^{-x_b},1) \right) - \frac{1}{2} \left( \min(e^{x_a},1) - \min(e^{-x_a},1) \right) $$
 
+$$ = \frac{m}{2} - \frac{m+1}{2}\left( \min(2be^{-x},1) - \min(\frac{1}{2b}e^{x},1) \right) - \frac{1}{2} \left( \min(2ae^{-x},1) - \min(\frac{1}{2a}e^{x},1) \right) $$
+
+It can be written in three cases
+
+$$ w_2(x) = \begin{cases} \displaystyle
+m - \frac{am+a-b}{4ab} e^x & x <\log(2a) \\
+\displaystyle
+m + 1 - \frac{m+1}{4b} e^x - ae^{-x} & \log(2a) \leq x \leq \log(2b) \\
+\displaystyle
+(mb+b-a) e^{-x}  & x > \log(2b)
+\end{cases} $$
+
+Since $w_2$ is increasing for $x<\log(2a)$, we know the solution to $w_2(x)=a$ must lie on the second or third pieces. This can be determined by checking the sign of $w_2(\log(2b))-a$. If it is positive, the horizontal line $y=a$ intersects the curve $y=w_2(x)$ on the third piece, and the solution can be found by solving $(mb+b-a)e^{-x}=a$. Otherwise, if the sign is negative, the solution occurs on the second piece as the solution to the equation
+
+$$ w_2(x)=a \iff m + 1 - \frac{m+1}{4b} e^x - ae^{-x} = a $$
+
+First let us group like terms and multiply by $4b$:
+
+$$ (m+1) e^x + (m + 1 - a) - 4abe^{-x} = 0 $$
+
+Using the substitution $y=e^x$, this equation becomes a quadratic in $y$:
+
+$$ (m+1) y^2 + (m + 1 - a) y - 4ab = 0 $$
+
+The solution is
+
+$$ y = \frac{a-m-1 \pm \sqrt{(m+1-a)^2 + 16ab(m+1)}}{2m+2}$$
+
+We know the global maximum of $w_2(x)$ lies somewhere in the open interval $(\log(2a),\log(2b))$, therefore we take the greater solution so that
+
+$$ c^* = \frac{1}{2} \log\left(  \frac{a-m-1 + \sqrt{(m+1-a)^2 + 16ab(m+1)}}{2m+2} \right) $$
+
+Then we can obtain the critical wave speed in two cases:
+$$ c^* = \begin{cases} \displaystyle
+\frac{1}{2} \log \left( \frac{mb+b-a}{a} \right) & m \geq \frac{2ab+a-b}{b} \\
+\displaystyle
+ \frac{1}{2} \log\left(  \frac{a-m-1 + \sqrt{(m+1-a)^2 + 16ab(m+1)}}{2m+2} \right) & m < \frac{2ab+a-b}{b}
+\end{cases} $$
+
+Case 2: $a<\frac{1}{2}<b$. Then
+$$ w_2(x) = \int_{x+\log(2-2b)}^{\infty} \frac{m}{2}e^{-|y|}\,dy + \int_{x+\log(2-2b)}^{x-\log(2a)} \frac{1}{2}e^{-|y|} \,dy $$
+
+Then
+
+$$ w_2(x) = \frac{m}{2} - \frac{m+1}{2}\left( \min(\frac{e^{-x}}{2-2b},1) - \min((2-2b)e^{x},1) \right) - \frac{1}{2} \left( \min(2ae^{-x},1) - \min(\frac{1}{2a}e^{x},1) \right) $$
+
+so
+
+$$ w_2(x) = \begin{cases}
+\displaystyle
+m - \frac{4a(m+1)(1-b)-1}{4a} e^x & x <\log(2a) \\
+\displaystyle
+m+1 - (m+1)(a-b) e^x - ae^{-x} & \log(2a) \leq x \leq -\log(2-2b) \\
+\displaystyle
+\frac{m+1-4a(1-b)}{4(1-b)} e^{-x}  & x > -\log(2-2b)
+\end{cases} $$
 
 \end{ex}
 
