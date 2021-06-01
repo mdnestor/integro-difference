@@ -277,11 +277,34 @@ In this section, we construct the population density functions $w_1$ and $w_2$ f
 
 \begin{ex}
 The Laplace kernel,
-\begin{equation}
+\begin{equation}\label{laplacekernel}
 k(x) = \frac{1}{2} e^{-|x|}
 \end{equation}
 
-The traveling waves are given by
+One can easily verify conditions i. - iii. of Hypothesis 2.1. To check condition iv., we introduce the following lemma:
+
+\begin{lem}
+The Laplace kernel \eqref{laplacekernel} satisfies condition (iv.) of Hypothesis 2.1.
+\end{lem}
+
+\begin{proof}
+let $f=f_{m,y}$ be the scalar function of $x$ with two parameters $y\in\mathbb R$ and $\mu\in(0,1)$ defined by
+$$ f(x)= f_{m,y}(x) = \frac{1}{2} e^{-|x|} - \frac{\mu}{2}e^{-|x-y|} $$
+
+If $y=0$, then $f$ has no zero-crossings, since $f_{m,0}(x)=\frac{1-\mu}{2}e^{-|x|}$ is strictly positive. If $y$ is nonzero, then one can easily check the symmetry relation $f_{m,-y}(x)=f_{m,y}(-x)$. Since the number of zero-crossings are invariant with respect to a reflection about the vertical axis, we can assume without loss of generality $y>0$.
+
+Under this assumption, $f$ is strictly increasing on $(-\infty,0)$, and strictly decreasing on $(0,y)$. The behavior on $(y,\infty)$ is determined by the sign of $e^{-y}-m$. There are three cases:
+
+\begin{enumerate}
+\item if $e^{-y}>m$, then $f$ is decreasing on $(0,\infty)$, hence has no zero-crossings;
+\item if $e^{-y}<m$, then $f$ has a unique zero-crossing at $x=\frac{1}{2}(y-\ln(m))$;
+\item if $e^{-y}=m$, then $f$ vanishes on $(y,\infty)$, hence it has no zero-crossings.
+\end{enumerate}
+In each case, the number of zero-crossings does not exceed one.
+\end{proof}
+
+We have shown that the Laplace kernel satisfies Hypothesis 2.1; thus, we can construct a periodic traveling wave solution:
+
 \begin{equation}
 w_1(x) =   \begin{cases} 
 1 - \frac{1}{2}e^{x} & x \leq 0 \\
@@ -289,11 +312,21 @@ w_1(x) =   \begin{cases}
 \end{cases}
 \end{equation}
 and
-\begin{equation}
-w_2(x) = \int_{-\infty}^\winvb mk(x-y)\,dy + \int_{\winvb}^\winva k(x-y)\,dy
+\begin{equation}\label{laplacew2}
+w_2(x) = \int_{x-\winva}^{\infty} \frac{1}{2} e^{-|y|} \,dy - \int_{x-\winva}^{\infty} \frac{1-m}{2} e^{-|y|} \,dy
 \end{equation}
 with
-$$ w_1^{-1}(p) = \begin{cases} -\log(2p) & p\leq \frac{1}{2} \\ \log(2-2p) & p > \frac{1}{2} \end{cases} $$
+$$ w_1^{-1}(p) = \begin{cases} -\ln(2p) & p\leq \frac{1}{2} \\ \ln(2-2p) & p > \frac{1}{2} \end{cases} $$
+
+The integrals in \eqref{laplacew2} can be computed using elementary methods to obtain
+\begin{equation}
+w_2(x) = \begin{cases}
+-\frac{1}{2}e^{x-w_1^{-1}(a)} + \frac{1}{2}e^{x-w_1^{-1}(b)} & x < w_1^{-1}(b) \\
+1 - \frac{1}{2} e^{x-w_1^{-1}(a)} - \frac{1}{2} e^{-(x-w_1^{-1}(b))} & w_1^{-1}(b) < x < w_1^{-1}(a) \\
+\frac{1}{2} e^{-(x-w_1^{-1}(a))} - \frac{1}{2} e^{-(x-w_1^{-1}(b))} & x > w_1^{-1}(a)
+\end{cases}
+\end{equation}
+
 Then
 $$ w_2(x) = \begin{cases}
 \int_{-\infty}^{-\log(2b)} \frac{m}{2}e^{-|x-y|}\,dy + \int_{-\log(2b)}^{-\log(2a)} \frac{1}{2}e^{-|x-y|} \,dy & a<\frac{1}{2}, b < \frac{1}{2} \\
@@ -385,9 +418,9 @@ m+1 - (m+1)(a-b) e^x - ae^{-x} & \log(2a) \leq x \leq -\log(2-2b) \\
 
 \end{ex}
 
-\begin{ex} Consider the Gaussian kernel with mean $0$ and variance $1$ given by
+\begin{ex} Consider the Gaussian kernel with zero mean and unit variance given by
 $$ k(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} $$
-$k$ is symmetric, strictly increasing on $(-\infty,0)$ and strictly decreasing on $(0,\infty)$, hence conditions i.-iii. of Hypothesis \ref{hypothesis1} are satisfied. For condition iv., let $y \in \mathbb R$ and $\mu\in(0,1)$. It can be shown that $k(x) - \mu k(x-y) = B(x)(1-Ce^{-xy})$ where $B(x)=e^{-\frac{x^2}{2}}/\sqrt{2\pi}$ is a strictly positive function and $C>0$. This quantity decreases monotonically from $1$ to $-\infty$ with a unique zero-crossing at $x=\frac{y}{2}-\frac{\ln \mu}{y}$. Thus, Hypothesis \ref{hypothesis1} is satisfied.
+$k$ is symmetric, strictly increasing on $(-\infty,0)$ and strictly decreasing on $(0,\infty)$, hence conditions i.-iii. of Hypothesis \ref{hypothesis1} are satisfied. For condition iv., let $y \in \mathbb R$ and $\mu\in(0,1)$. It can be shown that $k(x) - \mu k(x-y) = B(x)(1-Ce^{-xy})$ where $B(x)$ is a strictly positive function of $x$, and $C>0$. This quantity decreases monotonically from $1$ to $-\infty$ with a unique zero-crossing at $x=\frac{y}{2}-\frac{\ln \mu}{y}$. Thus, Hypothesis \ref{hypothesis1} is satisfied.
 
 The periodic traveling wave solutions $w_1(x)$ and $w_2(x)$ are given by
 \begin{equation}
