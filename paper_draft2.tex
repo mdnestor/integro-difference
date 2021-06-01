@@ -296,9 +296,9 @@ If $y=0$, then $f$ has no zero-crossings, since $f_{m,0}(x)=\frac{1-\mu}{2}e^{-|
 Under this assumption, $f$ is strictly increasing on $(-\infty,0)$, and strictly decreasing on $(0,y)$. The behavior on $(y,\infty)$ is determined by the sign of $e^{-y}-m$. There are three cases:
 
 \begin{enumerate}
-\item if $e^{-y}>m$, then $f$ is decreasing on $(0,\infty)$, hence has no zero-crossings;
-\item if $e^{-y}<m$, then $f$ has a unique zero-crossing at $x=\frac{1}{2}(y-\ln(m))$;
-\item if $e^{-y}=m$, then $f$ vanishes on $(y,\infty)$, hence it has no zero-crossings.
+\item if $y<\ln\frac{1}{m}$, then $f$ is decreasing on $(0,\infty)$, hence has no zero-crossings;
+\item if $y>\ln\frac{1}{m}$, then $f$ has a unique zero-crossing at $x=\frac{1}{2}(y-\ln(m))$;
+\item if $y=\ln\frac{1}{m}$, then $f$ vanishes on $(y,\infty)$, hence it has no zero-crossings.
 \end{enumerate}
 In each case, the number of zero-crossings does not exceed one.
 \end{proof}
@@ -313,7 +313,7 @@ w_1(x) =   \begin{cases}
 \end{equation}
 and
 \begin{equation}\label{laplacew2}
-w_2(x) = \int_{x-\winva}^{\infty} \frac{1}{2} e^{-|y|} \,dy - \int_{x-\winva}^{\infty} \frac{1-m}{2} e^{-|y|} \,dy
+w_2(x) = \int_{x-\winva}^{\infty} \frac{1}{2} e^{-|y|} \,dy - \int_{x-\winvb}^{\infty} \frac{1-m}{2} e^{-|y|} \,dy
 \end{equation}
 with
 $$ w_1^{-1}(p) = \begin{cases} -\ln(2p) & p\leq \frac{1}{2} \\ \ln(2-2p) & p > \frac{1}{2} \end{cases} $$
@@ -321,11 +321,23 @@ $$ w_1^{-1}(p) = \begin{cases} -\ln(2p) & p\leq \frac{1}{2} \\ \ln(2-2p) & p > \
 The integrals in \eqref{laplacew2} can be computed using elementary methods to obtain
 \begin{equation}
 w_2(x) = \begin{cases}
--\frac{1}{2}e^{x-w_1^{-1}(a)} + \frac{1}{2}e^{x-w_1^{-1}(b)} & x < w_1^{-1}(b) \\
+\frac{1}{2} e^x \left( e^{-w_1^{-1}(b)} -e^{-w_1^{-1}(a)} \right)  & x < w_1^{-1}(b) \\
 1 - \frac{1}{2} e^{x-w_1^{-1}(a)} - \frac{1}{2} e^{-(x-w_1^{-1}(b))} & w_1^{-1}(b) < x < w_1^{-1}(a) \\
-\frac{1}{2} e^{-(x-w_1^{-1}(a))} - \frac{1}{2} e^{-(x-w_1^{-1}(b))} & x > w_1^{-1}(a)
+\frac{1}{2} e^{-x} \left(  e^{w_1^{-1}(a)} - e^{w_1^{-1}(b)} \right) & x > w_1^{-1}(a)
 \end{cases}
 \end{equation}
+
+We can split into three cases:
+
+\begin{enumerate}
+\item $a<\frac{1}{2}$, $b<\frac{1}{2}$. Then
+\begin{equation}
+w_2(x) = \begin{cases}
+\frac{1}{2} e^x \left( e^{-w_1^{-1}(b)} -e^{-w_1^{-1}(a)} \right)  & x < w_1^{-1}(b) \\
+1 - \frac{1}{2} e^{x-w_1^{-1}(a)} - \frac{1}{2} e^{-(x-w_1^{-1}(b))} & w_1^{-1}(b) < x < w_1^{-1}(a) \\
+\frac{1}{2} e^{-x} \left(  e^{w_1^{-1}(a)} - e^{w_1^{-1}(b)} \right) & x > w_1^{-1}(a)
+\end{cases}
+\end{enumerate}
 
 Then
 $$ w_2(x) = \begin{cases}
