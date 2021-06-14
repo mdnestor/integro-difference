@@ -9,12 +9,12 @@
 
 
 
-\theoremstyle{definition}
+%\theoremstyle{definition}
 \newtheorem{thm}{Theorem}
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
+\theoremstyle{definition}
 \newtheorem{rem}[thm]{Remark}
-\newtheorem{hyp}[thm]{Hypothesis}
 \newtheorem{ex}[thm]{Example}
 
 \numberwithin{equation}{section}
@@ -104,15 +104,26 @@ In this section, we construct a periodic traveling wave solution to the recurren
 \end{enumerate}
 %\end{hyp}
 
-Under these assumptions, the cumulative density function $F(x)=\int_{-\infty}^{x}k(y)\,dy$ has a well-defined right inverse $F^{-1}$ satisfying $F(F^{-1}(p))=p$ for all $0<p<1$. Furthermore, it satisfies the symmetry relation $F(-x)=1-F(x)$.
+
+\begin{prop} \label{prop1}
+Let $\mathcal B$ denote the space of bounded, continuous, non-negative functions $\mathbb R \to \mathbb R$. $Q$ is a bounded nonlinear operator $\mathcal B \to \mathcal B$, and satisfies the following properties for all $u \in \mathcal B$:
+
+\begin{enumerate}[(i.)]
+\item \it{(Translation invariance)} $Q[T^t[u]]=T^t[Q[u]]$ for any translation operator $T^t[u](x)=u(x+t)$.
+\item \it{(Limit-preserving)} If $u(x)\to\ell$ as $x\to\infty$, then $Q[u](x)\to g(\ell)$ as $x\to\infty$; likewise as $x\to-\infty$.
+\item \it{(Symmetry-preserving)} If $u(x-a)=u(x+a)$ then $Q[u](x-a)=Q[u](x+a)$.
+\end{enumerate}
+\end{prop}
+
+ the cumulative density function $F(x)=\int_{-\infty}^{x}k(y)\,dy$ has a well-defined right inverse $F^{-1}$ satisfying $F(F^{-1}(p))=p$ for all $0<p<1$. Furthermore, it satisfies the symmetry relation $F(-x)=1-F(x)$.
 
  Let $w_1$ and $w_2$ be two functions belonging to $C(\mathbb R)$ defined by
 \begin{equation} \label{w1}
-w_1(x) = \int_x^\infty k(y) \, dy
+w_1(x) := \int_x^\infty k(y) \, dy
 \end{equation}
 and
 \begin{equation} \label{w2}
-w_2(x) = \int_{-\infty}^{\infty} k(y) g(w_1(x-y)) \, dy 
+w_2(x) := Q[w_1](x) = \int_{-\infty}^{\infty} k(y) g(w_1(x-y)) \, dy 
 \end{equation}
 
 Hypothesis (H1) implies $w_1$ and $w_2$ have well-defined limits at $\pm\infty$ given by $w_1(\infty)=w_2(\infty)=0$, $w_1(-\infty)=1$, and $w_2(-\infty)=\m$. Furthermore, $w_1$ is monotonically decreasing, while $w_2$ may be non-monotonic.
@@ -121,22 +132,14 @@ Hypothesis (H1) implies $w_1$ and $w_2$ have well-defined limits at $\pm\infty$ 
 If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then there exists unique $c^*\in\mathbb R$ such that $Q[w_2](x)=w_1(x-2c^*)$ for all $x\in\mathbb R$.
 \end{lem}
 
-\begin{proof} Let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. It follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Thus, composing $w_1(x)$ with the growth function $g$ yields
-\begin{equation} \label{gw1}
-g(w_1(x)) = \begin{cases}
-\mu & x < x_\beta \\
-1 & x_\beta \leq x \leq x_\a \\
-0 & x > x_\a
-\end{cases} \end{equation}
-
-Applying the convolution operator yields a formula for $w_2(x)$:
-\begin{equation} \label{w2calculation}
+\begin{proof} Let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. It follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
+\begin{equation} \label{qw1calculation}
 \begin{aligned}
-w_2(x) &= \int_{-\infty}^{\infty} k(y) g(w_1(x-y)) \, dy \\
-&= \int_{x-x_\a}^{x-x_\b} k(y)\,dy + \m \int_{x-\beta}^{\infty} k(y)\,dy \\
-&= \int_{x-x_\a}^{\infty} k(y)\,dy - (1-\m) \int_{x-x_\b}^{\infty} k(y)\,dy
-\end{aligned}
-\end{equation}
+Q[w_1](x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy \\
+&= \m \int_{-\infty}^{x_\b} k(x-y) \, dy + \int_{x_\b}^{x_\a} k(x-y) \, dy \\
+&= \m \int_{x-x_\b}^{\infty} k(y) \, dy + \int_{x-x_\a}^{x-x_\b} k(y) \, dy \\
+&= \int_{x-x_\a}^{\infty} k(y) \, dy - (1-\m) \int_{x-x_\b}^{\infty} k(y) \, dy
+\end{aligned} \end{equation}
 
 Taking the derivative with respect to $x$, we find
 \begin{equation}\label{dw2dx}
@@ -154,17 +157,12 @@ In both cases, $w_2(x)$ has a well-defined right inverse on the open interval $(
 c^*=\frac{1}{2}\sup\{x\in\mathbb R\mid w_2(x)\geq\a\}
 \end{equation}
 
-It follows that $w_2(x)\geq\a$ for $x\leq 2c^*$ and $w_2(x)<\alpha$ for $x>2c^*$. Along with the assumption that $\sup_{x\in\mathbb R}w_2(x)\leq\b$, we can compose with $g$ as follows:
-\begin{equation} \label{gw2}
-g(w_2(x)) = \begin{cases}
-1 & x \leq 2c^* \\
-0 & x > 2c^*
-\end{cases} \end{equation}
-
-Taking convolution with $k$, we obtain
-\begin{equation}
-Q[w_2](x) = \int_{x-x_0}^{\infty} k(y)\,dy = w_1(x-2c^*).
-\end{equation}
+It follows that $w_2(x)\geq\a$ for $x\leq 2c^*$ and $w_2(x)<\alpha$ for $x>2c^*$. Along with the assumption that $\sup_{x\in\mathbb R}w_2(x)\leq\b$, we can apply the integro-difference operator once more:
+\begin{equation} \begin{aligned}
+Q[w_2](x) %&= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
+&= \int_{-\infty}^{2c^*} k(x-y) \, dy \\
+&= \int_{x-2c^*}^{\infty} k(y) \, dy &= w_1(x-2c^*).
+\end{aligned} \end{equation}
 %By defining $c^* = \frac{1}{2}x_0$, and applying the integro-difference operator, we can see that $w_1$ and $w_2$ are both solutions to the periodic traveling wave equation with mean speed $c^*$:
 %\begin{equation}
 %Q^2[w_1](x) = w_1(x-2c^*); \quad Q^2[w_2](x) = w_2(x-2c^*)
@@ -174,7 +172,7 @@ Q[w_2](x) = \int_{x-x_0}^{\infty} k(y)\,dy = w_1(x-2c^*).
 \begin{thm} \label{theorem1}
 If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a periodic traveling wave solution given by
 \begin{equation} \label{ptw}
-W_n(x) = \begin{cases}
+u_n(x) = \begin{cases}
 w_1(x-nc^*) & n \text{ even} \\
 w_2(x-nc^*) & n \text{ odd}
 \end{cases}
@@ -182,11 +180,23 @@ w_2(x-nc^*) & n \text{ odd}
 \end{thm}
 
 \begin{proof}
-DO THIS
+It suffices to show that $u_{n+1}=Q[u_n]$ for all $n\geq 0$; this can be done via induction. The basis case is
+\begin{equation}
+u_1(x) = w_2(x) = Q[w_1](x) = Q[u_0](x)
+\end{equation}
+For the inductive step, suppose $u_{n+1}=Q[u_n]$ for some $n\geq 0$. We can proceed in cases. If $n$ is even, then $u_n(x)=w_1(x-nc^*)$ and $u_{n+1}(x)=w_2(x-nc^*)$; we have
+\begin{equation}
+u_{n+1}(x) = w_2(x-nc^*) = Q[w_1](x-nc^*) = Q[u_n](x)
+\end{equation}
+If $n$ is odd, then $u_n(x)=w_2(x-nc^*)$, and $u_{n+1}(x)=w_1(x-(n+1)c^*)$. By Lemma \ref{lemma1}, we have
+\begin{equation}
+u_{n+1}(x) = w_1(x-(n+1)c^*) = Q[w_2](x-nc^*) = Q[u_n](x)
+\end{equation}
+This completes the proof.
 \end{proof}
 
 \begin{thm}  \label{theorem2}
-For all $\epsilon>0$, the sequence $(u_n)_{n=0}^{\infty}$ defined in Theorem \ref{theorem1} satisfies
+If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then for all $\epsilon>0$, the sequence \ref{ptw} satisfies
 \begin{equation}
 \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n}(x)=1
 \end{equation}
@@ -200,30 +210,47 @@ and
 \end{equation}
 \end{thm}
 
+\begin{proof}
+\begin{equation} \begin{aligned}
+\lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n}(x)
+&= \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}w_1(x-2nc^*) \\
+&= \lim_{n\to\infty}\inf_{x<-2n\epsilon}w_1(x) \\
+&= \liminf_{x\to-\infty}w_1(x) &= 1.
+\end{aligned} \end{equation}
+
+\begin{equation} \begin{aligned}
+\lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n+1}(x)
+&= \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}w_2(x-2nc^*) \\
+&= \lim_{n\to\infty}\inf_{x<-2n\epsilon}w_2(x) \\
+&= \liminf_{x\to-\infty}w_2(x) &= m.
+\end{aligned} \end{equation}
+
+\begin{equation} \begin{aligned}
+\lim_{n\to\infty} \sup_{x>n(c^*+\epsilon)} u_n(x) 
+&\leq \lim_{n\to\infty} \sup_{x>n(c^*+\epsilon)} \max\{w_1(x-nc^*),w_2(x-nc^*)\} \\
+&= \lim_{n\to\infty} \sup_{x>n\epsilon} \max\{w_1(x),w_2(x)\} \\
+&= \limsup_{x\to\infty} \max\{w_1(x),w_2(x)\} &= 0.
+\end{aligned} \end{equation}
+Since the left hand side must also be non-negative, equality follows.
+\end{proof}
+
 The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data. We also assume the disperal kernel is compactly supported.
 
-\begin{thm} Suppose $||w_2||_\infty \leq b$ and $k(x)$ has compact support. Assume the following hold:
-
-\begin{enumerate}[i.)]
-\item $c^*$ is positive,\
-\item the initial condition $u_0$ has compact support;
-\item the set $A=\{x\in\mathbb R:a\leq u_0(x)\leq b\}$  is connected and sufficiently large.
-\end{enumerate}
- Then the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$, satisfies
+\begin{thm} Let $u_0(x)$ be a non-negative continuous function with compact support such that the set $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$ is connected. Suppose $k(x)$ has compact support, $\sup_{x\in\mathbb R}w_2(x)\leq \b$, and $c^* > 0$. Then, for $A$ sufficiently large, the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e., 
 \begin{equation}
-\lim_{n\to\infty}\inf_{|x|<2nc}u_{2n}(x)=1, \quad \forall c\in(0,c^*)
-\end{equation}
-and
-\begin{equation}
-\lim_{n\to\infty}\inf_{|x|<2nc}u_{2n+1}(x)=m, \quad \forall c\in(0,c^*)
+\lim_{n\to\infty}\inf_{|x|<n(c^*-\epsilon)}u_{n}(x)>0,
 \end{equation}
 and 
 \begin{equation}
-\lim_{n\to\infty}\sup_{|x|>nc}u_n(x)=0, \quad \forall c\in(c^*,\infty).
+\lim_{n\to\infty}\sup_{|x|>n(c^*+\epsilon)}u_n(x)=0.
 \end{equation}
+for all $\epsilon>0$.
 \end{thm}
 
 \begin{proof}
+By the translation invariance property of $Q$, we may assume without loss of generality $A=[-r,r]$, for some $r>0$. It follows that $u_0(x)<\a$ for $|x|>r$ and $\a\leq u_0(x)\leq\b$ for $|x|$Furthermore, there exists $\sigma>0$ such that $k(x)>0$ if and only if $|x|<\sigma$. 
+
+
 Let $(-\sigma,\sigma)$ be the support of $k$, for $0<\sigma<\infty$. Since $A$ is connected, we may also assume by the translation invariance property that $A=[-r,r]$ for some $r \geq 0$. Furthermore, since $u_0$ has compact support we must have $u_0(x)=0$ outside a bounded interval $(r^-,r^+) \supset A$, where $r^- < -r \leq r < r^+$.
 
 Next, we will show that $0<u_0(x)<a$ for $x\in(r^-,r^+)\setminus A$. If we suppose to the contrary that $u_0(x)>b$ for some $x$ in this set, then suppose without loss of generality $x\in(r,r^+)$ such that $u_0(x)>b$. It follows by the intermediate value theorem that $u_0(x')=b$ for some $x' \in (x,r^+)$. But then $r\in A$, $x\notin A$, and $x'\in A$ with $r<x<x'$, violating the connectedness of $A$.
@@ -911,7 +938,33 @@ Math. Anal. {\bf 13}: 353-396.
 
 \appendix
 
-\section{Example calculations}
+\section{Appendix}
+
+\begin{proof}[Proof of Proposition \ref{prop1}]
+
+Let $u(x)$ be non-negative, continuous, and bounded.
+
+\begin{enumerate}[(i.)]
+\item For $t\in\mathbb R$, let $T^t$ denote the translation operator defined $T^t[u](x) = u(x+t)$. Then,
+\begin{equation} \begin{aligned}
+Q[T^t[u]](x) &= 
+\int_{-\infty}^{\infty} k(x-y) g(T^t[u](y)) \, dy \\
+&= \int_{-\infty}^{\infty} k(x-y) g(u(y+t)) \, dy
+\end{aligned} \end{equation}
+Let $z=y+t$.
+\begin{equation} \begin{aligned}
+Q[T^t[u]](x)
+&= \int_{-\infty}^{\infty} k(x-z+t) g(u(z)) \, dz \\
+&= Q[u](x+t) \\
+&= T^t[Q[u]](x)
+\end{aligned} \end{equation}
+
+\item 
+Suppose $\lim_{x\to\infty}u(x)=\ell$. 
+
+\end{enumerate}
+
+\end{proof}
 
 \begin{lem}
 The Laplace kernel \eqref{laplacekernel} satisfies hypothesis (H4).
