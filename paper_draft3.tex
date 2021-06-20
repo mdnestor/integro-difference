@@ -2,7 +2,7 @@
 
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{hyperref}
-%\usepackage{geometry}
+\usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{enumerate}
 %\usepackage{caption,subcaption}
@@ -11,6 +11,7 @@
 
 %\theoremstyle{definition}
 \newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \theoremstyle{definition}
@@ -54,7 +55,7 @@ We derive sufficient conditions for the existence of periodic traveling wave sol
 {\bf Key words:} Integro-difference equation, period two cycle, Allee effect, periodic traveling wave.
 \newline
 
-{\bf Todo:} Proof of Theorem 2.2.
+{\bf Todo:} Double check Gaussian kernel proof.
 \newline
 
 {\bf AMS Subject Classification:} 92D40, 92D25.
@@ -104,20 +105,22 @@ In this section, we construct a periodic traveling wave solution to the recurren
 \end{enumerate}
 %\end{hyp}
 
+%\begin{rem}
+%Hypotheses (H1)-(H4) are scale-invariant, that is, if $k(x)$ satisfies (H1)-(H4), then so does $\hat{k}(x):=ak(ax)$ for any $a>0$. Thus, when checking the hypotheses for a particular dispersal kernel, we may rescale without loss of generality.
+%\end{rem}
 
 \begin{prop} \label{prop1}
-Let $\mathcal B$ denote the space of bounded, continuous, non-negative functions $\mathbb R \to \mathbb R$. $Q$ is a bounded nonlinear operator $\mathcal B \to \mathcal B$, and satisfies the following properties for all $u \in \mathcal B$:
+%Let $\mathcal B$ denote the space of bounded, continuous, non-negative functions $\mathbb R \to \mathbb R$. $Q$ is a bounded nonlinear operator $\mathcal B \to \mathcal B$, and satisfies the following properties for all $u \in \mathcal B$:
+The operator $Q$ satisfies the following properties for all bounded continuous functions $u : \mathbb R \to \mathbb R_{\geq 0}$:
 
 \begin{enumerate}[(i.)]
 \item \it{(Translation invariance)} $Q[T^t[u]]=T^t[Q[u]]$ for any translation operator $T^t[u](x)=u(x+t)$.
+\item \it{(Symmetric)} If $u(x)=u(-x)$ then $Q[u](x)=Q[u](-x)$.
 \item \it{(Limit-preserving)} If $u(x)\to\ell$ as $x\to\infty$, then $Q[u](x)\to g(\ell)$ as $x\to\infty$; likewise as $x\to-\infty$.
-\item \it{(Symmetry-preserving)} If $u(x-a)=u(x+a)$ then $Q[u](x-a)=Q[u](x+a)$.
 \end{enumerate}
 \end{prop}
 
- the cumulative density function $F(x)=\int_{-\infty}^{x}k(y)\,dy$ has a well-defined right inverse $F^{-1}$ satisfying $F(F^{-1}(p))=p$ for all $0<p<1$. Furthermore, it satisfies the symmetry relation $F(-x)=1-F(x)$.
-
- Let $w_1$ and $w_2$ be two functions belonging to $C(\mathbb R)$ defined by
+ Let $w_1$ and $w_2$ be two functions defined by
 \begin{equation} \label{w1}
 w_1(x) := \int_x^\infty k(y) \, dy
 \end{equation}
@@ -132,7 +135,7 @@ Hypothesis (H1) implies $w_1$ and $w_2$ have well-defined limits at $\pm\infty$ 
 If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then there exists unique $c^*\in\mathbb R$ such that $Q[w_2](x)=w_1(x-2c^*)$ for all $x\in\mathbb R$.
 \end{lem}
 
-\begin{proof} Let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. It follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
+\begin{proof} Let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. Since $w_1$ is monotone, it follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
 \begin{equation} \label{qw1calculation}
 \begin{aligned}
 Q[w_1](x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy \\
@@ -169,30 +172,46 @@ Q[w_2](x) %&= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
 %\end{equation}
 \end{proof}
 
+By Lemma \ref{lemma1}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1](x)=w_1(x-2c^*)$ and $Q^2[w_2](x)=w_2(x-2c^*)$. As a result, they can be used to construct a solution to the integral recurrence which spreads in space with a mean speed of $c^*$ and alternates in shape every two time steps. This is formalized in the following theorem:
+
+%\begin{cor} If $||w_2||_\infty \leq \beta$, then for all $x\in\mathbb R$,
+%\begin{equation}
+%Q^2[w_1](x) = w_1(x-2c^*)
+%\end{equation}
+%and
+%\begin{equation}
+%Q^2[w_2](x) = w_2(x-2c^*)
+%\end{equation}
+%\end{cor}
+
 \begin{thm} \label{theorem1}
-If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a periodic traveling wave solution given by
+If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a periodic traveling wave solution $(u_n)_{n=0}^{\infty}$ satisfying
+%\begin{equation} \label{ptw}
+%u_n(x) = \begin{cases}
+%w_1(x-nc^*) & n \text{ even} \\
+%w_2(x-nc^*) & n \text{ odd}
+%\end{cases}
+%\end{equation}
+
 \begin{equation} \label{ptw}
-u_n(x) = \begin{cases}
-w_1(x-nc^*) & n \text{ even} \\
-w_2(x-nc^*) & n \text{ odd}
-\end{cases}
+\begin{aligned}
+u_{2n}(x) &= w_1(x-2nc^*) \\
+u_{2n+1}(x) &= w_2(x-2nc^*)
+\end{aligned}
 \end{equation}
+for all $n \geq 0$.
 \end{thm}
 
 \begin{proof}
-It suffices to show that $u_{n+1}=Q[u_n]$ for all $n\geq 0$; this can be done via induction. The basis case is
-\begin{equation}
-u_1(x) = w_2(x) = Q[w_1](x) = Q[u_0](x)
-\end{equation}
-For the inductive step, suppose $u_{n+1}=Q[u_n]$ for some $n\geq 0$. We can proceed in cases. If $n$ is even, then $u_n(x)=w_1(x-nc^*)$ and $u_{n+1}(x)=w_2(x-nc^*)$; we have
-\begin{equation}
-u_{n+1}(x) = w_2(x-nc^*) = Q[w_1](x-nc^*) = Q[u_n](x)
-\end{equation}
-If $n$ is odd, then $u_n(x)=w_2(x-nc^*)$, and $u_{n+1}(x)=w_1(x-(n+1)c^*)$. By Lemma \ref{lemma1}, we have
-\begin{equation}
-u_{n+1}(x) = w_1(x-(n+1)c^*) = Q[w_2](x-nc^*) = Q[u_n](x)
-\end{equation}
-This completes the proof.
+It suffices to show that equation \eqref{ptw} satisfies $u_{n+1}=Q[u_n]$ for all $n \geq 0$. For convenience, we will switch the index and consider the cases $u_{2n}$ and $u_{2n+1}$ separately. The basic case, $u_1 = Q[u_0]$, follows immediately from definition \ref{w2}. This proves the first half. Next, we have $u_2(x)=w_1(x-2c^*)$, which follows by Lemma \ref{lemma1}.
+
+For the inductive step, suppose $u_{2n+1}=Q[u_{2n}]$ and $u_{2n+2}=Q[u_{2n+1}]$ for some $n\geq 0$. We only need to show $u_{2n+3}=Q[u_{2n+2}]$. We have
+\begin{equation} \begin{aligned}
+u_{2n+3}(x) &= w_2(x-2nc^*-2c^*) \\
+&= Q^2[w_2](x-2nc^*) \\
+&= Q^2[u_{2n+1}](x) \\ 
+&= Q[u_{2n+2}](x)
+\end{aligned} \end{equation}
 \end{proof}
 
 \begin{thm}  \label{theorem2}
@@ -215,28 +234,38 @@ and
 \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n}(x)
 &= \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}w_1(x-2nc^*) \\
 &= \lim_{n\to\infty}\inf_{x<-2n\epsilon}w_1(x) \\
-&= \liminf_{x\to-\infty}w_1(x) &= 1.
+&= \liminf_{x\to-\infty}w_1(x) \\ &= 1.
 \end{aligned} \end{equation}
 
 \begin{equation} \begin{aligned}
 \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n+1}(x)
 &= \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}w_2(x-2nc^*) \\
 &= \lim_{n\to\infty}\inf_{x<-2n\epsilon}w_2(x) \\
-&= \liminf_{x\to-\infty}w_2(x) &= m.
+&= \liminf_{x\to-\infty}w_2(x) \\ &= m.
 \end{aligned} \end{equation}
 
 \begin{equation} \begin{aligned}
 \lim_{n\to\infty} \sup_{x>n(c^*+\epsilon)} u_n(x) 
 &\leq \lim_{n\to\infty} \sup_{x>n(c^*+\epsilon)} \max\{w_1(x-nc^*),w_2(x-nc^*)\} \\
 &= \lim_{n\to\infty} \sup_{x>n\epsilon} \max\{w_1(x),w_2(x)\} \\
-&= \limsup_{x\to\infty} \max\{w_1(x),w_2(x)\} &= 0.
+&= \limsup_{x\to\infty} \max\{w_1(x),w_2(x)\} \\ 
+&= \max\{\limsup_{x\to\infty} w_1(x),\limsup_{x\to\infty} w_2(x)\} \\
+&= 0.
 \end{aligned} \end{equation}
-Since the left hand side must also be non-negative, equality follows.
+In the last calculation, the left hand side is known to be non-negative; therefore the limit is exactly equal to zero.
 \end{proof}
 
-The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data. We also assume the disperal kernel is compactly supported.
+The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data. We also assume the disperal kernel is compactly supported. First, we introduce a useful lemma for compactly supported kernels.
 
-\begin{thm} Let $u_0(x)$ be a non-negative continuous function with compact support such that the set $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$ is connected. Suppose $k(x)$ has compact support, $\sup_{x\in\mathbb R}w_2(x)\leq \b$, and $c^* > 0$. Then, for $A$ sufficiently large, the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e., 
+\begin{lem}\label{lemma2}
+Suppose $k(x)$ is compactly supported on $[-\sigma,\sigma]$, for some $\sigma>0$. Then for any continuous function $u(x)$, if $u(x)=0$ for $x \in \Omega \subseteq \mathbb R$, then $(k*u)(x)=0$ for $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$, where $d(x,\mathbb R\setminus\Omega):= \inf \{d(x,y) \mid y\in \mathbb R\setminus\Omega\}$.
+\end{lem}
+
+\begin{proof}
+Let $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$. Then $(x-\sigma,x+\sigma)$ is a subset of  $\Omega$ on which $u$ vanishes; thus $ (k*u)(x) = \int_{x-\sigma}^{x+\sigma}k(x-y)u(y)\,dy = 0.$
+\end{proof}
+
+\begin{thm} Let $u_0(x)$ be a non-negative continuous function with compact support such that the set $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$ is connected. Suppose $k(x)$ has compact support, $\sup_{x\in\mathbb R}w_2(x)\leq \b$, and $c^* > 0$. For $A$ sufficiently large, the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
 \begin{equation}
 \lim_{n\to\infty}\inf_{|x|<n(c^*-\epsilon)}u_{n}(x)>0,
 \end{equation}
@@ -248,46 +277,51 @@ for all $\epsilon>0$.
 \end{thm}
 
 \begin{proof}
-By the translation invariance property of $Q$, we may assume without loss of generality $A=[-r,r]$, for some $r>0$. It follows that $u_0(x)<\a$ for $|x|>r$ and $\a\leq u_0(x)\leq\b$ for $|x|$Furthermore, there exists $\sigma>0$ such that $k(x)>0$ if and only if $|x|<\sigma$. 
+By the translation invariance property of $Q$, we may assume without loss of generality $A=[-r,r]$, for some $r>0$. It follows that $u_0(x)<\a$ for $|x|>r$ and $\a\leq u_0(x)\leq\b$ for $|x| \leq r$. Furthermore, there exists $\sigma>0$ such that $k(x)>0$ if and only if $|x|<\sigma$.
 
-
-Let $(-\sigma,\sigma)$ be the support of $k$, for $0<\sigma<\infty$. Since $A$ is connected, we may also assume by the translation invariance property that $A=[-r,r]$ for some $r \geq 0$. Furthermore, since $u_0$ has compact support we must have $u_0(x)=0$ outside a bounded interval $(r^-,r^+) \supset A$, where $r^- < -r \leq r < r^+$.
-
-Next, we will show that $0<u_0(x)<a$ for $x\in(r^-,r^+)\setminus A$. If we suppose to the contrary that $u_0(x)>b$ for some $x$ in this set, then suppose without loss of generality $x\in(r,r^+)$ such that $u_0(x)>b$. It follows by the intermediate value theorem that $u_0(x')=b$ for some $x' \in (x,r^+)$. But then $r\in A$, $x\notin A$, and $x'\in A$ with $r<x<x'$, violating the connectedness of $A$.
-
-The preceding argument shows
-\begin{equation}
-g(u_0(x)) = \begin{cases}
-1 & |x| < r \\
-0 & |x| \geq r
+Assuming $r \geq \frac{\sigma}{2}$, we have
+\begin{equation} \begin{aligned}
+u_1(x) = Q[u_0](x) &= \int_{-r}^{r} k(x-y) \, dy \\
+&= \begin{cases}
+w_1(x-r) & x \geq 0 \\
+w_1(-x+r) & x< 0
 \end{cases}
-\end{equation}
+\end{aligned}  \end{equation}
 
-To prove the theorem, we will show the spreading property is satisfied for all $r\geq2\sigma$. From $r\geq \sigma$ it follows,
-\begin{equation}
-u_1(x) = w_1(|x|-r)
-\end{equation}
-Then,
+Let $x_\a$ and $x_\b$ be as defined in Lemma \ref{lemma1}. Then, applying the growth function, we have
 \begin{equation} g(u_1(x)) = \begin{cases}
-m & |x|<r+\beta \\
-1 & r+\beta\leq |x|\leq r+\alpha \\
-0 & |x|>r+\alpha
+0 & x<-r-x_\a \\
+1 & -r-x_\a \leq x \leq -r-x_\b \\
+m & -r-x_\b < x < r+x_\b \\
+1 & r+x_\b \leq x \leq r+x_\a \\
+0 & x > r+x_\a
 \end{cases}
 \end{equation}
-where $\alpha$ and $\beta$ are defined as in Lemma \ref{lemma1}, and satisfy $-\sigma<\beta<\alpha<\sigma$. Note that $g(u_1(x))=g(Q[w](x))$ for all $x>-r-\beta$. Thus, $r\geq 2\sigma$ guarantees $r+\beta\geq\sigma$. It follows that
+Note that $g(u_1(x))=g(w_1(x))$ for all $x >-r-x_\b$. Thus, by Lemma \ref{lemma2}, $Q[u_1](x)=(k*(g\circ u_1))(x)=(k*(g\circ w_1))(x)=Q[w_1](x)$ for all $x>-r-x_\b+\sigma$. If we assume $r \geq x_\b+\sigma$, then $u_2(x)=Q[u_1](x)=Q[w_1](x-r)=w_2(x-r)$ for $x>0$. 
+
+By symmetry of the integro-difference operator, $Q[u_1](x) = Q[w_1](-x+r)$ for $x<0$. Thus,
+
 \begin{equation}
-u_2(x) = Q[w_1](|x|-r) = w_2(|x|-r)
+u_2(x) = Q[u_1](x) \begin{cases}
+w_2(x-r) & x \geq 0 \\
+w_2(-x+r) & x < 0 
+\end{cases}
 \end{equation}
-Applying $g$, we get
+Since $c^*\geq 0$, we have
 \begin{equation}
 g(u_2(x)) = \begin{cases}
-1 & |x| \leq  r+2c^* \\
-0 & |x| >  r+2c^*
+0 & x < -r-2c^* \\
+1 & -r-2c^* \leq x \leq r+2c^* \\
+0 & x > r+2c^* 
 \end{cases}
 \end{equation}
-Since $c^*>0$ we have $r+2c^*>r\geq\alpha$, so
+
+Thus,
 \begin{equation}
-u_3(x) = w_1(|x|-r-2c^*)
+u_3(x) = Q[u_2](x) = \begin{cases}
+w_1(x-r-2c^*) & x \geq 0 \\
+w_1(-x+r+2c^*) & x < 0 
+\end{cases}
 \end{equation}
 
 The preceding argument can be repeated inductively to obtain
@@ -331,24 +365,29 @@ and
 %\frac{1}{2} e^{-(x-\alpha)} - \frac{1-\m}{2} e^{-(x-\beta)} & x > \alpha
 %\end{cases}
 %\end{equation}
-\begin{equation}
+\begin{equation} \label{w2laplace}
 w_2(x) = \begin{cases}
-m + C_1 e^x & x < \beta \\
-1 - C_2 e^x - C_3 e^{-x} & \beta < x < \alpha \\
-C_4 e^{-x} & \alpha < x 
+m + C_1 e^x & x < x_\b \\
+1 - C_2 e^x - C_3 e^{-x} & x_\b \leq x \leq x_\a \\
+C_4 e^{-x} & x_\a < x 
 \end{cases} \end{equation}
-where $\alpha=w_1^{-1}(\a)$, $\beta=w_1^{-1}(\b)$, with
-$$ w_1^{-1}(p) = \begin{cases} -\ln(2p) & p\leq \frac{1}{2} \\ \ln(2-2p) & p > \frac{1}{2} \end{cases} $$
-The constants $C_1,C_2,C_3$, and $C_4$ are continuous functions of the growth parameters, with $C_2,C_3,C_4\geq0$, and they are given by
+where
+\begin{equation}
+x_\a = \begin{cases} -\ln(2\a) & \a\leq \frac{1}{2} \\ \ln(2-2\a) & \a > \frac{1}{2} \end{cases} \quad
+x_\b = \begin{cases} -\ln(2\b) & \b\leq \frac{1}{2} \\ \ln(2-2\b) & \b > \frac{1}{2} \end{cases} 
+\end{equation}
+%$x_\a=w_1^{-1}(\a)$, $x_\b=w_1^{-1}(\b)$, with
+%$$ w_1^{-1}(p) = \begin{cases} -\ln(2p) & p\leq \frac{1}{2} \\ \ln(2-2p) & p > \frac{1}{2} \end{cases} $$
+The constants $C_1,C_2,C_3$, and $C_4$ are continuous functions of the growth parameters $\alpha$, $\beta$, and $\mu$, with $C_2,C_3,C_4\geq0$. They can be expressed as piecewise expressions:
 \newcommand{\Conecaseone}{\b(1-\m)-\a}
 \newcommand{\Conecasetwo}{\frac{1-\m-4\a(1-\b)}{4(1-\b)}}
 \newcommand{\Conecasethree}{- \frac{1-\b+\m(1-\a)}{4(1-\a)(1-\b)} }
 
 \begin{equation}
 C_1 = \begin{cases}
-\Conecaseone & \a,\b < \frac{1}{2} \\
-\Conecasetwo & \a<\frac{1}{2}<\b \\
-\Conecasethree & \frac{1}{2}<a,b
+\Conecaseone & \a,\b \leq \frac{1}{2} \\
+\Conecasetwo & \a\leq\frac{1}{2}<\b \\
+\Conecasethree & \frac{1}{2}<\a,\b
 \end{cases} \end{equation}
 
 \newcommand{\Ctwocaseone}{\a}
@@ -356,7 +395,7 @@ C_1 = \begin{cases}
 
 \begin{equation}
 C_2 = \begin{cases}
-\Ctwocaseone & \a < \frac{1}{2} \\
+\Ctwocaseone & \a \leq \frac{1}{2} \\
 \Ctwocasetwo & \a > \frac{1}{2}
 \end{cases} \end{equation}
 
@@ -365,7 +404,7 @@ C_2 = \begin{cases}
 
 \begin{equation}
 C_3 = \begin{cases}
-\Cthreecaseone & \b < \frac{1}{2} \\
+\Cthreecaseone & \b \leq \frac{1}{2} \\
 \Cthreecasetwo & \b > \frac{1}{2}
 \end{cases} \end{equation}
 
@@ -375,57 +414,43 @@ C_3 = \begin{cases}
 
 \begin{equation}
 C_4 = \begin{cases}
-\Cfourcaseone & \a,\b < \frac{1}{2} \\
-\Cfourcasetwo & \a<\frac{1}{2}<\b \\
-\Cfourcasethree & \frac{1}{2}<a,b
+\Cfourcaseone & \a,\b \leq \frac{1}{2} \\
+\Cfourcasetwo & \a\leq\frac{1}{2}<\b \\
+\Cfourcasethree & \frac{1}{2}<\a,\b
 \end{cases} \end{equation}
 
-To find $c^*$, we can now condition on the values of $w_2(\alpha)$ and $w_2(\beta)$.
-% If $w_2(\alpha)=C_4e^{-\alpha}>a$, then we know $x_a>\alpha$, so that $C_4e^{-x_a}=C_4e^{-2c^*}=a$ implies $c^*=\frac{1}{2}\ln(\frac{C_4}{a})$.
-%
-%If $w_2(\alpha)<a$ and $w_2(\beta)>a$, then we solve the equation
-%
-%$$ 1 - C_2e^x - C_3e^{-x} = a $$
-%
-%Multiplying through by $e^x$ yields a quadratic in $e^x$:
-%
-%$$ e^x - C_2e^{2x} - C_3 = ae^x $$
-%
-%$$ C_2 e^{2x} + (a-1) e^x + C_3 = 0 $$
-%
-%$$ e^x = \frac{1-a \pm \sqrt{(1-a)^2 - 4C_2C_3}}{2C_2} $$
-%
-%Since $C_2,C_3$ are negative, we know the function is concave down on this piece. Therefore, we take the rightmost solution, since the curve must be increasing through this point since the solution is unique.
-%
-%$$ c^* = \frac{1}{2} \ln \left( \frac{1-a + \sqrt{(1-a)^2 - 4C_2C_3}}{2C_2} \right) $$
-%
-%In the final case where $w_2(\beta)<a$, we have
-%
-%$$ m + C_1 e^{x_a} = a $$
-%implies
-%$$ C_1e^{x_a} = a-m$$
-%$$ x_a = \ln \frac{a-m}{C_1} $$
-%$$ c^* = \frac{1}{2} \ln \frac{a-m}{C_1} $$
-%
-%Our general formula is thus
-%\begin{equation}
-%c^* = \begin{cases}
-%\frac{1}{2} \ln \left( \frac{C_4}{a} \right) & a<w_2(\alpha) \\
-%\frac{1}{2} \ln \left( \frac{1-a + \sqrt{(1-a)^2 - 4C_2C_3}}{2C_2} \right) & w_2(\alpha)<a<w_2(\beta) \\
-%\frac{1}{2} \ln \left( \frac{a-m}{C_1}\right) & a>w_2(\beta)
-%\end{cases}
-%\end{equation}
-%Equivalently,
+To find $c^*$, we can now condition on the values of $w_2(x_\a)$ and $w_2(x_\b)$.
+
+\begin{enumerate}[{Case} 1.]
+\item If $w_2(x_\alpha)=C_4e^{-x_\a}>\a$, then $2c^*$ lies on the third piece of \eqref{w2laplace}. Hence the mean wave speed is given by $c^*=\frac{1}{2}\ln(\frac{C_4}{\a})$.
+
+\item If $w_2(x_\a)=C_4e^{-x_\a}\leq\a$ and $w_2(x_\b)=\m+C_1e^{x_\b}\geq\a$, then we solve the equation
+
+$$ 1 - C_2e^{2c^*} - C_3e^{-2c^*} = \a $$
+
+Multiplying through by $e^{2c^*}$ yields a quadratic in $e^{2c^*}$:
+
+$$ C_2 e^{4c^*} + (a-1) e^{2c^*} + C_3 = 0 $$
+
+Using the quadratic formula, we get two solutions to this equation. To determine which is correct, note that $w_2'(2c^*)$ must be negative. Since $C_2,C_3$ are negative, $w_2(x)$ is concave down on $[x_\b,x_\a]$, thus $w_2$ is increasing through the first solution and decreasing through the second. Clearly we must take the greater solution. Thus,
+$$ c^* = \frac{1}{2} \ln \left( \frac{1-\a + \sqrt{(1-\a)^2 - 4C_2C_3}}{2C_2} \right) $$
+
+\item If  $w_2(x_\b)=\m+C_1e^{x_\b}<\a$, we have
+
+$$ \m + C_1 e^{2c^*} = \a $$
+implies
+$$ c^* = \frac{1}{2} \ln \frac{\a-\m}{C_1} $$
+\end{enumerate}
+
+Our general formula is thus
 \begin{equation}
 c^* = \begin{cases}
-\frac{1}{2} \ln \left( \frac{C_4}{a} \right) & a<C_4e^{-\alpha} \\
-\frac{1}{2} \ln \left( \frac{1-a + \sqrt{(1-a)^2 - 4C_2C_3}}{2C_2} \right) & C_4e^{-\alpha}<a<m+C_1e^\alpha\\
-\frac{1}{2} \ln \left( \frac{a-m}{C_1}\right) & a>m+C_1e^\alpha
+\frac{1}{2} \ln \left( \frac{C_4}{\a} \right) & \a<C_4e^{-x_\a} \\
+\frac{1}{2} \ln \left( \frac{1-\a + \sqrt{(1-\a)^2 - 4C_2C_3}}{2C_2} \right) & C_4e^{-x_\a}<\a<\m+C_1e^{x_\b} \\
+\frac{1}{2} \ln \left( \frac{\a-\m}{C_1}\right) & \a>\m+C_1e^{x_\b}
 \end{cases}
 \end{equation}
-
-Since the form of $w_2(x)$, and thus of $c^*$, depends on the values of $\a$ and $\b$; thus we will split into three cases for further analysis.
-
+We can write this formula more explicitly depending on the signs of $\a-\frac{1}{2}$ and $\b-\frac{1}{2}$ respectively.
 %Let $c_1$ and $c_2$ denote the intermediate wave speeds measured at some threshold $0<h<m$. For this analysis we chose the threshold of $h=a$. Thus $c_1 = w_2^{-1}(a) - w_1^{-1}(a)=2c^*-\alpha$, and $c_2=2c^*+\alpha-c_1=2\alpha$. We can now define the relative fluctuation in wavespeed by
 %
 %$$ f = \frac{|c_1-c_2|}{c^*} = \frac{|2c^*-3\alpha|}{c^*} $$
@@ -453,7 +478,7 @@ Since the form of $w_2(x)$, and thus of $c^*$, depends on the values of $\a$ and
 
 \begin{enumerate}[{Case} 1.]
 
-\item $\a<\frac{1}{2}$, $\b<\frac{1}{2}$.
+\item $\a\leq\frac{1}{2}$, $\b\leq\frac{1}{2}$.
 \begin{equation}
 w_2(x) = \begin{cases}
 \m + (\Conecaseone) e^x  & x < -\ln(2\b) \\
@@ -462,17 +487,17 @@ w_2(x) = \begin{cases}
 \end{cases}
 \end{equation}
 
-We have $w_2(\alpha)=\frac{\b-\a(1-\m)}{2\b}$ and $w_2(\beta)=\m + \frac{\b(1-\m)-\a}{2\b}$. Thus,
+We have $w_2(x_\a)=\frac{\b-\a(1-\m)}{2\b}$ and $w_2(x_\b)=\m + \frac{\b(1-\m)-\a}{2\b}$. Thus,
 \begin{equation}
 c^* = \begin{cases}
 \frac{1}{2} \ln \left( \frac{\b-\a(1-\m)}{4\a^2\b} \right) & \a < \frac{\b-\a(1-\m)}{2\b} \\
-\frac{1}{2} \ln \left( \frac{1-a + \sqrt{(1-a)^2 - \frac{\a(1-m)}{b}}}{2\a} \right) & \frac{\b-\a(1-\m)}{2\b} < a < \frac{\b(1+\m)-\a}{2\b} \\
-\frac{1}{2} \ln \left( \frac{a-m}{\b(1-\m)-\a}\right) & a > \frac{\b(1+\m)-\a}{2\b}
+\frac{1}{2} \ln \left( \frac{1-\a + \sqrt{(1-\a)^2 - \frac{\a(1-\m)}{\b}}}{2\a} \right) & \frac{\b-\a(1-\m)}{2\b} \leq \a \leq \frac{\b(1+\m)-\a}{2\b} \\
+\frac{1}{2} \ln \left( \frac{\a-\m}{\b(1-\m)-\a}\right) & \a > \frac{\b(1+\m)-\a}{2\b}
 \end{cases}
 \end{equation}
 
 
-\item $\a<\frac{1}{2}$, $\b>\frac{1}{2}$.
+\item $\a\leq\frac{1}{2}$, $\b>\frac{1}{2}$.
 \begin{equation}
 w_2(x) = \begin{cases}
 \m + \Conecasetwo e^x  & x < \ln(2-2\b) \\
@@ -481,12 +506,12 @@ w_2(x) = \begin{cases}
 \end{cases}
 \end{equation}
 
-We have $w_2(\alpha)=\frac{1-4\a(1-\m)(1-\b)}{2}$ and $w_2(\beta)=\frac{1+\m-4\a(1-\b)}{2}$. Thus,
+We have $w_2(x_\a)=\frac{1-4\a(1-\m)(1-\b)}{2}$ and $w_2(x_\b)=\frac{1+\m-4\a(1-\b)}{2}$. Thus,
 \begin{equation}
 c^* = \begin{cases}
 \frac{1}{2} \ln \left( \frac{1-4\a(1-\m)(1-\b)}{4\a^2} \right) & a<\frac{1-4\a(1-\m)(1-\b)}{2} \\
-\frac{1}{2} \ln \left( \frac{1-a + \sqrt{(1-a)^2 - 4a(1-\m)(1-\b)}}{2a} \right) & \frac{1-4\a(1-\m)(1-\b)}{2}<a<\frac{1+\m-4\a(1-\b)}{2} \\
-\frac{1}{2} \ln \left( \frac{4(a-m)(1-b)}{1-\m-4\a(1-\b)}\right) & a>\frac{1+\m-4\a(1-\b)}{2}
+\frac{1}{2} \ln \left( \frac{1-\a + \sqrt{(1-\a)^2 - 4\a(1-\m)(1-\b)}}{2\a} \right) & \frac{1-4\a(1-\m)(1-\b)}{2}\leq\a\leq\frac{1+\m-4\a(1-\b)}{2} \\
+\frac{1}{2} \ln \left( \frac{4(\a-\m)(1-\b)}{1-\m-4\a(1-\b)}\right) & \a>\frac{1+\m-4\a(1-\b)}{2}
 \end{cases}
 \end{equation}
 
@@ -500,13 +525,13 @@ w_2(x) = \begin{cases}
 \end{cases}
 \end{equation}
 
-Thus, $w_2(\alpha)=\frac{1-\a-(1-\m)(1-\b)}{2(1-a)}$ and $w_2(\beta)=\m - \frac{1-\b+\m(1-\a)}{2(1-\a)}$
+Thus, $w_2(x_\a)=\frac{1-\a-(1-\m)(1-\b)}{2(1-\a)}$ and $w_2(x_\b)=\m - \frac{1-\b+\m(1-\a)}{2(1-\a)}$
 
 \begin{equation}
 c^* = \begin{cases}
-\frac{1}{2} \ln \left( \frac{1-\a-(1-\m)(1-\b)}{a} \right) & a<\frac{1-\a-(1-\m)(1-\b)}{2(1-a)} \\
-\frac{1}{2} \ln \Big( 2(1-a)\left[1-a + \sqrt{\frac{(1-a)^3-(1-\m)(1-\b) }{1-\a}}\right] \Big) & \frac{1-\a-(1-\m)(1-\b)}{2(1-a)}<a<\frac{\b-1+\m(1-\a)}{2(1-\a)} \\
-\frac{1}{2} \ln \left( \frac{4(m-a)(1-\a)(1-\b)}{1-\b+\m(1-\a)}\right) & a>\frac{\b-1+\m(1-\a)}{2(1-\a)}
+\frac{1}{2} \ln \left( \frac{1-\a-(1-\m)(1-\b)}{\a} \right) & \a<\frac{1-\a-(1-\m)(1-\b)}{2(1-\a)} \\
+\frac{1}{2} \ln \Big( 2(1-\a)\left[1-\a + \sqrt{\frac{(1-\a)^3-(1-\m)(1-\b) }{1-\a}}\right] \Big) & \frac{1-\a-(1-\m)(1-\b)}{2(1-\a)}\leq\a\leq\frac{\b-1+\m(1-\a)}{2(1-\a)} \\
+\frac{1}{2} \ln \left( \frac{4(\m-\a)(1-\a)(1-\b)}{1-\b+\m(1-\a)}\right) & \a>\frac{\b-1+\m(1-\a)}{2(1-\a)}
 \end{cases}
 \end{equation}
 
@@ -762,11 +787,10 @@ w_1(x) = \Phi(-x)
 \end{equation}
 and
 \begin{equation}
-w_2(x)=  m - \Phi(x-\Phi^{-1}(a)) + (1-m)\Phi(x-\Phi^{-1}(b))
+w_2(x)=  \m - \Phi(x-\Phi^{-1}(\a)) + (1-\m)\Phi(x-\Phi^{-1}(\b))
 \end{equation}
-where $\alpha=\Phi^{-1}(a)$ and $\beta=\Phi^{-1}(b)$.
 
-$w_2$ has a unique global maximum at $x^*=\frac{\alpha+\beta}{2} + \frac{1}{\alpha-\beta}\ln\left(1-m\right)$. Thus, by Theorem \ref{theorem1}, $w_1$ and $w_2$ are a periodic traveling wave solution if $w_2(x^*)\leq b$.
+$w_2$ has a unique global maximum at $x^*=\frac{x_\a+x_\b}{2} + \frac{1}{x_\a-x_\b}\ln\left(1-\m\right)$. Thus, by Theorem \ref{theorem1}, $w_1$ and $w_2$ are a periodic traveling wave solution if $w_2(x^*)\leq \b$.
 \end{ex}
 
 %\begin{ex} The Laplace kernel is given by
