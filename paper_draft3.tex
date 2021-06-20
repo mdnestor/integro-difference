@@ -6,7 +6,8 @@
 \usepackage{graphicx}
 \usepackage{enumerate}
 %\usepackage{caption,subcaption}
-
+\usepackage{caption}
+\usepackage{subcaption}
 
 
 %\theoremstyle{definition}
@@ -80,6 +81,12 @@ g(u) = \begin{cases}
 \end{equation}
 with $0<\a<\m<\b<1$. $g(u)$ is a piecewise constant nonmonotone growth function exhibiting a strong Allee effect~\cite{all}. Specifically, it has a stable fixed point at zero and a stable period two cycle $(1,\m)$ with $\a$ the Allee threshold value.
 
+\begin{figure}[h!]
+\centering
+  \caption{Plot of the growth function $g(u)$ compared to the identity function with growth parameters $\alpha=0.33$, $\beta=0.66$, and $\mu=0.5$.}
+  \includegraphics{figures/fig1.png}
+\end{figure}
+
 Piecewise constant growth functions and uniform distributions have been used in the studies of integro-difference equations; see for example~\cite{kot1, lut,otto,  pnas}. We rigorously construct periodic traveling waves with periodic speeds for (\ref{q}). To the best of our knowledge, this is the first time that traveling waves with oscillating speeds have been analytically established  for scalar spatiotemporal equations with constant parameters. We also show the convergence of solutions with compactly supported initial data to translations of the traveling wave under appropriate conditions. Equation (\ref{q}) may be viewed as a symbolic model for integro-difference equations with a growth function exhibiting a strong Allee effect and a period two cycle. The results obtained this paper provide important insights into integro-difference equations with general growth functions. 
 
 
@@ -131,11 +138,12 @@ w_2(x) := Q[w_1](x) = \int_{-\infty}^{\infty} k(y) g(w_1(x-y)) \, dy
 
 Hypothesis (H1) implies $w_1$ and $w_2$ have well-defined limits at $\pm\infty$ given by $w_1(\infty)=w_2(\infty)=0$, $w_1(-\infty)=1$, and $w_2(-\infty)=\m$. Furthermore, $w_1$ is monotonically decreasing, while $w_2$ may be non-monotonic.
 
+
 \begin{lem} \label{lemma1}
-If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then there exists unique $c^*\in\mathbb R$ such that $Q[w_2](x)=w_1(x-2c^*)$ for all $x\in\mathbb R$.
+If $\max_{x\in\mathbb R}w_2(x)\leq \b$, then there exists unique $c^*\in\mathbb R$ such that $Q[w_2](x)=w_1(x-2c^*)$ for all $x\in\mathbb R$.
 \end{lem}
 
-\begin{proof} Let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. Since $w_1$ is monotone, it follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
+\begin{proof} Let $x_\a=\max\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\max\{x\in\mathbb R\mid w_1(x)\geq\b\}$. Since $w_1$ is monotone, it follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
 \begin{equation} \label{qw1calculation}
 \begin{aligned}
 Q[w_1](x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy \\
@@ -157,10 +165,10 @@ From hypothesis (H4), we can conclude that \eqref{dw2dx} has at most one zero-cr
 
 In both cases, $w_2(x)$ has a well-defined right inverse on the open interval $(0,\m)$. Since $0<\a<\m$, let
 \begin{equation}
-c^*=\frac{1}{2}\sup\{x\in\mathbb R\mid w_2(x)\geq\a\}
+c^*=\frac{1}{2}\max\{x\in\mathbb R\mid w_2(x)\geq\a\}
 \end{equation}
 
-It follows that $w_2(x)\geq\a$ for $x\leq 2c^*$ and $w_2(x)<\alpha$ for $x>2c^*$. Along with the assumption that $\sup_{x\in\mathbb R}w_2(x)\leq\b$, we can apply the integro-difference operator once more:
+It follows that $w_2(x)\geq\a$ for $x\leq 2c^*$ and $w_2(x)<\alpha$ for $x>2c^*$. Along with the assumption that $\max_{x\in\mathbb R}w_2(x)\leq\b$, we can apply the integro-difference operator once more:
 \begin{equation} \begin{aligned}
 Q[w_2](x) %&= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
 &= \int_{-\infty}^{2c^*} k(x-y) \, dy \\
@@ -171,6 +179,22 @@ Q[w_2](x) %&= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
 %Q^2[w_1](x) = w_1(x-2c^*); \quad Q^2[w_2](x) = w_2(x-2c^*)
 %\end{equation}
 \end{proof}
+
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/fig2A.png}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{figures/fig2B.png}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Plots of $w_1(x)$ (left) and $w_2(x)$ (right) with the Laplace dispersal kernel and growth parameters $\alpha=0.3$, $\mu=0.5$, and $\beta=0.8$}
+\label{fig:test}
+\end{figure}
 
 By Lemma \ref{lemma1}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1](x)=w_1(x-2c^*)$ and $Q^2[w_2](x)=w_2(x-2c^*)$. As a result, they can be used to construct a solution to the integral recurrence which spreads in space with a mean speed of $c^*$ and alternates in shape every two time steps. This is formalized in the following theorem:
 
@@ -184,8 +208,36 @@ By Lemma \ref{lemma1}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1
 %\end{equation}
 %\end{cor}
 
+
+The condition that $\max_{x\in\mathbb R}w_2(x)\leq \b$ may be difficult to verify for some choices of dispersal kernel. Thus, we provide a sufficient condition for this assumption:
+\begin{lem} \label{lemma}
+Let $x_\a$ and $x_\b$ be as defined in Lemma \ref{lemma1}. If $k(x)$ is unimodal and
+$$ \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (y) \, dy \leq \b $$
+then $\max_{x\in\mathbb R}w_2(x) \leq \b$.
+\end{lem}
+
+\begin{proof}
+We have
+\begin{equation} \begin{aligned}
+w_2(x) &= (k*(g\circ w_1))(x) \\
+&\leq (k*(m+(1-m)\mathbf 1_{[x_\b,x_a]}))(x) \\
+&= m + (1-m)(k*\mathbf 1_{[x_\b,x_a]})(x) \\
+&= \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy .
+\end{aligned}
+\end{equation}
+
+Taking the maximum over all $x$, we may shift the function horizontally so that the bounds of integration are symmetric. Since $k(x)$ is unimodal, the integral is then maximized for $x=0$.
+\begin{equation} \begin{aligned}
+\max_{x\in\mathbb R} w_2(x) &\leq \max_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy \right) \\
+&= \max_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (x-y) \, dy \right) \\
+&= \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (y) \, dy.
+\end{aligned}
+\end{equation}
+\end{proof}
+
+
 \begin{thm} \label{theorem1}
-If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a periodic traveling wave solution $(u_n)_{n=0}^{\infty}$ satisfying
+If $\max_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a periodic traveling wave solution $(u_n)_{n=0}^{\infty}$ satisfying
 %\begin{equation} \label{ptw}
 %u_n(x) = \begin{cases}
 %w_1(x-nc^*) & n \text{ even} \\
@@ -214,8 +266,18 @@ u_{2n+3}(x) &= w_2(x-2nc^*-2c^*) \\
 \end{aligned} \end{equation}
 \end{proof}
 
+\begin{figure}[h!] 
+\centering
+  \caption{The periodic traveling wave solution \eqref{ptw} with a monotone initial condition for times $1 \leq n \leq 11$ using the Laplace dispersal kernel, $\alpha=0.2$, $\mu=0.3$, and $\beta=0.8$. Later timepoints are colored in red, with earlier timepoints colored in green.}
+\label{fig3}
+  \includegraphics{figures/fig3.png}
+\end{figure}
+
+Figure \ref{fig3} shows the propagation of the periodic traveling wave solution for a particular choice of dispersal kernel and growth parameters.
+
+
 \begin{thm}  \label{theorem2}
-If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then for all $\epsilon>0$, the sequence \ref{ptw} satisfies
+If $\max_{x\in\mathbb R}w_2(x)\leq \b$, then for all $\epsilon>0$, the sequence \ref{ptw} satisfies
 \begin{equation}
 \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n}(x)=1
 \end{equation}
@@ -225,7 +287,7 @@ and
 \end{equation}
 and 
 \begin{equation}
-\lim_{n\to\infty}\sup_{x>n(c^*+\epsilon)}u_n(x)=0.
+\lim_{n\to\infty}\max_{x>n(c^*+\epsilon)}u_n(x)=0.
 \end{equation}
 \end{thm}
 
@@ -245,9 +307,9 @@ and
 \end{aligned} \end{equation}
 
 \begin{equation} \begin{aligned}
-\lim_{n\to\infty} \sup_{x>n(c^*+\epsilon)} u_n(x) 
-&\leq \lim_{n\to\infty} \sup_{x>n(c^*+\epsilon)} \max\{w_1(x-nc^*),w_2(x-nc^*)\} \\
-&= \lim_{n\to\infty} \sup_{x>n\epsilon} \max\{w_1(x),w_2(x)\} \\
+\lim_{n\to\infty} \max_{x>n(c^*+\epsilon)} u_n(x) 
+&\leq \lim_{n\to\infty} \max_{x>n(c^*+\epsilon)} \max\{w_1(x-nc^*),w_2(x-nc^*)\} \\
+&= \lim_{n\to\infty} \max_{x>n\epsilon} \max\{w_1(x),w_2(x)\} \\
 &= \limsup_{x\to\infty} \max\{w_1(x),w_2(x)\} \\ 
 &= \max\{\limsup_{x\to\infty} w_1(x),\limsup_{x\to\infty} w_2(x)\} \\
 &= 0.
@@ -258,20 +320,20 @@ In the last calculation, the left hand side is known to be non-negative; therefo
 The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data. We also assume the disperal kernel is compactly supported. First, we introduce a useful lemma for compactly supported kernels.
 
 \begin{lem}\label{lemma2}
-Suppose $k(x)$ is compactly supported on $[-\sigma,\sigma]$, for some $\sigma>0$. Then for any continuous function $u(x)$, if $u(x)=0$ for $x \in \Omega \subseteq \mathbb R$, then $(k*u)(x)=0$ for $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$, where $d(x,\mathbb R\setminus\Omega):= \inf \{d(x,y) \mid y\in \mathbb R\setminus\Omega\}$.
+Suppose $k(x)$ is compactly supported on $[-\sigma,\sigma]$ for some $\sigma>0$, and let $u \in C(\mathbb R)$. If $u(x)=0$ for $x \in \Omega \subseteq \mathbb R$, then $(k*u)(x)=0$ if $d(x,\mathbb R\setminus\Omega):= \inf \{d(x,y) \mid y\in \mathbb R\setminus\Omega\}$.
 \end{lem}
 
 \begin{proof}
 Let $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$. Then $(x-\sigma,x+\sigma)$ is a subset of  $\Omega$ on which $u$ vanishes; thus $ (k*u)(x) = \int_{x-\sigma}^{x+\sigma}k(x-y)u(y)\,dy = 0.$
 \end{proof}
 
-\begin{thm} Let $u_0(x)$ be a non-negative continuous function with compact support such that the set $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$ is connected. Suppose $k(x)$ has compact support, $\sup_{x\in\mathbb R}w_2(x)\leq \b$, and $c^* > 0$. For $A$ sufficiently large, the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
+\begin{thm} Let $u_0(x)$ be a non-negative continuous function with compact support such that the set $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$ is connected. Suppose $k(x)$ has compact support, $\max_{x\in\mathbb R}w_2(x)\leq \b$, and $c^* > 0$. For $A$ sufficiently large, the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
 \begin{equation}
 \lim_{n\to\infty}\inf_{|x|<n(c^*-\epsilon)}u_{n}(x)>0,
 \end{equation}
 and 
 \begin{equation}
-\lim_{n\to\infty}\sup_{|x|>n(c^*+\epsilon)}u_n(x)=0.
+\lim_{n\to\infty}\max_{|x|>n(c^*+\epsilon)}u_n(x)=0.
 \end{equation}
 for all $\epsilon>0$.
 \end{thm}

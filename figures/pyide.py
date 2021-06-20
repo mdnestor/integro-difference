@@ -305,7 +305,7 @@ class IDESimulation:
             
             self.timeSeries.append(U)
             
-    def plot(self, times=[], file):
+    def plot(self, times=[], file=None):
     
         X = self.domain
         U_seq = self.timeSeries
