@@ -140,10 +140,10 @@ Hypothesis (H1) implies $w_1$ and $w_2$ have well-defined limits at $\pm\infty$ 
 
 
 \begin{lem} \label{lemma1}
-If $\max_{x\in\mathbb R}w_2(x)\leq \b$, then there exists unique $c^*\in\mathbb R$ such that $Q[w_2](x)=w_1(x-2c^*)$ for all $x\in\mathbb R$.
+If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then there exists unique $c^*\in\mathbb R$ such that $Q[w_2](x)=w_1(x-2c^*)$ for all $x\in\mathbb R$.
 \end{lem}
 
-\begin{proof} Let $x_\a=\max\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\max\{x\in\mathbb R\mid w_1(x)\geq\b\}$. Since $w_1$ is monotone, it follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
+\begin{proof} Let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. Since $w_1$ is monotone, it follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
 \begin{equation} \label{qw1calculation}
 \begin{aligned}
 Q[w_1](x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy \\
@@ -165,10 +165,10 @@ From hypothesis (H4), we can conclude that \eqref{dw2dx} has at most one zero-cr
 
 In both cases, $w_2(x)$ has a well-defined right inverse on the open interval $(0,\m)$. Since $0<\a<\m$, let
 \begin{equation}
-c^*=\frac{1}{2}\max\{x\in\mathbb R\mid w_2(x)\geq\a\}
+c^*=\frac{1}{2}\sup\{x\in\mathbb R\mid w_2(x)\geq\a\}
 \end{equation}
 
-It follows that $w_2(x)\geq\a$ for $x\leq 2c^*$ and $w_2(x)<\alpha$ for $x>2c^*$. Along with the assumption that $\max_{x\in\mathbb R}w_2(x)\leq\b$, we can apply the integro-difference operator once more:
+It follows that $w_2(x)\geq\a$ for $x\leq 2c^*$ and $w_2(x)<\alpha$ for $x>2c^*$. Along with the assumption that $\sup_{x\in\mathbb R}w_2(x)\leq\b$, we can apply the integro-difference operator once more:
 \begin{equation} \begin{aligned}
 Q[w_2](x) %&= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
 &= \int_{-\infty}^{2c^*} k(x-y) \, dy \\
@@ -209,27 +209,27 @@ By Lemma \ref{lemma1}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1
 %\end{cor}
 
 
-The condition that $\max_{x\in\mathbb R}w_2(x)\leq \b$ may be difficult to verify for some choices of dispersal kernel. Thus, we provide a sufficient condition for this assumption:
+The condition that $\sup_{x\in\mathbb R}w_2(x)\leq \b$ may be difficult to verify for some choices of dispersal kernel. Thus, we provide a sufficient condition for this assumption:
 \begin{lem} \label{lemma}
 Let $x_\a$ and $x_\b$ be as defined in Lemma \ref{lemma1}. If $k(x)$ is unimodal and
 $$ \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (y) \, dy \leq \b $$
-then $\max_{x\in\mathbb R}w_2(x) \leq \b$.
+then $\sup_{x\in\mathbb R}w_2(x) \leq \b$.
 \end{lem}
 
 \begin{proof}
-We have
+For all $x\in\mathbb R$, we have
 \begin{equation} \begin{aligned}
-w_2(x) &= (k*(g\circ w_1))(x) \\
-&\leq (k*(m+(1-m)\mathbf 1_{[x_\b,x_a]}))(x) \\
-&= m + (1-m)(k*\mathbf 1_{[x_\b,x_a]})(x) \\
+w_2(x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy  \\
+&\leq\int_{-\infty}^{\infty} k(x-y) (\m + (\m-1) \mathbf 1_{[x_\b,x_\a]}(y) )\, dy \\
+&= \m + \int_{-\infty}^{\infty} k(x-y) (\m-1) \mathbf 1_{[x_\b,x_\a]}(y) \, dy \\
 &= \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy .
 \end{aligned}
 \end{equation}
 
 Taking the maximum over all $x$, we may shift the function horizontally so that the bounds of integration are symmetric. Since $k(x)$ is unimodal, the integral is then maximized for $x=0$.
 \begin{equation} \begin{aligned}
-\max_{x\in\mathbb R} w_2(x) &\leq \max_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy \right) \\
-&= \max_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (x-y) \, dy \right) \\
+\sup_{x\in\mathbb R} w_2(x) &\leq \sup_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy \right) \\
+&= \sup_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (x-y) \, dy \right) \\
 &= \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (y) \, dy.
 \end{aligned}
 \end{equation}
@@ -237,7 +237,7 @@ Taking the maximum over all $x$, we may shift the function horizontally so that 
 
 
 \begin{thm} \label{theorem1}
-If $\max_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a periodic traveling wave solution $(u_n)_{n=0}^{\infty}$ satisfying
+If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a periodic traveling wave solution $(u_n)_{n=0}^{\infty}$ satisfying
 %\begin{equation} \label{ptw}
 %u_n(x) = \begin{cases}
 %w_1(x-nc^*) & n \text{ even} \\
@@ -268,7 +268,7 @@ u_{2n+3}(x) &= w_2(x-2nc^*-2c^*) \\
 
 \begin{figure}[h!] 
 \centering
-  \caption{The periodic traveling wave solution \eqref{ptw} with a monotone initial condition for times $1 \leq n \leq 11$ using the Laplace dispersal kernel, $\alpha=0.2$, $\mu=0.3$, and $\beta=0.8$. Later timepoints are colored in red, with earlier timepoints colored in green.}
+  \caption{Numerical simulation of the integro-difference equation with Laplace dispersal kernel, $\alpha=0.2$, $\mu=0.3$, and $\beta=0.8$. Later timepoints are colored in red, with earlier timepoints colored in green.}
 \label{fig3}
   \includegraphics{figures/fig3.png}
 \end{figure}
@@ -277,17 +277,17 @@ Figure \ref{fig3} shows the propagation of the periodic traveling wave solution 
 
 
 \begin{thm}  \label{theorem2}
-If $\max_{x\in\mathbb R}w_2(x)\leq \b$, then for all $\epsilon>0$, the sequence \ref{ptw} satisfies
+If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then for all $\epsilon>0$, the sequence \ref{ptw} satisfies
 \begin{equation}
 \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n}(x)=1
 \end{equation}
 and
 \begin{equation}
-\lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n+1}(x)=m
+\lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n+1}(x)=\m
 \end{equation}
 and 
 \begin{equation}
-\lim_{n\to\infty}\max_{x>n(c^*+\epsilon)}u_n(x)=0.
+\lim_{n\to\infty}\sup_{x>n(c^*+\epsilon)}u_n(x)=0.
 \end{equation}
 \end{thm}
 
@@ -307,11 +307,11 @@ and
 \end{aligned} \end{equation}
 
 \begin{equation} \begin{aligned}
-\lim_{n\to\infty} \max_{x>n(c^*+\epsilon)} u_n(x) 
-&\leq \lim_{n\to\infty} \max_{x>n(c^*+\epsilon)} \max\{w_1(x-nc^*),w_2(x-nc^*)\} \\
-&= \lim_{n\to\infty} \max_{x>n\epsilon} \max\{w_1(x),w_2(x)\} \\
-&= \limsup_{x\to\infty} \max\{w_1(x),w_2(x)\} \\ 
-&= \max\{\limsup_{x\to\infty} w_1(x),\limsup_{x\to\infty} w_2(x)\} \\
+\lim_{n\to\infty} \sup_{x>n(c^*+\epsilon)} u_n(x) 
+&\leq \lim_{n\to\infty} \sup_{x>n(c^*+\epsilon)} \sup\{w_1(x-nc^*),w_2(x-nc^*)\} \\
+&= \lim_{n\to\infty} \sup_{x>n\epsilon} \sup\{w_1(x),w_2(x)\} \\
+&= \limsup_{x\to\infty} \sup\{w_1(x),w_2(x)\} \\ 
+&= \sup\{\limsup_{x\to\infty} w_1(x),\limsup_{x\to\infty} w_2(x)\} \\
 &= 0.
 \end{aligned} \end{equation}
 In the last calculation, the left hand side is known to be non-negative; therefore the limit is exactly equal to zero.
@@ -327,13 +327,13 @@ Suppose $k(x)$ is compactly supported on $[-\sigma,\sigma]$ for some $\sigma>0$,
 Let $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$. Then $(x-\sigma,x+\sigma)$ is a subset of  $\Omega$ on which $u$ vanishes; thus $ (k*u)(x) = \int_{x-\sigma}^{x+\sigma}k(x-y)u(y)\,dy = 0.$
 \end{proof}
 
-\begin{thm} Let $u_0(x)$ be a non-negative continuous function with compact support such that the set $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$ is connected. Suppose $k(x)$ has compact support, $\max_{x\in\mathbb R}w_2(x)\leq \b$, and $c^* > 0$. For $A$ sufficiently large, the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
+\begin{thm} Let $u_0(x)$ be a non-negative continuous function with compact support such that the set $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$ is connected. Suppose $k(x)$ has compact support, $\sup_{x\in\mathbb R}w_2(x)\leq \b$, and $c^* > 0$. For $A$ sufficiently large, the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
 \begin{equation}
 \lim_{n\to\infty}\inf_{|x|<n(c^*-\epsilon)}u_{n}(x)>0,
 \end{equation}
 and 
 \begin{equation}
-\lim_{n\to\infty}\max_{|x|>n(c^*+\epsilon)}u_n(x)=0.
+\lim_{n\to\infty}\sup_{|x|>n(c^*+\epsilon)}u_n(x)=0.
 \end{equation}
 for all $\epsilon>0$.
 \end{thm}
@@ -411,7 +411,9 @@ The Laplace kernel,
 k(x) = \frac{1}{2} e^{-|x|}
 \end{equation}
 
-The reader can easily verify that the Laplace kernel satisfies hypotheses (H1) - (H3). The proof that is also satisfies (H4) is left in the appendix. The periodic traveling waves are given by
+The reader can easily verify that the Laplace kernel satisfies hypotheses (H1) - (H3); the proof of (H4) is left in the appendix.
+
+The periodic traveling wave profiles are given by
 
 \begin{equation}
 w_1(x) =   \begin{cases} 
@@ -427,17 +429,43 @@ and
 %\frac{1}{2} e^{-(x-\alpha)} - \frac{1-\m}{2} e^{-(x-\beta)} & x > \alpha
 %\end{cases}
 %\end{equation}
+%\begin{equation} \label{w2laplace}
+%w_2(x) = \begin{cases}
+%m + C_1 e^x & x < x_\b \\
+%1 - C_2 e^x - C_3 e^{-x} & x_\b \leq x \leq x_\a \\
+%C_4 e^{-x} & x_\a < x 
+%\end{cases} \end{equation}
+%or equivalently
+
 \begin{equation} \label{w2laplace}
 w_2(x) = \begin{cases}
-m + C_1 e^x & x < x_\b \\
-1 - C_2 e^x - C_3 e^{-x} & x_\b \leq x \leq x_\a \\
-C_4 e^{-x} & x_\a < x 
+m + \left( \frac{1-\m}{2}e^{-x_\b} - \frac{1}{2}e^{-x_\a} \right) e^x & x < x_\b \\
+1 - \left( \frac{1}{2} e^{-x_\a} \right) e^x - \left( \frac{1-\m}{2} e^{x_\b} \right)  e^{-x} & x_\b \leq x \leq x_\a \\
+\left( \frac{1}{2} e^{x_\a} - \frac{1-\m}{2} e^{x_\b} \right) e^{-x} & x_\a < x 
 \end{cases} \end{equation}
+
 where
 \begin{equation}
-x_\a = \begin{cases} -\ln(2\a) & \a\leq \frac{1}{2} \\ \ln(2-2\a) & \a > \frac{1}{2} \end{cases} \quad
+x_\a = \begin{cases} -\ln(2\a) & \a\leq \frac{1}{2} \\ \ln(2-2\a) & \a > \frac{1}{2} \end{cases}, \quad
 x_\b = \begin{cases} -\ln(2\b) & \b\leq \frac{1}{2} \\ \ln(2-2\b) & \b > \frac{1}{2} \end{cases} 
 \end{equation}
+This leads to an equation for the mean wave speed
+\begin{equation}
+c^* = \begin{cases}
+\frac{1}{2}x_\a  + \frac{1}{2}\log \left( \frac{1 - (1-\m) e^{x_\b-x_\a}}{2\a} \right) & \a \leq w_2(x_\a) \\
+\frac{1}{2}x_\a + \frac{1}{2} \log \left( 1-\a + \sqrt{(1-\a)^2 - (1-\mu) e^{x_\b-x_\a}} \right) & w_2(x_\a) < \a < w_2(x_\b) \\
+\frac{1}{2}x_\a + \frac{1}{2} \log \left( \frac{2(\a-\m)}{(1-\m)e^{x_\a-x_\b}-1} \right) & \a \geq w_2(x_\b)
+\end{cases} 
+\end{equation}
+and
+
+\begin{equation} \begin{aligned}
+C_1 &= \frac{1-\m}{2}e^{-x_\b} - \frac{1}{2}e^{-x_\a} \\
+C_2 &= \frac{1}{2} e^{-x_\a} \\
+C_3 &= \frac{1-\m}{2} e^{x_\b} \\
+C_4 &= \frac{1}{2} e^{x_\a} - \frac{1-\m}{2} e^{x_\b}
+\end{aligned} \end{equation}
+
 %$x_\a=w_1^{-1}(\a)$, $x_\b=w_1^{-1}(\b)$, with
 %$$ w_1^{-1}(p) = \begin{cases} -\ln(2p) & p\leq \frac{1}{2} \\ \ln(2-2p) & p > \frac{1}{2} \end{cases} $$
 The constants $C_1,C_2,C_3$, and $C_4$ are continuous functions of the growth parameters $\alpha$, $\beta$, and $\mu$, with $C_2,C_3,C_4\geq0$. They can be expressed as piecewise expressions:

@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
     
 # class for handling growth functions
-
+plt.rcParams.update({"text.usetex": True})
 class GrowthFunction:
     
     def __init__(self, g):
