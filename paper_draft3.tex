@@ -84,7 +84,7 @@ with $0<\a<\m<\b<1$. $g(u)$ is a piecewise constant nonmonotone growth function 
 \begin{figure}[h!]
 \centering
   \caption{Plot of the growth function $g(u)$ compared to the identity function with growth parameters $\alpha=0.33$, $\beta=0.66$, and $\mu=0.5$.}
-  \includegraphics{figures/fig1.png}
+  \includegraphics[width=.8\linewidth]{figures/fig1.png}
 \end{figure}
 
 Piecewise constant growth functions and uniform distributions have been used in the studies of integro-difference equations; see for example~\cite{kot1, lut,otto,  pnas}. We rigorously construct periodic traveling waves with periodic speeds for (\ref{q}). To the best of our knowledge, this is the first time that traveling waves with oscillating speeds have been analytically established  for scalar spatiotemporal equations with constant parameters. We also show the convergence of solutions with compactly supported initial data to translations of the traveling wave under appropriate conditions. Equation (\ref{q}) may be viewed as a symbolic model for integro-difference equations with a growth function exhibiting a strong Allee effect and a period two cycle. The results obtained this paper provide important insights into integro-difference equations with general growth functions. 
@@ -108,7 +108,7 @@ In this section, we construct a periodic traveling wave solution to the recurren
 
 \item the support of $k$ is connected;
 
-\item  for all $\lambda\in(0,1)$, for all $y\in\mathbb R$, the function $x \mapsto k(x)-\lambda k(x-y)$ has at most one zero-crossing in $\mathbb R$.
+\item  for all $\lambda\in(0,1)$, for all $a\in\mathbb R$, the function $x \mapsto k(x)-\lambda k(x-a)$ has at most one zero-crossing in $\mathbb R$.
 \end{enumerate}
 %\end{hyp}
 
@@ -116,16 +116,16 @@ In this section, we construct a periodic traveling wave solution to the recurren
 %Hypotheses (H1)-(H4) are scale-invariant, that is, if $k(x)$ satisfies (H1)-(H4), then so does $\hat{k}(x):=ak(ax)$ for any $a>0$. Thus, when checking the hypotheses for a particular dispersal kernel, we may rescale without loss of generality.
 %\end{rem}
 
-\begin{prop} \label{prop1}
-%Let $\mathcal B$ denote the space of bounded, continuous, non-negative functions $\mathbb R \to \mathbb R$. $Q$ is a bounded nonlinear operator $\mathcal B \to \mathcal B$, and satisfies the following properties for all $u \in \mathcal B$:
-The operator $Q$ satisfies the following properties for all bounded continuous functions $u : \mathbb R \to \mathbb R_{\geq 0}$:
-
-\begin{enumerate}[(i.)]
-\item \it{(Translation invariance)} $Q[T^t[u]]=T^t[Q[u]]$ for any translation operator $T^t[u](x)=u(x+t)$.
-\item \it{(Symmetric)} If $u(x)=u(-x)$ then $Q[u](x)=Q[u](-x)$.
-\item \it{(Limit-preserving)} If $u(x)\to\ell$ as $x\to\infty$, then $Q[u](x)\to g(\ell)$ as $x\to\infty$; likewise as $x\to-\infty$.
-\end{enumerate}
-\end{prop}
+%\begin{prop} \label{prop1}
+%%Let $\mathcal B$ denote the space of bounded, continuous, non-negative functions $\mathbb R \to \mathbb R$. $Q$ is a bounded nonlinear operator $\mathcal B \to \mathcal B$, and satisfies the following properties for all $u \in \mathcal B$:
+%The operator $Q$ satisfies the following properties for all bounded continuous functions $u : \mathbb R \to \mathbb R_{\geq 0}$:
+%
+%\begin{enumerate}[(i.)]
+%\item \it{(Translation invariance)} $Q[T^t[u]]=T^t[Q[u]]$ for any translation operator $T^t[u](x)=u(x+t)$.
+%\item \it{(Symmetric)} If $u(x)=u(-x)$ then $Q[u](x)=Q[u](-x)$.
+%\item \it{(Limit-preserving)} If $u(x)\to\ell$ as $x\to\infty$, then $Q[u](x)\to g(\ell)$ as $x\to\infty$; likewise as $x\to-\infty$.
+%\end{enumerate}
+%\end{prop}
 
  Let $w_1$ and $w_2$ be two functions defined by
 \begin{equation} \label{w1}
@@ -209,31 +209,31 @@ By Lemma \ref{lemma1}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1
 %\end{cor}
 
 
-The condition that $\sup_{x\in\mathbb R}w_2(x)\leq \b$ may be difficult to verify for some choices of dispersal kernel. Thus, we provide a sufficient condition for this assumption:
-\begin{lem} \label{lemma}
-Let $x_\a$ and $x_\b$ be as defined in Lemma \ref{lemma1}. If $k(x)$ is unimodal and
-$$ \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (y) \, dy \leq \b $$
-then $\sup_{x\in\mathbb R}w_2(x) \leq \b$.
-\end{lem}
-
-\begin{proof}
-For all $x\in\mathbb R$, we have
-\begin{equation} \begin{aligned}
-w_2(x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy  \\
-&\leq\int_{-\infty}^{\infty} k(x-y) (\m + (\m-1) \mathbf 1_{[x_\b,x_\a]}(y) )\, dy \\
-&= \m + \int_{-\infty}^{\infty} k(x-y) (\m-1) \mathbf 1_{[x_\b,x_\a]}(y) \, dy \\
-&= \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy .
-\end{aligned}
-\end{equation}
-
-Taking the maximum over all $x$, we may shift the function horizontally so that the bounds of integration are symmetric. Since $k(x)$ is unimodal, the integral is then maximized for $x=0$.
-\begin{equation} \begin{aligned}
-\sup_{x\in\mathbb R} w_2(x) &\leq \sup_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy \right) \\
-&= \sup_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (x-y) \, dy \right) \\
-&= \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (y) \, dy.
-\end{aligned}
-\end{equation}
-\end{proof}
+%The condition that $\sup_{x\in\mathbb R}w_2(x)\leq \b$ may be difficult to verify for some choices of dispersal kernel. Thus, we provide a sufficient condition for this assumption:
+%\begin{lem} \label{lemma}
+%Let $x_\a$ and $x_\b$ be as defined in Lemma \ref{lemma1}. If $k(x)$ is unimodal and
+%$$ \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (y) \, dy \leq \b $$
+%then $\sup_{x\in\mathbb R}w_2(x) \leq \b$.
+%\end{lem}
+%
+%\begin{proof}
+%For all $x\in\mathbb R$, we have
+%\begin{equation} \begin{aligned}
+%w_2(x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy  \\
+%&\leq\int_{-\infty}^{\infty} k(x-y) (\m + (\m-1) \mathbf 1_{[x_\b,x_\a]}(y) )\, dy \\
+%&= \m + \int_{-\infty}^{\infty} k(x-y) (\m-1) \mathbf 1_{[x_\b,x_\a]}(y) \, dy \\
+%&= \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy .
+%\end{aligned}
+%\end{equation}
+%
+%Taking the maximum over all $x$, we may shift the function horizontally so that the bounds of integration are symmetric. Since $k(x)$ is unimodal, the integral is then maximized for $x=0$.
+%\begin{equation} \begin{aligned}
+%\sup_{x\in\mathbb R} w_2(x) &\leq \sup_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{x_\b}^{x_\a} k (x-y) \, dy \right) \\
+%&= \sup_{x\in\mathbb R} \left( \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (x-y) \, dy \right) \\
+%&= \m +  (1-\mu)\int_{-(x_\a-x_\b)/2}^{(x_\a-x_\b)/2} k (y) \, dy.
+%\end{aligned}
+%\end{equation}
+%\end{proof}
 
 
 \begin{thm} \label{theorem1}
@@ -317,17 +317,17 @@ and
 In the last calculation, the left hand side is known to be non-negative; therefore the limit is exactly equal to zero.
 \end{proof}
 
-The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data. We also assume the disperal kernel is compactly supported. First, we introduce a useful lemma for compactly supported kernels.
+The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data. We also assume the disperal kernel is compactly supported.% First, we introduce a useful lemma for compactly supported kernels.
 
-\begin{lem}\label{lemma2}
-Suppose $k(x)$ is compactly supported on $[-\sigma,\sigma]$ for some $\sigma>0$, and let $u \in C(\mathbb R)$. If $u(x)=0$ for $x \in \Omega \subseteq \mathbb R$, then $(k*u)(x)=0$ if $d(x,\mathbb R\setminus\Omega):= \inf \{d(x,y) \mid y\in \mathbb R\setminus\Omega\}$.
-\end{lem}
+%\begin{lem}\label{lemma2}
+%Suppose $k(x)$ is compactly supported on $[-\sigma,\sigma]$ for some $\sigma>0$, and let $u \in C(\mathbb R)$. If $u(x)=0$ for $x \in \Omega \subseteq \mathbb R$, then $(k*u)(x)=0$ if $d(x,\mathbb R\setminus\Omega):= \inf \{d(x,y) \mid y\in \mathbb R\setminus\Omega\}$.
+%\end{lem}
+%
+%\begin{proof}
+%Let $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$. Then $(x-\sigma,x+\sigma)$ is a subset of  $\Omega$ on which $u$ vanishes; thus $ (k*u)(x) = \int_{x-\sigma}^{x+\sigma}k(x-y)u(y)\,dy = 0.$
+%\end{proof}
 
-\begin{proof}
-Let $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$. Then $(x-\sigma,x+\sigma)$ is a subset of  $\Omega$ on which $u$ vanishes; thus $ (k*u)(x) = \int_{x-\sigma}^{x+\sigma}k(x-y)u(y)\,dy = 0.$
-\end{proof}
-
-\begin{thm} Let $u_0(x)$ be a non-negative continuous function with compact support such that the set $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$ is connected. Suppose $k(x)$ has compact support, $\sup_{x\in\mathbb R}w_2(x)\leq \b$, and $c^* > 0$. For $A$ sufficiently large, the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
+\begin{thm} Suppose $k(x)$ has compact support and $\sup_{x\in\mathbb R}w_2(x)\leq \b$. Let $u_0(x)$ be a non-negative continuous function, and let $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$. If $A$ is connected with sufficiently large radius and $c^* \geq 0$, then the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
 \begin{equation}
 \lim_{n\to\infty}\inf_{|x|<n(c^*-\epsilon)}u_{n}(x)>0,
 \end{equation}
@@ -359,12 +359,12 @@ m & -r-x_\b < x < r+x_\b \\
 0 & x > r+x_\a
 \end{cases}
 \end{equation}
-Note that $g(u_1(x))=g(w_1(x))$ for all $x >-r-x_\b$. Thus, by Lemma \ref{lemma2}, $Q[u_1](x)=(k*(g\circ u_1))(x)=(k*(g\circ w_1))(x)=Q[w_1](x)$ for all $x>-r-x_\b+\sigma$. If we assume $r \geq x_\b+\sigma$, then $u_2(x)=Q[u_1](x)=Q[w_1](x-r)=w_2(x-r)$ for $x>0$. 
+Note that $g(u_1(x))=g(w_1(x))$ for all $x >-r-x_\b$. Thus $Q[u_1](x)=(k*(g\circ u_1))(x)=(k*(g\circ w_1))(x)=Q[w_1](x)$ for all $x>-r-x_\b+\sigma$. If we assume $r \geq x_\b+\sigma$, then $u_2(x)=Q[u_1](x)=Q[w_1](x-r)=w_2(x-r)$ for $x>0$. 
 
 By symmetry of the integro-difference operator, $Q[u_1](x) = Q[w_1](-x+r)$ for $x<0$. Thus,
 
 \begin{equation}
-u_2(x) = Q[u_1](x) \begin{cases}
+u_2(x) = Q[u_1](x) = \begin{cases}
 w_2(x-r) & x \geq 0 \\
 w_2(-x+r) & x < 0 
 \end{cases}
@@ -397,6 +397,13 @@ u_{2n+2}(x) = w_2(|x|-r-2nc^*)
 for all $n\geq 0$.
 \end{proof}
 
+\begin{figure}[h!] 
+\centering
+  \caption{Spreading behavior for a uniform dispersal kernel with $\alpha=0.3$, $\mu=0.6$, and $\beta=0.7$. The time steps corresponding to $w_1(x)$ are colored in blue, while time steps corresponding to $w_2(x)$ are colored in red.}
+\label{fig5}
+  \includegraphics[width=.8\linewidth]{figures/fig5.png}
+\end{figure}
+
 \begin{rem}
 This theorem indicates that a solution with proper compactly supported initial data coverges to translations of periodic traveling waves with profiles $w_1(x)$ and $w_2(x)$ in the positive direction and profiles $w_1(-x)$ and $w_2(-x)$ in the negative direction.
 \end{rem}
@@ -411,11 +418,11 @@ The Laplace kernel,
 k(x) = \frac{1}{2} e^{-|x|}
 \end{equation}
 
-The reader can easily verify that the Laplace kernel satisfies hypotheses (H1) - (H3); the proof of (H4) is left in the appendix.
+The reader can easily verify that the Laplace kernel satisfies hypotheses (H1) - (H3); the proof of (H4) is left in the appendix \ref{laplaceproof}.
 
 The periodic traveling wave profiles are given by
 
-\begin{equation}
+\begin{equation} \label{w1laplace}
 w_1(x) =   \begin{cases} 
 1 - \frac{1}{2}e^{x} & x \leq 0 \\
 \frac{1}{2}e^{-x} & x > 0
@@ -449,7 +456,7 @@ where
 x_\a = \begin{cases} -\ln(2\a) & \a\leq \frac{1}{2} \\ \ln(2-2\a) & \a > \frac{1}{2} \end{cases}, \quad
 x_\b = \begin{cases} -\ln(2\b) & \b\leq \frac{1}{2} \\ \ln(2-2\b) & \b > \frac{1}{2} \end{cases} 
 \end{equation}
-This leads to an equation for the mean wave speed
+A necessary condition for formulas \eqref{w1laplace} and \eqref{w2laplace} to generate a periodic traveling wave solution are given in Lemma \ref{laplacebound}. This leads to an equation for the mean wave speed
 \begin{equation}
 c^* = \begin{cases}
 \frac{1}{2}x_\a  + \frac{1}{2}\log \left( \frac{1 - (1-\m) e^{x_\b-x_\a}}{2\a} \right) & \a \leq w_2(x_\a) \\
@@ -457,90 +464,90 @@ c^* = \begin{cases}
 \frac{1}{2}x_\a + \frac{1}{2} \log \left( \frac{2(\a-\m)}{(1-\m)e^{x_\a-x_\b}-1} \right) & \a \geq w_2(x_\b)
 \end{cases} 
 \end{equation}
-and
-
-\begin{equation} \begin{aligned}
-C_1 &= \frac{1-\m}{2}e^{-x_\b} - \frac{1}{2}e^{-x_\a} \\
-C_2 &= \frac{1}{2} e^{-x_\a} \\
-C_3 &= \frac{1-\m}{2} e^{x_\b} \\
-C_4 &= \frac{1}{2} e^{x_\a} - \frac{1-\m}{2} e^{x_\b}
-\end{aligned} \end{equation}
-
-%$x_\a=w_1^{-1}(\a)$, $x_\b=w_1^{-1}(\b)$, with
-%$$ w_1^{-1}(p) = \begin{cases} -\ln(2p) & p\leq \frac{1}{2} \\ \ln(2-2p) & p > \frac{1}{2} \end{cases} $$
-The constants $C_1,C_2,C_3$, and $C_4$ are continuous functions of the growth parameters $\alpha$, $\beta$, and $\mu$, with $C_2,C_3,C_4\geq0$. They can be expressed as piecewise expressions:
+%and
+%
+%\begin{equation} \begin{aligned}
+%C_1 &= \frac{1-\m}{2}e^{-x_\b} - \frac{1}{2}e^{-x_\a} \\
+%C_2 &= \frac{1}{2} e^{-x_\a} \\
+%C_3 &= \frac{1-\m}{2} e^{x_\b} \\
+%C_4 &= \frac{1}{2} e^{x_\a} - \frac{1-\m}{2} e^{x_\b}
+%\end{aligned} \end{equation}
+%
+%%$x_\a=w_1^{-1}(\a)$, $x_\b=w_1^{-1}(\b)$, with
+%%$$ w_1^{-1}(p) = \begin{cases} -\ln(2p) & p\leq \frac{1}{2} \\ \ln(2-2p) & p > \frac{1}{2} \end{cases} $$
+%The constants $C_1,C_2,C_3$, and $C_4$ are continuous functions of the growth parameters $\alpha$, $\beta$, and $\mu$, with $C_2,C_3,C_4\geq0$. They can be expressed as piecewise expressions:
 \newcommand{\Conecaseone}{\b(1-\m)-\a}
 \newcommand{\Conecasetwo}{\frac{1-\m-4\a(1-\b)}{4(1-\b)}}
 \newcommand{\Conecasethree}{- \frac{1-\b+\m(1-\a)}{4(1-\a)(1-\b)} }
-
-\begin{equation}
-C_1 = \begin{cases}
-\Conecaseone & \a,\b \leq \frac{1}{2} \\
-\Conecasetwo & \a\leq\frac{1}{2}<\b \\
-\Conecasethree & \frac{1}{2}<\a,\b
-\end{cases} \end{equation}
-
+%
+%\begin{equation}
+%C_1 = \begin{cases}
+%\Conecaseone & \a,\b \leq \frac{1}{2} \\
+%\Conecasetwo & \a\leq\frac{1}{2}<\b \\
+%\Conecasethree & \frac{1}{2}<\a,\b
+%\end{cases} \end{equation}
+%
 \newcommand{\Ctwocaseone}{\a}
 \newcommand{\Ctwocasetwo}{\frac{1}{4(1-\a)}}
-
-\begin{equation}
-C_2 = \begin{cases}
-\Ctwocaseone & \a \leq \frac{1}{2} \\
-\Ctwocasetwo & \a > \frac{1}{2}
-\end{cases} \end{equation}
-
+%
+%\begin{equation}
+%C_2 = \begin{cases}
+%\Ctwocaseone & \a \leq \frac{1}{2} \\
+%\Ctwocasetwo & \a > \frac{1}{2}
+%\end{cases} \end{equation}
+%
 \newcommand{\Cthreecaseone}{\frac{1-\m}{4\b}}
 \newcommand{\Cthreecasetwo}{(1-\m)(1-\b)}
-
-\begin{equation}
-C_3 = \begin{cases}
-\Cthreecaseone & \b \leq \frac{1}{2} \\
-\Cthreecasetwo & \b > \frac{1}{2}
-\end{cases} \end{equation}
-
+%
+%\begin{equation}
+%C_3 = \begin{cases}
+%\Cthreecaseone & \b \leq \frac{1}{2} \\
+%\Cthreecasetwo & \b > \frac{1}{2}
+%\end{cases} \end{equation}
+%
 \newcommand{\Cfourcaseone}{\frac{\b-\a(1-m)}{4\a\b}}
 \newcommand{\Cfourcasetwo}{\frac{1-4\a(1-\m)(1-\b)}{4\a}}
 \newcommand{\Cfourcasethree}{1-\a-(1-\m)(1-\b)}
-
-\begin{equation}
-C_4 = \begin{cases}
-\Cfourcaseone & \a,\b \leq \frac{1}{2} \\
-\Cfourcasetwo & \a\leq\frac{1}{2}<\b \\
-\Cfourcasethree & \frac{1}{2}<\a,\b
-\end{cases} \end{equation}
-
-To find $c^*$, we can now condition on the values of $w_2(x_\a)$ and $w_2(x_\b)$.
-
-\begin{enumerate}[{Case} 1.]
-\item If $w_2(x_\alpha)=C_4e^{-x_\a}>\a$, then $2c^*$ lies on the third piece of \eqref{w2laplace}. Hence the mean wave speed is given by $c^*=\frac{1}{2}\ln(\frac{C_4}{\a})$.
-
-\item If $w_2(x_\a)=C_4e^{-x_\a}\leq\a$ and $w_2(x_\b)=\m+C_1e^{x_\b}\geq\a$, then we solve the equation
-
-$$ 1 - C_2e^{2c^*} - C_3e^{-2c^*} = \a $$
-
-Multiplying through by $e^{2c^*}$ yields a quadratic in $e^{2c^*}$:
-
-$$ C_2 e^{4c^*} + (a-1) e^{2c^*} + C_3 = 0 $$
-
-Using the quadratic formula, we get two solutions to this equation. To determine which is correct, note that $w_2'(2c^*)$ must be negative. Since $C_2,C_3$ are negative, $w_2(x)$ is concave down on $[x_\b,x_\a]$, thus $w_2$ is increasing through the first solution and decreasing through the second. Clearly we must take the greater solution. Thus,
-$$ c^* = \frac{1}{2} \ln \left( \frac{1-\a + \sqrt{(1-\a)^2 - 4C_2C_3}}{2C_2} \right) $$
-
-\item If  $w_2(x_\b)=\m+C_1e^{x_\b}<\a$, we have
-
-$$ \m + C_1 e^{2c^*} = \a $$
-implies
-$$ c^* = \frac{1}{2} \ln \frac{\a-\m}{C_1} $$
-\end{enumerate}
-
-Our general formula is thus
-\begin{equation}
-c^* = \begin{cases}
-\frac{1}{2} \ln \left( \frac{C_4}{\a} \right) & \a<C_4e^{-x_\a} \\
-\frac{1}{2} \ln \left( \frac{1-\a + \sqrt{(1-\a)^2 - 4C_2C_3}}{2C_2} \right) & C_4e^{-x_\a}<\a<\m+C_1e^{x_\b} \\
-\frac{1}{2} \ln \left( \frac{\a-\m}{C_1}\right) & \a>\m+C_1e^{x_\b}
-\end{cases}
-\end{equation}
-We can write this formula more explicitly depending on the signs of $\a-\frac{1}{2}$ and $\b-\frac{1}{2}$ respectively.
+%
+%\begin{equation}
+%C_4 = \begin{cases}
+%\Cfourcaseone & \a,\b \leq \frac{1}{2} \\
+%\Cfourcasetwo & \a\leq\frac{1}{2}<\b \\
+%\Cfourcasethree & \frac{1}{2}<\a,\b
+%\end{cases} \end{equation}
+%
+%To find $c^*$, we can now condition on the values of $w_2(x_\a)$ and $w_2(x_\b)$.
+%
+%\begin{enumerate}[{Case} 1.]
+%\item If $w_2(x_\alpha)=C_4e^{-x_\a}>\a$, then $2c^*$ lies on the third piece of \eqref{w2laplace}. Hence the mean wave speed is given by $c^*=\frac{1}{2}\ln(\frac{C_4}{\a})$.
+%
+%\item If $w_2(x_\a)=C_4e^{-x_\a}\leq\a$ and $w_2(x_\b)=\m+C_1e^{x_\b}\geq\a$, then we solve the equation
+%
+%$$ 1 - C_2e^{2c^*} - C_3e^{-2c^*} = \a $$
+%
+%Multiplying through by $e^{2c^*}$ yields a quadratic in $e^{2c^*}$:
+%
+%$$ C_2 e^{4c^*} + (a-1) e^{2c^*} + C_3 = 0 $$
+%
+%Using the quadratic formula, we get two solutions to this equation. To determine which is correct, note that $w_2'(2c^*)$ must be negative. Since $C_2,C_3$ are negative, $w_2(x)$ is concave down on $[x_\b,x_\a]$, thus $w_2$ is increasing through the first solution and decreasing through the second. Clearly we must take the greater solution. Thus,
+%$$ c^* = \frac{1}{2} \ln \left( \frac{1-\a + \sqrt{(1-\a)^2 - 4C_2C_3}}{2C_2} \right) $$
+%
+%\item If  $w_2(x_\b)=\m+C_1e^{x_\b}<\a$, we have
+%
+%$$ \m + C_1 e^{2c^*} = \a $$
+%implies
+%$$ c^* = \frac{1}{2} \ln \frac{\a-\m}{C_1} $$
+%\end{enumerate}
+%
+%Our general formula is thus
+%\begin{equation}
+%c^* = \begin{cases}
+%\frac{1}{2} \ln \left( \frac{C_4}{\a} \right) & \a<C_4e^{-x_\a} \\
+%\frac{1}{2} \ln \left( \frac{1-\a + \sqrt{(1-\a)^2 - 4C_2C_3}}{2C_2} \right) & C_4e^{-x_\a}<\a<\m+C_1e^{x_\b} \\
+%\frac{1}{2} \ln \left( \frac{\a-\m}{C_1}\right) & \a>\m+C_1e^{x_\b}
+%\end{cases}
+%\end{equation}
+%We can write this formula more explicitly depending on the signs of $\a-\frac{1}{2}$ and $\b-\frac{1}{2}$ respectively.
 %Let $c_1$ and $c_2$ denote the intermediate wave speeds measured at some threshold $0<h<m$. For this analysis we chose the threshold of $h=a$. Thus $c_1 = w_2^{-1}(a) - w_1^{-1}(a)=2c^*-\alpha$, and $c_2=2c^*+\alpha-c_1=2\alpha$. We can now define the relative fluctuation in wavespeed by
 %
 %$$ f = \frac{|c_1-c_2|}{c^*} = \frac{|2c^*-3\alpha|}{c^*} $$
@@ -566,6 +573,7 @@ We can write this formula more explicitly depending on the signs of $\a-\frac{1}
 %$$ f = \frac{|\ln\frac{b-(1-m)a}{4a^2b}+3\ln(2a)|}{\ln\frac{b-(1-m)a}{4a^2b}} $$
 %$$ = \frac{|\ln(2a(b-(1-m)a))-\ln(b)|}{\ln(b-(1-m)a)-\ln(4a^2b)}  $$
 
+Our formula can be written more explicitly based on the values of $\a$ and $\b$:
 \begin{enumerate}[{Case} 1.]
 
 \item $\a\leq\frac{1}{2}$, $\b\leq\frac{1}{2}$.
@@ -961,6 +969,13 @@ $w_1(x)$ is positive for $x<1$ and zero for $x\geq1$, and $w_2(x)$ is positive f
 \end{rem}
 
 
+\begin{figure}[h!] 
+\centering
+  \caption{The shaded region $R$ indicates all pairs $(\a,\b)$ such that the condition in Theorem 2.1 holds for $\m=0.6$, and the line $\b=2\a$ is drawn in red. The region $R_1$ contains all pairs $(\a,\b)$ such that the traveling wave has constant speed, and $R_2$ contains all pairs such that the traveling wave has oscillating speed.}
+\label{fig4}
+  \includegraphics[width=.5\linewidth]{figures/fig4.png}
+\end{figure}
+
 The regions in the parameter space where oscillating spreading speed exists can be determined as follows: for any fixed choice of $(n_1,n_2)$, with $0<n_1<n_2$, let $R$ be the set of pairs $(a,b)\in\mathbf R^2$ such that the hypothesis of Theorem 2.1 holds. Then $R$ is a triangle in the $a$-$b$ plane with endpoints at $(0,n_2)$, $(n_1,n_1)$, and $(n_1,n_2)$, depicted in Figure \ref{fig:phaseportrait}. The line $b=2a$ partitions $R$ into two non-empty sets $R_1=\{(a,b)\in R:a\leq b/2\}$ and $R_2=\{(a,b)\in R:a> b/2\}$ such that the traveling has constant speed if $(a,b)\in R_1$ and oscillating speed if $(a,b)\in R_2$.
 
 
@@ -1054,53 +1069,55 @@ Math. Anal. {\bf 13}: 353-396.
 
 \section{Appendix}
 
-\begin{proof}[Proof of Proposition \ref{prop1}]
+%\begin{proof}[Proof of Proposition \ref{prop1}]
+%
+%Let $u(x)$ be non-negative, continuous, and bounded.
+%
+%\begin{enumerate}[(i.)]
+%\item For $t\in\mathbb R$, let $T^t$ denote the translation operator defined $T^t[u](x) = u(x+t)$. Then,
+%\begin{equation} \begin{aligned}
+%Q[T^t[u]](x) &= 
+%\int_{-\infty}^{\infty} k(x-y) g(T^t[u](y)) \, dy \\
+%&= \int_{-\infty}^{\infty} k(x-y) g(u(y+t)) \, dy
+%\end{aligned} \end{equation}
+%Let $z=y+t$.
+%\begin{equation} \begin{aligned}
+%Q[T^t[u]](x)
+%&= \int_{-\infty}^{\infty} k(x-z+t) g(u(z)) \, dz \\
+%&= Q[u](x+t) \\
+%&= T^t[Q[u]](x)
+%\end{aligned} \end{equation}
+%
+%\item 
+%Suppose $\lim_{x\to\infty}u(x)=\ell$. 
+%
+%\end{enumerate}
+%
+%\end{proof}
 
-Let $u(x)$ be non-negative, continuous, and bounded.
-
-\begin{enumerate}[(i.)]
-\item For $t\in\mathbb R$, let $T^t$ denote the translation operator defined $T^t[u](x) = u(x+t)$. Then,
-\begin{equation} \begin{aligned}
-Q[T^t[u]](x) &= 
-\int_{-\infty}^{\infty} k(x-y) g(T^t[u](y)) \, dy \\
-&= \int_{-\infty}^{\infty} k(x-y) g(u(y+t)) \, dy
-\end{aligned} \end{equation}
-Let $z=y+t$.
-\begin{equation} \begin{aligned}
-Q[T^t[u]](x)
-&= \int_{-\infty}^{\infty} k(x-z+t) g(u(z)) \, dz \\
-&= Q[u](x+t) \\
-&= T^t[Q[u]](x)
-\end{aligned} \end{equation}
-
-\item 
-Suppose $\lim_{x\to\infty}u(x)=\ell$. 
-
-\end{enumerate}
-
-\end{proof}
-
-\begin{lem}
+\begin{lem} \label{laplaceproof}
 The Laplace kernel \eqref{laplacekernel} satisfies hypothesis (H4).
 \end{lem}
 
 \begin{proof}
-let $f=f_{m,y}$ be the scalar function of $x$ with two parameters $y\in\mathbb R$ and $\mu\in(0,1)$ defined by
-$$ f(x)= f_{m,y}(x) = \frac{1}{2} e^{-|x|} - \frac{\mu}{2}e^{-|x-y|} $$
+Let $k(x)=\frac{1}{2}e^{-|x|}$. For $a \in \mathbb R$ and $\lambda \in (0,1)$, define
+\begin{equation}
+f_{a,\lambda}(x)= \frac{1}{2} e^{-|x|} - \frac{\lambda}{2}e^{-|x-a|}.
+\end{equation}
 
-If $y=0$, then $f$ has no zero-crossings, since $f_{m,0}(x)=\frac{1-\mu}{2}e^{-|x|}$ is strictly positive. If $y$ is nonzero, then one can easily check the symmetry relation $f_{m,-y}(x)=f_{m,y}(-x)$. Since the number of zero-crossings are invariant with respect to a reflection about the vertical axis, we can assume without loss of generality $y>0$.
+If $a=0$, then $f$ has no zero-crossings, since $f_{0,\lambda}(x)=\frac{1-\lambda}{2}e^{-|x|}$ is strictly positive. If $a$ is nonzero, then one can easily check the symmetry relation $f_{-a,\lambda}(x)=f_{\lambda,a}(-x)$. Since the number of zero-crossings are invariant with respect to a reflection about the vertical axis, we can assume without loss of generality $a>0$.
 
-Under this assumption, $f$ is strictly increasing on $(-\infty,0)$, and strictly decreasing on $(0,y)$. The behavior on $(y,\infty)$ is determined by the sign of $e^{-y}-m$. There are three cases:
+Under this assumption, $f$ is strictly increasing on $(-\infty,0)$, and strictly decreasing on $(0,a)$. The behavior on $(a,\infty)$ can be determined in three cases:
 
-\begin{enumerate}
-\item if $y<\ln\frac{1}{m}$, then $f$ is decreasing on $(0,\infty)$, hence has no zero-crossings;
-\item if $y>\ln\frac{1}{m}$, then $f$ has a unique zero-crossing at $x=\frac{1}{2}(y-\ln(m))$;
-\item if $y=\ln\frac{1}{m}$, then $f$ vanishes on $(y,\infty)$, hence it has no zero-crossings.
+\begin{enumerate}[{Case} 1.)]
+\item if $a<\ln\frac{1}{\lambda}$, then $f$ is decreasing on $(0,\infty)$, hence has no zero-crossings;
+\item if $a>\ln\frac{1}{\lambda}$, then $f$ has a unique zero-crossing at $x=\frac{1}{2}(a-\ln\lambda)$;
+\item if $a=\ln\frac{1}{\lambda}$, then $f$ vanishes on $(a,\infty)$, hence it has no zero-crossings.
 \end{enumerate}
 In each case, the number of zero-crossings does not exceed one.
 \end{proof}
 
-\begin{lem}
+\begin{lem}\label{laplacebound}
 If $k(x)$ is given by the Laplace kernel, then $w_1$ and $w_2$ form a periodic traveling wave solution if $C_1\leq 0$, or if $C_1>0$ and $w_2\left(\ln\sqrt\frac{C_3}{C_2}\right)\leq b$.
 \end{lem}
 
@@ -1115,12 +1132,12 @@ The Gaussian kernel satisfies hypothesis H4.
 \end{lem}
 
 \begin{proof}
-Let $y\in\mathbb R$ and $\mu\in(0,1)$. Then
+Let $a\in\mathbb R$ and $\mu\in(0,1)$. Then
 \begin{equation} \begin{aligned}
-k(x)-\mu k(x-y) &= \frac{1}{\sqrt{2\pi}} \left( e^{-\frac{x^2}{2}} - \mu e^{-\frac{-(x-y)^2}{2}} \right) \\
-&= \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \left( 1 - \mu e^{\frac{2xy-y^2}{2}} \right)
+k(x)-\mu k(x-a) &= \frac{1}{\sqrt{2\pi}} \left( e^{-\frac{x^2}{2}} - \mu e^{-\frac{-(x-a)^2}{2}} \right) \\
+&= \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \left( 1 - \mu e^{\frac{2ax-a^2}{2}} \right)
 \end{aligned} \end{equation}
-This expression has a unique zero at $x=\frac{y^2-2\ln(\mu)}{2y}$, so the number of zero-crossings is at most one.
+This expression has a unique zero at $x=\frac{y^2-2\ln(\mu)}{2a}$, so the number of zero-crossings is at most one.
 \end{proof}
 
 \begin{lem}
