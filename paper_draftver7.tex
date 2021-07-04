@@ -2,13 +2,15 @@
 
 \usepackage{amsmath,amsthm,amssymb}
 \usepackage{hyperref}
-%\usepackage{geometry}
+\usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{enumerate}
 %\usepackage{caption,subcaption}
 \usepackage{caption}
 \usepackage{subcaption}
 
+%\usepackage{newpxtext,newpxmath}
+\usepackage{multicol}
 
 %\theoremstyle{definition}
 \newtheorem{thm}{Theorem}
@@ -28,9 +30,10 @@
 
 \newcommand{\winva}{{w_1^{-1}(a)}}
 \newcommand{\winvb}{{w_1^{-1}(b)}}
-\renewcommand{\a}{\alpha}
-\renewcommand{\b}{\beta}
-\newcommand{\m}{\mu}
+\renewcommand{\a}{a}
+\renewcommand{\b}{b}
+\newcommand{\m}{n_1}
+\newcommand{\mtwo}{n_2}
 
 \usepackage{authblk}
 
@@ -62,6 +65,8 @@ We derive sufficient conditions for the existence of periodic traveling wave sol
 {\bf AMS Subject Classification:} 92D40, 92D25.
 
 
+%\begin{multicols}{1}
+
 \section{Introduction}
 
 Integro-difference equations are of great interest in the studies of invasions of populations with discrete generations and separate growth and dispersal stages. They have been used to predict changes in gene frequency \cite{lui82a, lui82b, lui83, slatkin, w78}, and applied to ecological problems~\cite{hh, ks, kot89, kot92, kotbook, lut, nkl,otto}. Previous rigrous studies on integro-difference equations have assumed that the growth function is nondecreasing~\cite{w78, wein82}, or  is nonmonotone without strong Allee effect~\cite{lui83, wang}. The results show existence of constant spreading speeds and travelng waves with fixed shapes and speeds.   Sullivan et al. ~\cite{pnas} demonstrated numerically  that an integro-difference equation with a nonmonotone growth function exhibiting  a strong Allee effect can generate traveling waves with fluctuating speeds. In this paper we give a sufficient condition for the existence of periodic traveling waves with a periodic speed for such an equation with a specific growth function.
@@ -75,7 +80,7 @@ where
 \begin{equation} \label{g}
 g(u) = \begin{cases}
 0, & \text{if } u < \a, \\
-1, & \text{if } \a \leq u \leq \b, \\
+\mtwo, & \text{if } \a \leq u \leq \b, \\
 \m, & \text{if } u > \b,
 \end{cases}
 \end{equation}
@@ -83,14 +88,16 @@ with $0<\a<\m<\b<1$. $g(u)$ is a piecewise constant nonmonotone growth function 
 
 \begin{figure}[h!]
 \centering
-  \caption{Plot of the growth function $g(u)$ compared to the identity function with growth parameters $\alpha=0.33$, $\beta=0.66$, and $\mu=0.5$.}
+  \caption{Plot of the growth function $g(u)$ compared to the identity function with growth parameters $\a=0.33$, $\b=0.66$, and $\m=0.5$, and $\mtwo=1.0$.}
   \includegraphics[width=.8\linewidth]{figures/fig1.png}
 \end{figure}
 
-Piecewise constant growth functions and uniform distributions have been used in the studies of integro-difference equations; see for example~\cite{kot1, lut,otto,  pnas}. We rigorously construct periodic traveling waves with periodic speeds for (\ref{q}). To the best of our knowledge, this is the first time that traveling waves with oscillating speeds have been analytically established  for scalar spatiotemporal equations with constant parameters. We also show the convergence of solutions with compactly supported initial data to translations of the traveling wave under appropriate conditions. Equation (\ref{q}) may be viewed as a symbolic model for integro-difference equations with a growth function exhibiting a strong Allee effect and a period two cycle. The results obtained this paper provide important insights into integro-difference equations with general growth functions. 
+Piecewise constant growth functions have been used in the studies of integro-difference equations; see for example~\cite{kot1, lut,otto,  pnas}. We rigorously construct periodic traveling waves with periodic speeds for (\ref{q}). To the best of our knowledge, this is the first time that traveling waves with oscillating speeds have been analytically established  for scalar spatiotemporal equations with constant parameters. We also show the convergence of solutions with compactly supported initial data to translations of the traveling wave under appropriate conditions. Equation (\ref{q}) may be viewed as a symbolic model for integro-difference equations with a growth function exhibiting a strong Allee effect and a period two cycle. The results obtained this paper provide important insights into integro-difference equations with general growth functions. 
 
 
+%\section{Results}
 \section{Periodic traveling waves}
+%\subsection{Periodic traveling waves}
 
 In this section, we construct a periodic traveling wave solution to the recurrence \eqref{q}. We will assume the dispersal kernel $k$ satisfies the following hypotheses:
 
@@ -108,8 +115,10 @@ In this section, we construct a periodic traveling wave solution to the recurren
 
 \item the support of $k$ is connected;
 
-\item  for all $\lambda\in(0,1)$, for all $a\in\mathbb R$, the function $x \mapsto k(x)-\lambda k(x-a)$ has at most one zero-crossing in $\mathbb R$.
+\item  for all $\lambda\in(0,1)$, for all $a\in\mathbb R$, the equation $k(x)=\lambda k(x-a)$ has at most one real solution.
 \end{enumerate}
+
+
 %\end{hyp}
 
 %\begin{rem}
@@ -129,50 +138,149 @@ In this section, we construct a periodic traveling wave solution to the recurren
 
  Let $w_1$ and $w_2$ be two functions defined by
 \begin{equation} \label{w1}
-w_1(x) := \int_x^\infty k(y) \, dy
+w_1(x) := \int_x^\infty \mtwo k(y) \, dy
 \end{equation}
 and
 \begin{equation} \label{w2}
-w_2(x) := Q[w_1](x) = \int_{-\infty}^{\infty} k(y) g(w_1(x-y)) \, dy 
+w_2(x) = \int_x^\infty \left( \mtwo k(y-x_\a) - (\mtwo-\m)k(y-x_\b)\right) \, dy 
+\end{equation} 
+where $x_\a$ and $x_\b$ constants constants given by
+\begin{equation}
+x_\a =\sup\left\{x\in\mathbb R\mid \int_{-\infty}^{x} k(y) \, dy \leq \frac{\a}{\mtwo} \right\}, \quad
+x_\b =\sup\left\{x\in\mathbb R\mid \int_{-\infty}^{x} k(y) \, dy \leq \frac{\b}{\mtwo} \right\}
 \end{equation}
 
-Hypothesis (H1) implies $w_1$ and $w_2$ have well-defined limits at $\pm\infty$ given by $w_1(\infty)=w_2(\infty)=0$, $w_1(-\infty)=1$, and $w_2(-\infty)=\m$. Furthermore, $w_1$ is monotonically decreasing, while $w_2$ may be non-monotonic.
 
 
-\begin{lem} \label{lemma1}
-If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then there exists unique $c^*\in\mathbb R$ such that $Q[w_2](x)=w_1(x-2c^*)$ for all $x\in\mathbb R$.
+\begin{lem} \label{lemmamain}
+If $ || w_2 ||_\infty \leq \b $, then $w_1$ and $w_2$ satisfy
+\begin{equation}
+Q[w_1](x) = w_2(x)
+\end{equation}
+and
+\begin{equation}
+Q[w_2](x) = w_1(x-2c^*)
+\end{equation}
+for all $x\in\mathbb R$, where $c^*$ is a constant given by
+\begin{equation}
+c^* = \frac{1}{2} \sup\{x\in\mathbb R\mid w_2(x)\geq \a\}
+\end{equation}
 \end{lem}
 
-\begin{proof} Let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. Since $w_1$ is monotone, it follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
+%
+%
+%\begin{lem} \label{lemma0.5}
+%$Q[w_1](x) = w_2(x)$ for all $x\in\mathbb R$.
+%\end{lem}
+
+
+
+
+\begin{proof}
+$w_1$ is monotonically decreasing with $w_1(-\infty)=\mtwo$ and $w_1(\infty)=0$. It follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. This yields
+\begin{equation}
+g(w_1(x)) = \begin{cases}
+\m & x < x_\b \\
+\mtwo & x_\b \leq x \leq x_\a \\
+0 & x > x_\a
+\end{cases}
+\end{equation}
+Applying the integro-difference operator yields
 \begin{equation} \label{qw1calculation}
 \begin{aligned}
 Q[w_1](x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy \\
-&= \m \int_{-\infty}^{x_\b} k(x-y) \, dy + \int_{x_\b}^{x_\a} k(x-y) \, dy \\
-&= \m \int_{x-x_\b}^{\infty} k(y) \, dy + \int_{x-x_\a}^{x-x_\b} k(y) \, dy \\
-&= \int_{x-x_\a}^{\infty} k(y) \, dy - (1-\m) \int_{x-x_\b}^{\infty} k(y) \, dy
+&= \m \int_{-\infty}^{x_\b} k(x-y) \, dy + \mtwo \int_{x_\b}^{x_\a} k(x-y) \, dy \\
+%&= \m \int_{x-x_\b}^{\infty} k(y) \, dy + \int_{x-x_\a}^{x-x_\b} k(y) \, dy \\
+&= \mtwo \int_{x-x_\a}^{\infty} k(y) \, dy - (\mtwo-\m) \int_{x-x_\b}^{\infty} k(y) \, dy \\
+&= \int_{x}^{\infty} \left( \mtwo k(y-x_\a)  - (\mtwo-\m)k(y-x_\b)\right) \, dy
 \end{aligned} \end{equation}
+%It can now be seen that replacing $x$ with $x-c^*$ in equation \eqref{w2} produces \eqref{qw1calculation}.
+%\end{proof}
 
-Taking the derivative with respect to $x$, we find
-\begin{equation}\label{dw2dx}
-\frac{dw_2}{dx} = -k(x-x_\a) + (1-\m)k(x-x_\b)
-\end{equation}
 
-From hypothesis (H4), we can conclude that \eqref{dw2dx} has at most one zero-crossing, hence $w_2(x)$ has at most one turning point. This leaves two cases:
-\begin{enumerate}[{Case} 1.]
-\item If $w_2$ has no turning points, it must be monotonically decreasing.
-\item If $w_2$ has a single turning point $x^*$, then $w_2(x)$ is increasing on $(-\infty,x^*)$ and decreasing on $(x^*,\infty)$, with $\m \leq w_2(x^*)\leq \b$.
-\end{enumerate}
 
-In both cases, $w_2(x)$ has a well-defined right inverse on the open interval $(0,\m)$. Since $0<\a<\m$, let
+%
+%\begin{lem} \label{lemma0}
+%$w_1(x)$ is monotone, while $w_2(x)$ has at most one turning point.
+%\end{lem}
+%
+%
+%
+%
+%\begin{proof}
+%The monotonicity of $w_1$ follows since $w_1'(x)=-k(x)\leq 0$ by hypothesis (H1). To count the turning points of $w_2$, let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. Since $w_1$ is monotone, it follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
+%\begin{equation} \label{qw1calculation}
+%\begin{aligned}
+%Q[w_1](x) %&= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy \\
+%&= \m \int_{-\infty}^{x_\b} k(x-y) \, dy + \int_{x_\b}^{x_\a} k(x-y) \, dy \\
+%%&= \m \int_{x-x_\b}^{\infty} k(y) \, dy + \int_{x-x_\a}^{x-x_\b} k(y) \, dy \\
+%&= \int_{x-x_\a}^{\infty} k(y) \, dy - (1-\m) \int_{x-x_\b}^{\infty} k(y) \, dy
+%\end{aligned} \end{equation}
+%
+%Taking the derivative with respect to $x$, we find
+%\begin{equation}\label{dw2dx}
+%\frac{d}{dx}Q[w_1] = -k(x-x_\a) + (1-\m)k(x-x_\b)
+%\end{equation}
+%
+%From hypothesis (H4), we can conclude that \eqref{dw2dx} has at most one zero-crossing, hence $w_2(x)$ has at most one turning point.
+%\end{proof}
+
+
+%
+%Hypothesis (H1) implies $w_1$ and $w_2$ have well-defined limits at $\pm\infty$ given by $w_1(\infty)=w_2(\infty)=0$, $w_1(-\infty)=1$, and $w_2(-\infty)=\m$. Furthermore, $w_1$ is monotonically decreasing, while $w_2$ may be non-monotonic.
+
+
+%\begin{lem} \label{lemma1}
+%If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then $Q[w_2](x)=w_1(x-c^*)$ for all $x\in\mathbb R$.
+%\end{lem}
+
+%\begin{lem} \label{lemma1}
+%If $ ||w_2||_\infty \leq \b$, then $Q[w_2](x)=w_1(x-c^*)$ for all $x\in\mathbb R$.
+%\end{lem}
+
+%'\begin{proof}
+By Hypothesis (H4), we have assumed that the integrand on the right hand side has at most one zero. We can now proceed in cases. $w_2(x)$ has either zero or one turning point(s). In the first case, $w_2(x)$ is monotonically decreasing and satisfies $w_2(x) \geq \a$ for $x \leq 2c^*$ and $w_2(x) < \a$ for $x > 2c^*$. In the second case, $w_2(x)$ has a unique turning point $x_0 \in \mathbb R$; it follows that $w_2(x)$ is monotonically increasing on $(-\infty,x_0)$ and monotonically decreasing on $(x_0,\infty)$, and $x_0$ is a global maximum. By the assumption $w_2(x)\leq\beta$ for all $x$, we have $w_2(x_0)\leq\beta$. It follows that $c^* \in (\frac{x_0}{2},\infty)$, and $w_2(x)$ satisfies $g(w_2(x))=1$ for $x<2c^*$ and $g(w_2(x)) = 0$ for $x>2c^*$. In both cases, we have
+
 \begin{equation}
-c^*=\frac{1}{2}\sup\{x\in\mathbb R\mid w_2(x)\geq\a\}
+g(w_2(x)) = \begin{cases}
+1 & x \leq 2c^* \\
+0 & x > 2c^*
+\end{cases}
 \end{equation}
 
-It follows that $w_2(x)\geq\a$ for $x\leq 2c^*$ and $w_2(x)<\alpha$ for $x>2c^*$. Along with the assumption that $\sup_{x\in\mathbb R}w_2(x)\leq\b$, we can apply the integro-difference operator once more:
+
+%Let $x_\a=\sup\{x\in\mathbb R\mid w_1(x)\geq\a\}$ and $x_\b=\sup\{x\in\mathbb R\mid w_1(x)\geq\b\}$. Since $w_1$ is monotone, it follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. Applying the integro-difference operator to $w_1$ yields
+%\begin{equation} \label{qw1calculation}
+%\begin{aligned}
+%Q[w_1](x) &= \int_{-\infty}^{\infty} k(x-y) g(w_1(y)) \, dy \\
+%&= \m \int_{-\infty}^{x_\b} k(x-y) \, dy + \int_{x_\b}^{x_\a} k(x-y) \, dy \\
+%&= \m \int_{x-x_\b}^{\infty} k(y) \, dy + \int_{x-x_\a}^{x-x_\b} k(y) \, dy \\
+%&= \int_{x-x_\a}^{\infty} k(y) \, dy - (1-\m) \int_{x-x_\b}^{\infty} k(y) \, dy
+%\end{aligned} \end{equation}
+%
+%Taking the derivative with respect to $x$, we find
+%\begin{equation}\label{dw2dx}
+%\frac{d}{dx}Q[w_1] = -k(x-x_\a) + (1-\m)k(x-x_\b)
+%\end{equation}
+
+%From hypothesis (H4), we can conclude that \eqref{dw2dx} has at most one zero-crossing, hence $w_2(x)$ has at most one turning point. This leaves two cases:
+%\begin{enumerate}[{Case} 1.]
+%\item If $w_2$ has no turning points, it must be monotonically decreasing.
+%\item If $w_2$ has a single turning point $x^*$, then $w_2(x)$ is increasing on $(-\infty,x^*)$ and decreasing on $(x^*,\infty)$, with $\m \leq w_2(x^*)\leq \b$.
+%\end{enumerate}
+%
+%In both cases, $w_2(x)$ has a well-defined right inverse on the open interval $(0,\m)$. Since $0<\a<\m$, let
+%\begin{equation}
+%c^*=\frac{1}{2}\sup\{x\in\mathbb R\mid w_2(x)\geq\a\}
+%\end{equation}
+
+%It follows that $w_2(x)\geq\a$ for $x\leq 2c^*$ and $w_2(x)<\alpha$ for $x>2c^*$. Along with the assumption that $\sup_{x\in\mathbb R}w_2(x)\leq\b$, we can apply the integro-difference operator once more:
+Thus,
 \begin{equation} \begin{aligned}
-Q[w_2](x) %&= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
+Q[w_2](x) &= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
 &= \int_{-\infty}^{2c^*} k(x-y) \, dy \\
-&= \int_{x-2c^*}^{\infty} k(y) \, dy &= w_1(x-2c^*).
+&= \int_{x-2c^*}^{\infty} k(y) \, dy \\
+&= w_1(x-2c^*).
 \end{aligned} \end{equation}
 %By defining $c^* = \frac{1}{2}x_0$, and applying the integro-difference operator, we can see that $w_1$ and $w_2$ are both solutions to the periodic traveling wave equation with mean speed $c^*$:
 %\begin{equation}
@@ -184,19 +292,19 @@ Q[w_2](x) %&= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
 \centering
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/fig2A.png}
+  \includegraphics[width=.9\linewidth]{figures/fig2A.png}
   \label{fig:sub1}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
-  \includegraphics[width=.8\linewidth]{figures/fig2B.png}
+  \includegraphics[width=.9\linewidth]{figures/fig2B.png}
   \label{fig:sub2}
 \end{subfigure}
-\caption{Plots of $w_1(x)$ (left) and $w_2(x)$ (right) with the Laplace dispersal kernel and growth parameters $\alpha=0.3$, $\mu=0.5$, and $\beta=0.8$}
+\caption{The shape of the two periodic traveling wave profiles with Laplace dispersal kernel and growth parameters $\a=0.3$, $\m=0.5$, and $\b=0.8$.}
 \label{fig:test}
 \end{figure}
 
-By Lemma \ref{lemma1}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1](x)=w_1(x-2c^*)$ and $Q^2[w_2](x)=w_2(x-2c^*)$. As a result, they can be used to construct a solution to the integral recurrence which spreads in space with a mean speed of $c^*$ and alternates in shape every two time steps. This is formalized in the following theorem:
+By Lemma \ref{lemmamain}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1](x)=w_1(x-2c^*)$ and $Q^2[w_2](x)=w_2(x-2c^*)$. As a result, they can be used to construct a solution to the integral recurrence which spreads in space with a mean speed of $c^*$ and alternates in shape every two time steps. This is formalized in the following theorem:
 
 %\begin{cor} If $||w_2||_\infty \leq \beta$, then for all $x\in\mathbb R$,
 %\begin{equation}
@@ -237,7 +345,7 @@ By Lemma \ref{lemma1}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1
 
 
 \begin{thm} \label{theorem1}
-If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a periodic traveling wave solution $(u_n)_{n=0}^{\infty}$ satisfying
+If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then equation \eqref{q} has a periodic traveling wave solution given by %$(u_n)_{n=0}^{\infty}$ satisfying
 %\begin{equation} \label{ptw}
 %u_n(x) = \begin{cases}
 %w_1(x-nc^*) & n \text{ even} \\
@@ -246,35 +354,60 @@ If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then the recurrence \eqref{q} has a peri
 %\end{equation}
 
 \begin{equation} \label{ptw}
-\begin{aligned}
-u_{2n}(x) &= w_1(x-2nc^*) \\
-u_{2n+1}(x) &= w_2(x-2nc^*)
-\end{aligned}
+u_n(x) = \begin{cases}
+w_1(x-nc^*) & n \text{ even} \\
+w_2(x-nc^*+c^*) & n \text{ odd}
+\end{cases}
 \end{equation}
 for all $n \geq 0$.
 \end{thm}
 
 \begin{proof}
-It suffices to show that equation \eqref{ptw} satisfies $u_{n+1}=Q[u_n]$ for all $n \geq 0$. For convenience, we will switch the index and consider the cases $u_{2n}$ and $u_{2n+1}$ separately. The basic case, $u_1 = Q[u_0]$, follows immediately from definition \ref{w2}. This proves the first half. Next, we have $u_2(x)=w_1(x-2c^*)$, which follows by Lemma \ref{lemma1}.
-
-For the inductive step, suppose $u_{2n+1}=Q[u_{2n}]$ and $u_{2n+2}=Q[u_{2n+1}]$ for some $n\geq 0$. We only need to show $u_{2n+3}=Q[u_{2n+2}]$. We have
+It suffices to show that equation \eqref{ptw} satisfies $u_{n+1}=Q[u_n]$ for all $n \geq 0$. If $n$ is even, then $n+1$ is odd, so $u_n(x)=w_1(x-nc^*)$ and $u_{n+1}(x)=w_2(x-nc^*)$. Applying the integro-difference operator, we obtain
 \begin{equation} \begin{aligned}
-u_{2n+3}(x) &= w_2(x-2nc^*-2c^*) \\
-&= Q^2[w_2](x-2nc^*) \\
-&= Q^2[u_{2n+1}](x) \\ 
-&= Q[u_{2n+2}](x)
+Q[u_n](x) &= Q[w_1](x-nc^*) \\
+&= w_2(x-nc^*) \\
+&= u_{n+1}(x)
 \end{aligned} \end{equation}
+by \eqref{w2}. On the other hand, if $n$ is odd, then $n+1$ is even, so $u_n(x)=w_2(x-nc^*+c^*)$ and $u_{n+1}(x)=w_1(x-nc^*-c^*)$. Applying the operator, we get
+\begin{equation} \begin{aligned}
+Q[u_n](x) &= Q[w_2](x-nc^*+c^*) \\
+&= w_1(x-nc^*-c^*) \\
+&= u_{n+1}(x)
+\end{aligned} \end{equation}
+by Lemma \ref{lemmamain}.
 \end{proof}
+
+
+%For convenience, we will switch the index and consider the cases $u_{2n}$ and $u_{2n+1}$ separately. The basic case, $u_1 = Q[u_0]$, follows immediately from definition \ref{w2}. This proves the first half. Next, we have $u_2(x)=w_1(x-2c^*)$, which follows by Lemma \ref{lemma1}.
+%
+%For the inductive step, suppose $u_{2n+1}=Q[u_{2n}]$ and $u_{2n+2}=Q[u_{2n+1}]$ for some $n\geq 0$. We only need to show $u_{2n+3}=Q[u_{2n+2}]$. We have
+%\begin{equation} \begin{aligned}
+%u_{2n+3}(x) &= w_2(x-2nc^*-2c^*) \\
+%&= Q^2[w_2](x-2nc^*) \\
+%&= Q^2[u_{2n+1}](x) \\ 
+%&= Q[u_{2n+2}](x)
+%\end{aligned} \end{equation}
+% \end{proof}
 
 \begin{figure}[h!] 
 \centering
-  \caption{Numerical simulation of the integro-difference equation with Laplace dispersal kernel, $\alpha=0.2$, $\mu=0.3$, and $\beta=0.8$. Later timepoints are colored in red, with earlier timepoints colored in green.}
+  \caption{Numerical simulation of our model using the Laplace dispersal kernel. The parameters chosen for this simulation were $\a=0.2$, $\m=0.3$, and $\b=0.8$, and $\mtwo=1.0$. Later timepoints are colored in red, with earlier timepoints colored in green.}
 \label{fig3}
-  \includegraphics{figures/fig3.png}
+  \includegraphics[width=.8\linewidth]{figures/fig3.png}
 \end{figure}
 
-Figure \ref{fig3} shows the propagation of the periodic traveling wave solution for a particular choice of dispersal kernel and growth parameters.
+The previous theorem shows that our model can exhibit a periodic traveling wave solution with alternating wave profiles. Furthermore, we derived a constant wave speed at which the oscillating pair of waves travels. We now turn our attention to the magnitude of the oscillation in the wave speed. For a sufficiently small $\ell > 0$, we may label the point of intersection of the curve $u=u_n(x)$ with the horizontal line $u=\ell$ by $\xi_{n,\ell}$, or simply $\xi_n$. It follows that $\xi_1,\xi_2,\xi_3,\dots\to\infty$ as $n\to\infty$; furthermore, the previous theorem implies that for any $\ell$, we have $\xi_{n+2}-\xi_n=2c^*$ for every $n\geq 1$.
 
+For every $n\geq 1$, let $c_n = \xi_n - \xi_{n-1}$.
+
+We now introduce an additional hypothesis for the spread of solutions with compactly supported initial condition.
+
+Hypothesis 2. For sufficiently large $r_b$, with $r_a > r_b > 0$ and $\lambda \in (0,1)$, the equation
+
+$$ k(x+r_a) - k(x-r_a) - \lambda k(x+r_b) + \lambda k(x-r_b) $$
+
+has at most 3 solutions.
 
 \begin{thm}  \label{theorem2}
 If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then for all $\epsilon>0$, the sequence \ref{ptw} satisfies
@@ -303,7 +436,7 @@ and
 \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n+1}(x)
 &= \lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}w_2(x-2nc^*) \\
 &= \lim_{n\to\infty}\inf_{x<-2n\epsilon}w_2(x) \\
-&= \liminf_{x\to-\infty}w_2(x) \\ &= m.
+&= \liminf_{x\to-\infty}w_2(x) \\ &= \m.
 \end{aligned} \end{equation}
 
 \begin{equation} \begin{aligned}
@@ -317,6 +450,8 @@ and
 In the last calculation, the left hand side is known to be non-negative; therefore the limit is exactly equal to zero.
 \end{proof}
 
+\subsection{Compactly supported kernels}
+
 The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data. We also assume the disperal kernel is compactly supported.% First, we introduce a useful lemma for compactly supported kernels.
 
 %\begin{lem}\label{lemma2}
@@ -327,7 +462,31 @@ The next theorem concerns the spreading behavior of solutions to the IDE \eqref{
 %Let $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$. Then $(x-\sigma,x+\sigma)$ is a subset of  $\Omega$ on which $u$ vanishes; thus $ (k*u)(x) = \int_{x-\sigma}^{x+\sigma}k(x-y)u(y)\,dy = 0.$
 %\end{proof}
 
-\begin{thm} Suppose $k(x)$ has compact support and $\sup_{x\in\mathbb R}w_2(x)\leq \b$. Let $u_0(x)$ be a non-negative continuous function, and let $A=\{x\in\mathbb R:\a\leq u_0(x)\leq \b\}$. If $A$ is connected with sufficiently large radius and $c^* \geq 0$, then the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
+
+
+\begin{lem}
+Suppose $k(x)$ has support $[-\sigma,\sigma]$ and $c^*\geq0$.
+
+\begin{enumerate}
+\item If $r \geq \sigma - x_\b$, then $Q[w_1](|x|-r) = w_2(|x|-r-c^*)$.
+
+\item 
+\end{enumerate}
+\end{lem}
+
+\begin{proof}
+\begin{enumerate}
+\item 
+Let $u(x) = w_1(|x|-r)$. Assuming $r+x_\b \geq 0$, i.e. $r \geq -x_\b$, we have $g(u(x)) = \m$ for $|x| < r+x_\b$, $g(u(x)) = 1$ for $r+x_\b \leq x \leq r+x_\a$, and $g(u(x)) = 0 $ for $x > r+x_\a$. Note that $g(u(x)) = g(w_1(x-r))$ for $x \geq -r-x_\b$. Applying the convolution operator, $Q[u](x) = Q[w_1](x-r)$ for $x \geq -r-x_\b+\sigma$. Assuming $r \geq \sigma - x_\b$, this shows $Q[u](x) = w_2(x-r-c^*)$ for $x \geq 0$. By the symmetry of $k(x)$, we have $Q[u](x) = w_2(|x|-r-c^*)$.
+
+\item 
+Let $u(x) = w_2(|x|-r)$. Assuming $r+x_\b \geq 0$, i.e. $r \geq -x_\b$, we have $g(u(x)) = \m$ for $|x| < r+x_\b$, $g(u(x)) = 1$ for $r+x_\b \leq x \leq r+x_\a$, and $g(u(x)) = 0 $ for $x > r+x_\a$. Note that $g(u(x)) = g(w_1(x-r))$ for $x \geq -r-x_\b$. Applying the convolution operator, $Q[u](x) = Q[w_1](x-r)$ for $x \geq -r-x_\b+\sigma$. Assuming $r \geq \sigma - x_\b$, this shows $Q[u](x) = w_2(x-r-c^*)$ for $x \geq 0$. By the symmetry of $k(x)$, we have $Q[u](x) = w_2(|x|-r-c^*)$.
+\end{enumerate}
+\end{proof}
+
+
+
+\begin{thm} Suppose $k(x)$ has compact support and $\sup_{x\in\mathbb R}w_2(x)\leq \b$. Let $u_0(x)$ be non-negative and continuous function, and suppose $\a \leq u_0(x) \leq \b$ for $|x| \leq r$ and $u_0(x) < \a$ otherwise, for some $r > 0$. If $r$ is sufficiently large and $c^* \geq 0$, then the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
 \begin{equation}
 \lim_{n\to\infty}\inf_{|x|<n(c^*-\epsilon)}u_{n}(x)>0,
 \end{equation}
@@ -338,64 +497,84 @@ and
 for all $\epsilon>0$.
 \end{thm}
 
-\begin{proof}
-By the translation invariance property of $Q$, we may assume without loss of generality $A=[-r,r]$, for some $r>0$. It follows that $u_0(x)<\a$ for $|x|>r$ and $\a\leq u_0(x)\leq\b$ for $|x| \leq r$. Furthermore, there exists $\sigma>0$ such that $k(x)>0$ if and only if $|x|<\sigma$.
-
-Assuming $r \geq \frac{\sigma}{2}$, we have
-\begin{equation} \begin{aligned}
-u_1(x) = Q[u_0](x) &= \int_{-r}^{r} k(x-y) \, dy \\
-&= \begin{cases}
-w_1(x-r) & x \geq 0 \\
-w_1(-x+r) & x< 0
+\begin{thm} Suppose $k(x)$ has compact support and $||w_2||_\infty \leq \b$. If $c^* \geq 0$ and $r$ is sufficiently large, then equation \eqref{q} has a periodic spreading solution given by
+\begin{equation} \label{compactptw}
+u_n(x) = \begin{cases}
+w_1(|x|-r-nc^*) & n \text{ even} \\
+w_2(|x|-r-nc^*) & n \text{ odd}
 \end{cases}
-\end{aligned}  \end{equation}
-
-Let $x_\a$ and $x_\b$ be as defined in Lemma \ref{lemma1}. Then, applying the growth function, we have
-\begin{equation} g(u_1(x)) = \begin{cases}
-0 & x<-r-x_\a \\
-1 & -r-x_\a \leq x \leq -r-x_\b \\
-m & -r-x_\b < x < r+x_\b \\
-1 & r+x_\b \leq x \leq r+x_\a \\
-0 & x > r+x_\a
-\end{cases}
-\end{equation}
-Note that $g(u_1(x))=g(w_1(x))$ for all $x >-r-x_\b$. Thus $Q[u_1](x)=(k*(g\circ u_1))(x)=(k*(g\circ w_1))(x)=Q[w_1](x)$ for all $x>-r-x_\b+\sigma$. If we assume $r \geq x_\b+\sigma$, then $u_2(x)=Q[u_1](x)=Q[w_1](x-r)=w_2(x-r)$ for $x>0$. 
-
-By symmetry of the integro-difference operator, $Q[u_1](x) = Q[w_1](-x+r)$ for $x<0$. Thus,
-
-\begin{equation}
-u_2(x) = Q[u_1](x) = \begin{cases}
-w_2(x-r) & x \geq 0 \\
-w_2(-x+r) & x < 0 
-\end{cases}
-\end{equation}
-Since $c^*\geq 0$, we have
-\begin{equation}
-g(u_2(x)) = \begin{cases}
-0 & x < -r-2c^* \\
-1 & -r-2c^* \leq x \leq r+2c^* \\
-0 & x > r+2c^* 
-\end{cases}
-\end{equation}
-
-Thus,
-\begin{equation}
-u_3(x) = Q[u_2](x) = \begin{cases}
-w_1(x-r-2c^*) & x \geq 0 \\
-w_1(-x+r+2c^*) & x < 0 
-\end{cases}
-\end{equation}
-
-The preceding argument can be repeated inductively to obtain
-\begin{equation}
-u_{2n+1}(x) = w_1(|x|-r-2nc^*)
-\end{equation}
-and
-\begin{equation}
-u_{2n+2}(x) = w_2(|x|-r-2nc^*)
 \end{equation}
 for all $n\geq 0$.
+\end{thm}
+
+\begin{proof}
+As in the proof of Theorem \ref{theorem1}, it suffices to show $u_{n+1}=Q[u_n]$ for all $n\geq 0$. If $n$ is even, we have $u_n(x)=w_1(|x|-r-nc^*)$. Assuming $r \geq \sigma$ and $c^* \geq 0$, this implies $g(u_n(x)) = 0$ for $|x| > r+nc^*+x_\a$, $g(u_n(x))=1$ for $r+nc^*+x_\b\leq |x|\leq r+nc^*+x_\a$, and $g(u_n(x))=\m$ for $|x|<r+nc^*+x_\b$. Note that $g(u_n(x)) = g(w_1(x-r-nc^*))$ for $x \geq -r-nc^*-x_\b$. Applying the convolution operator, we have $Q[u_n](x) = Q[w_1](x-r-nc^*)$ for $x \geq -r-nc^*-x_\b+\sigma$. Assuming $r \geq \sigma - x_\b$, it follows that $Q[u_n](x) = Q[w_1](x-r-nc^*)$ for $x \geq 0$. By hypothesis (H2), $k(x)$ is an even function, thus $Q[u_n](-x) = Q[u_n](x)$, hence $Q[u_n](x) = Q[w_1](|x|-r-nc^*)$ for all $x \in \mathbb R$, i.e. $u_{n+1}(x) = w_2(|x|-r-nc^*-c^*)$. Note that the preceding calculation requires $r \geq \max\{\sigma,\sigma-x_\b\}$; a sufficient condition is $r \geq 2\sigma$.
+
+If $n$ is odd, then $u_n(x)=w_2(|x|-r-nc^*)$, and for $r\geq0$ and $c^*\geq 0$ it follows that $g(u_n(x)) = 0$ for $|x| > r+nc^*+c^*$ and $g(u_n(x))=1$ for $|x| \leq r+nc^*+c^*$.
+
+UNFIN
 \end{proof}
+
+%
+%We apply induction on $n$. For the basis case, it is sufficient to show $u_1(x) = w_1(|x|-r)$ for all $x$. It follows from the definition of $u_0(x)$ that $g(u_0(x))=1$ for $|x|\leq r$ and $g(u_0(x))=0$ otherwise. Assuming $r \geq \frac{\sigma}{2}$, we have $u_1(x)=Q[u_0](x)=w_1(x-r)$ for $x\geq 0$. By hypothesis (H2), $k(x)$ is an even function, so $u_1(x)=u_1(-x)$, i.e. $u_1(x)=w_1(-x+r)=w_1(x-r)$ for $x<0$. This proves $u_1(x)=w_1(|x|-r)$ for all $x$.
+%
+%For the inductive step, suppose equation \eqref{compactptw} holds for some $n\geq0$. If $n$ is even, the inductive hypothesis yields $u_{n+1}(x)=w_1(|x|-r-nc^*)$.
+%\end{proof}
+%
+%\begin{proof}
+%By the translation invariance property of $Q$, we may assume without loss of generality $A=[-r,r]$, for some $r>0$. It follows that $u_0(x)<\a$ for $|x|>r$ and $\a\leq u_0(x)\leq\b$ for $|x| \leq r$. Furthermore, there exists $\sigma>0$ such that $k(x)>0$ if and only if $|x|<\sigma$. Assuming $r \geq \frac{\sigma}{2}$, we have
+%\begin{equation} \begin{aligned}
+%u_1(x) = Q[u_0](x) &= \int_{-r}^{r} k(x-y) \, dy \\
+%&= \begin{cases}
+%w_1(x-r) & x \geq 0 \\
+%w_1(-x+r) & x< 0
+%\end{cases}
+%\end{aligned}  \end{equation}
+%
+%Let $x_\a$ and $x_\b$ be as defined in Lemma \ref{lemma1}. Then, applying the growth function, we have
+%\begin{equation} g(u_1(x)) = \begin{cases}
+%0 & x<-r-x_\a \\
+%1 & -r-x_\a \leq x \leq -r-x_\b \\
+%m & -r-x_\b < x < r+x_\b \\
+%1 & r+x_\b \leq x \leq r+x_\a \\
+%0 & x > r+x_\a
+%\end{cases}
+%\end{equation}
+%Note that $g(u_1(x))=g(w_1(x))$ for all $x >-r-x_\b$. Thus $Q[u_1](x)=(k*(g\circ u_1))(x)=(k*(g\circ w_1))(x)=Q[w_1](x)$ for all $x>-r-x_\b+\sigma$. If we assume $r \geq x_\b+\sigma$, then $u_2(x)=Q[u_1](x)=Q[w_1](x-r)=w_2(x-r)$ for $x>0$.  By symmetry of the integro-difference operator, $Q[u_1](x) = Q[w_1](-x+r)$ for $x<0$. Thus,
+%
+%\begin{equation}
+%u_2(x) = Q[u_1](x) = \begin{cases}
+%w_2(x-r) & x \geq 0 \\
+%w_2(-x+r) & x < 0 
+%\end{cases}
+%\end{equation}
+%Since $c^*\geq 0$, we have
+%\begin{equation}
+%g(u_2(x)) = \begin{cases}
+%0 & x < -r-2c^* \\
+%1 & -r-2c^* \leq x \leq r+2c^* \\
+%0 & x > r+2c^* 
+%\end{cases}
+%\end{equation}
+%
+%Thus,
+%\begin{equation}
+%u_3(x) = Q[u_2](x) = \begin{cases}
+%w_1(x-r-2c^*) & x \geq 0 \\
+%w_1(-x+r+2c^*) & x < 0 
+%\end{cases}
+%\end{equation}
+%
+%The preceding argument can be repeated inductively to obtain
+%\begin{equation}
+%u_{2n+1}(x) = w_1(|x|-r-2nc^*)
+%\end{equation}
+%and
+%\begin{equation}
+%u_{2n+2}(x) = w_2(|x|-r-2nc^*)
+%\end{equation}
+%for all $n\geq 0$.
+%\end{proof}
 
 \begin{figure}[h!] 
 \centering
@@ -407,6 +586,8 @@ for all $n\geq 0$.
 \begin{rem}
 This theorem indicates that a solution with proper compactly supported initial data coverges to translations of periodic traveling waves with profiles $w_1(x)$ and $w_2(x)$ in the positive direction and profiles $w_1(-x)$ and $w_2(-x)$ in the negative direction.
 \end{rem}
+
+\subsection{Variability in wave speed}
 
 \section{Examples}
 
@@ -979,6 +1160,7 @@ $w_1(x)$ is positive for $x<1$ and zero for $x\geq1$, and $w_2(x)$ is positive f
 The regions in the parameter space where oscillating spreading speed exists can be determined as follows: for any fixed choice of $(n_1,n_2)$, with $0<n_1<n_2$, let $R$ be the set of pairs $(a,b)\in\mathbf R^2$ such that the hypothesis of Theorem 2.1 holds. Then $R$ is a triangle in the $a$-$b$ plane with endpoints at $(0,n_2)$, $(n_1,n_1)$, and $(n_1,n_2)$, depicted in Figure \ref{fig:phaseportrait}. The line $b=2a$ partitions $R$ into two non-empty sets $R_1=\{(a,b)\in R:a\leq b/2\}$ and $R_2=\{(a,b)\in R:a> b/2\}$ such that the traveling has constant speed if $(a,b)\in R_1$ and oscillating speed if $(a,b)\in R_2$.
 
 
+%\end{multicols}
 
 
 \begin{thebibliography}{9}
