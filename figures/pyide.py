@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
     
 # class for handling growth functions
-plt.rcParams.update({"text.usetex": True})
+#plt.rcParams.update({"text.usetex": True})
 class GrowthFunction:
     
     def __init__(self, g):
@@ -305,6 +305,38 @@ class IDESimulation:
             
             self.timeSeries.append(U)
             
+    def plot_wavespeed(self, predictedcstar, predictedc1, predictedc2, level=0.1, times=[], file=None):
+    
+        X = self.domain
+        U_seq = self.timeSeries
+        T = len(U_seq)
+        
+        if len(times)==0:
+            times = np.arange(T)
+            
+        fig,axs = plt.subplots()
+        
+        d0 = self.step_size*np.sum(U_seq[0]>level)
+        C = []
+        for t in times[1:]:
+            
+            U = U_seq[t]
+            d1 = self.step_size*np.sum(U>level)
+            C.append((d1-d0))
+            d0 = d1
+            
+        axs.plot(times[1:], C)
+        axs.set_xlabel('t')
+        axs.set_ylabel('c_n(t)')
+        try:
+            plt.savefig(file)
+        except:
+            pass
+        plt.plot([1, max(times)], [predictedcstar, predictedcstar], 'b--')
+        plt.plot([1, max(times)], [predictedc1, predictedc1], 'b:')
+        plt.plot([1, max(times)], [predictedc2, predictedc2], 'b:')
+        return plt
+        
     def plot(self, times=[], file=None):
     
         X = self.domain
@@ -325,5 +357,5 @@ class IDESimulation:
             plt.savefig(file)
         except:
             pass
-        plt.show()
+        return plt
     

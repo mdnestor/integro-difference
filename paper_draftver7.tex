@@ -304,7 +304,7 @@ Q[w_2](x) &= \int_{-\infty}^{\infty} k(x-y) g(w_2(y)) \, dy \\
 \label{fig:test}
 \end{figure}
 
-By Lemma \ref{lemmamain}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1](x)=w_1(x-2c^*)$ and $Q^2[w_2](x)=w_2(x-2c^*)$. As a result, they can be used to construct a solution to the integral recurrence which spreads in space with a mean speed of $c^*$ and alternates in shape every two time steps. This is formalized in the following theorem:
+By Lemma \ref{lemmamain}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[w_1](x)=w_1(x-2c^*)$ and $Q^2[w_2](x)=w_2(x-2c^*)$. As a result, they can be used to construct a solution which spreads in space with a mean speed of $c^*$ and alternates in shape every two time steps.
 
 %\begin{cor} If $||w_2||_\infty \leq \beta$, then for all $x\in\mathbb R$,
 %\begin{equation}
@@ -397,6 +397,10 @@ by Lemma \ref{lemmamain}.
   \includegraphics[width=.8\linewidth]{figures/fig3.png}
 \end{figure}
 
+
+
+
+
 The previous theorem shows that our model can exhibit a periodic traveling wave solution with alternating wave profiles. Furthermore, we derived a constant wave speed at which the oscillating pair of waves travels. We now turn our attention to the magnitude of the oscillation in the wave speed. For a sufficiently small $\ell > 0$, we may label the point of intersection of the curve $u=u_n(x)$ with the horizontal line $u=\ell$ by $\xi_{n,\ell}$, or simply $\xi_n$. It follows that $\xi_1,\xi_2,\xi_3,\dots\to\infty$ as $n\to\infty$; furthermore, the previous theorem implies that for any $\ell$, we have $\xi_{n+2}-\xi_n=2c^*$ for every $n\geq 1$.
 
 For every $n\geq 1$, let $c_n = \xi_n - \xi_{n-1}$.
@@ -450,131 +454,39 @@ and
 In the last calculation, the left hand side is known to be non-negative; therefore the limit is exactly equal to zero.
 \end{proof}
 
-\subsection{Compactly supported kernels}
+\subsection{Spreading solutions}
 
-The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data. We also assume the disperal kernel is compactly supported.% First, we introduce a useful lemma for compactly supported kernels.
+In this section, we consider how the periodic traveling wave solutions in the preceding results correspond to solutions with a compactly supported initial population density. For simplicity, we restrict our attention to initial conditions where the maximum population value does not exceed the overcompensation threshold.
 
-%\begin{lem}\label{lemma2}
-%Suppose $k(x)$ is compactly supported on $[-\sigma,\sigma]$ for some $\sigma>0$, and let $u \in C(\mathbb R)$. If $u(x)=0$ for $x \in \Omega \subseteq \mathbb R$, then $(k*u)(x)=0$ if $d(x,\mathbb R\setminus\Omega):= \inf \{d(x,y) \mid y\in \mathbb R\setminus\Omega\}$.
-%\end{lem}
-%
-%\begin{proof}
-%Let $x\in\Omega$ such that $d(x,\mathbb R\setminus\Omega) \geq \sigma$. Then $(x-\sigma,x+\sigma)$ is a subset of  $\Omega$ on which $u$ vanishes; thus $ (k*u)(x) = \int_{x-\sigma}^{x+\sigma}k(x-y)u(y)\,dy = 0.$
-%\end{proof}
+Let $\mathbf 1_{[-r,r]}$ denote the indicator function on $[-r,r]$. Suppose $u_0$ is a continuous function with compact support, and suppose $u_0$ satisfies $\a \leq u_0(x) \leq \b$ for $|x| \leq r$ and $u_0(x) < \a$ otherwise. It follows that
+$$ g(u_0(x)) = \mathbf 1_{[-r_0,r_0]}(x) $$
+We have
+$$ Q[u_0](x) = (k*(g \circ u_0))(x) = K(x+r_0) - K(x-r_0) $$
+Assuming $r_0$ is large enough so that $ Q[u_0](x) = 2K(r_0)-1 \geq \b$, it follows that
+$$ g(Q[u_0](x)) = \begin{cases}
+n_1 & |x| < r_1 \\
+n_2 & r_1 \leq |x| \leq r_2 \\
+0 & |x| > r_2
+\end{cases} $$
+It follows that
+$$ Q^2 [u_0] (x) = n_2 \int_{-r_2}^{r_2} k(x-y)\,dy - (n_2-n_1) \int_{-r_1}^{r_1} k(x-y) \, dy $$
+$$ = n_2 K(x+r_2) - n_2K(x-r_2) - (n_2-n_1) K(x+r_1) + (n_2-n_1) K(x-r_1) $$
+Taking the derivative, we find
+$$ \frac{d}{dx} Q^2 [u_0](x) = n_2 k(x+r_2) - n_2k(x-r_2) - (n_2-n_1) k(x+r_1) + (n_2-n_1) k(x-r_1) $$
+
+We now require the following hypothesis on the disperal kernel:
+
+(H5) For all $r_2>r_1>0$ and $\lambda \in (0,1)$, the equation
+$$ k(x+r_2) - k(x-r_2) - \lambda k(x+r_1) + \lambda k(x-r_1) = 0 $$
+has at most 3 solutions.
+
+If hypothesis (H5) holds, we can then deduce that $\frac{d}{dx}Q^2[u_0]$ has at most 3 zero-crossings, hence, $Q^2[u_0]$ has at most 3 turning points. This leaves only two cases: either $Q^2[u_0]$ has a single turning point at $x=0$, or $Q^2[u_0]$ has 3 turning points, one at $x=0$, and two diametrically opposed turning points $+t$ and $-t$. In both cases, there is a unique $r_2>0$ satisfying $Q^2[u_0](x) \geq \a$ for $|x| \leq r_2$ and $Q^2[u_0](x) < \a$ otherwise. If $r_2 < r$, then the conclusion does not follow. But if $r_2 \geq r$, then the 
 
 
-
-\begin{lem}
-Suppose $k(x)$ has support $[-\sigma,\sigma]$ and $c^*\geq0$.
-
-\begin{enumerate}
-\item If $r \geq \sigma - x_\b$, then $Q[w_1](|x|-r) = w_2(|x|-r-c^*)$.
-
-\item 
-\end{enumerate}
-\end{lem}
-
-\begin{proof}
-\begin{enumerate}
-\item 
-Let $u(x) = w_1(|x|-r)$. Assuming $r+x_\b \geq 0$, i.e. $r \geq -x_\b$, we have $g(u(x)) = \m$ for $|x| < r+x_\b$, $g(u(x)) = 1$ for $r+x_\b \leq x \leq r+x_\a$, and $g(u(x)) = 0 $ for $x > r+x_\a$. Note that $g(u(x)) = g(w_1(x-r))$ for $x \geq -r-x_\b$. Applying the convolution operator, $Q[u](x) = Q[w_1](x-r)$ for $x \geq -r-x_\b+\sigma$. Assuming $r \geq \sigma - x_\b$, this shows $Q[u](x) = w_2(x-r-c^*)$ for $x \geq 0$. By the symmetry of $k(x)$, we have $Q[u](x) = w_2(|x|-r-c^*)$.
-
-\item 
-Let $u(x) = w_2(|x|-r)$. Assuming $r+x_\b \geq 0$, i.e. $r \geq -x_\b$, we have $g(u(x)) = \m$ for $|x| < r+x_\b$, $g(u(x)) = 1$ for $r+x_\b \leq x \leq r+x_\a$, and $g(u(x)) = 0 $ for $x > r+x_\a$. Note that $g(u(x)) = g(w_1(x-r))$ for $x \geq -r-x_\b$. Applying the convolution operator, $Q[u](x) = Q[w_1](x-r)$ for $x \geq -r-x_\b+\sigma$. Assuming $r \geq \sigma - x_\b$, this shows $Q[u](x) = w_2(x-r-c^*)$ for $x \geq 0$. By the symmetry of $k(x)$, we have $Q[u](x) = w_2(|x|-r-c^*)$.
-\end{enumerate}
-\end{proof}
+The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data.
 
 
 
-\begin{thm} Suppose $k(x)$ has compact support and $\sup_{x\in\mathbb R}w_2(x)\leq \b$. Let $u_0(x)$ be non-negative and continuous function, and suppose $\a \leq u_0(x) \leq \b$ for $|x| \leq r$ and $u_0(x) < \a$ otherwise, for some $r > 0$. If $r$ is sufficiently large and $c^* \geq 0$, then the sequence $(u_n)_{n=0}^{\infty}$ defined by $u_{n+1}=Q[u_n]$, $n\geq 0$ spreads with speed $c^*$, i.e.
-\begin{equation}
-\lim_{n\to\infty}\inf_{|x|<n(c^*-\epsilon)}u_{n}(x)>0,
-\end{equation}
-and 
-\begin{equation}
-\lim_{n\to\infty}\sup_{|x|>n(c^*+\epsilon)}u_n(x)=0.
-\end{equation}
-for all $\epsilon>0$.
-\end{thm}
-
-\begin{thm} Suppose $k(x)$ has compact support and $||w_2||_\infty \leq \b$. If $c^* \geq 0$ and $r$ is sufficiently large, then equation \eqref{q} has a periodic spreading solution given by
-\begin{equation} \label{compactptw}
-u_n(x) = \begin{cases}
-w_1(|x|-r-nc^*) & n \text{ even} \\
-w_2(|x|-r-nc^*) & n \text{ odd}
-\end{cases}
-\end{equation}
-for all $n\geq 0$.
-\end{thm}
-
-\begin{proof}
-As in the proof of Theorem \ref{theorem1}, it suffices to show $u_{n+1}=Q[u_n]$ for all $n\geq 0$. If $n$ is even, we have $u_n(x)=w_1(|x|-r-nc^*)$. Assuming $r \geq \sigma$ and $c^* \geq 0$, this implies $g(u_n(x)) = 0$ for $|x| > r+nc^*+x_\a$, $g(u_n(x))=1$ for $r+nc^*+x_\b\leq |x|\leq r+nc^*+x_\a$, and $g(u_n(x))=\m$ for $|x|<r+nc^*+x_\b$. Note that $g(u_n(x)) = g(w_1(x-r-nc^*))$ for $x \geq -r-nc^*-x_\b$. Applying the convolution operator, we have $Q[u_n](x) = Q[w_1](x-r-nc^*)$ for $x \geq -r-nc^*-x_\b+\sigma$. Assuming $r \geq \sigma - x_\b$, it follows that $Q[u_n](x) = Q[w_1](x-r-nc^*)$ for $x \geq 0$. By hypothesis (H2), $k(x)$ is an even function, thus $Q[u_n](-x) = Q[u_n](x)$, hence $Q[u_n](x) = Q[w_1](|x|-r-nc^*)$ for all $x \in \mathbb R$, i.e. $u_{n+1}(x) = w_2(|x|-r-nc^*-c^*)$. Note that the preceding calculation requires $r \geq \max\{\sigma,\sigma-x_\b\}$; a sufficient condition is $r \geq 2\sigma$.
-
-If $n$ is odd, then $u_n(x)=w_2(|x|-r-nc^*)$, and for $r\geq0$ and $c^*\geq 0$ it follows that $g(u_n(x)) = 0$ for $|x| > r+nc^*+c^*$ and $g(u_n(x))=1$ for $|x| \leq r+nc^*+c^*$.
-
-UNFIN
-\end{proof}
-
-%
-%We apply induction on $n$. For the basis case, it is sufficient to show $u_1(x) = w_1(|x|-r)$ for all $x$. It follows from the definition of $u_0(x)$ that $g(u_0(x))=1$ for $|x|\leq r$ and $g(u_0(x))=0$ otherwise. Assuming $r \geq \frac{\sigma}{2}$, we have $u_1(x)=Q[u_0](x)=w_1(x-r)$ for $x\geq 0$. By hypothesis (H2), $k(x)$ is an even function, so $u_1(x)=u_1(-x)$, i.e. $u_1(x)=w_1(-x+r)=w_1(x-r)$ for $x<0$. This proves $u_1(x)=w_1(|x|-r)$ for all $x$.
-%
-%For the inductive step, suppose equation \eqref{compactptw} holds for some $n\geq0$. If $n$ is even, the inductive hypothesis yields $u_{n+1}(x)=w_1(|x|-r-nc^*)$.
-%\end{proof}
-%
-%\begin{proof}
-%By the translation invariance property of $Q$, we may assume without loss of generality $A=[-r,r]$, for some $r>0$. It follows that $u_0(x)<\a$ for $|x|>r$ and $\a\leq u_0(x)\leq\b$ for $|x| \leq r$. Furthermore, there exists $\sigma>0$ such that $k(x)>0$ if and only if $|x|<\sigma$. Assuming $r \geq \frac{\sigma}{2}$, we have
-%\begin{equation} \begin{aligned}
-%u_1(x) = Q[u_0](x) &= \int_{-r}^{r} k(x-y) \, dy \\
-%&= \begin{cases}
-%w_1(x-r) & x \geq 0 \\
-%w_1(-x+r) & x< 0
-%\end{cases}
-%\end{aligned}  \end{equation}
-%
-%Let $x_\a$ and $x_\b$ be as defined in Lemma \ref{lemma1}. Then, applying the growth function, we have
-%\begin{equation} g(u_1(x)) = \begin{cases}
-%0 & x<-r-x_\a \\
-%1 & -r-x_\a \leq x \leq -r-x_\b \\
-%m & -r-x_\b < x < r+x_\b \\
-%1 & r+x_\b \leq x \leq r+x_\a \\
-%0 & x > r+x_\a
-%\end{cases}
-%\end{equation}
-%Note that $g(u_1(x))=g(w_1(x))$ for all $x >-r-x_\b$. Thus $Q[u_1](x)=(k*(g\circ u_1))(x)=(k*(g\circ w_1))(x)=Q[w_1](x)$ for all $x>-r-x_\b+\sigma$. If we assume $r \geq x_\b+\sigma$, then $u_2(x)=Q[u_1](x)=Q[w_1](x-r)=w_2(x-r)$ for $x>0$.  By symmetry of the integro-difference operator, $Q[u_1](x) = Q[w_1](-x+r)$ for $x<0$. Thus,
-%
-%\begin{equation}
-%u_2(x) = Q[u_1](x) = \begin{cases}
-%w_2(x-r) & x \geq 0 \\
-%w_2(-x+r) & x < 0 
-%\end{cases}
-%\end{equation}
-%Since $c^*\geq 0$, we have
-%\begin{equation}
-%g(u_2(x)) = \begin{cases}
-%0 & x < -r-2c^* \\
-%1 & -r-2c^* \leq x \leq r+2c^* \\
-%0 & x > r+2c^* 
-%\end{cases}
-%\end{equation}
-%
-%Thus,
-%\begin{equation}
-%u_3(x) = Q[u_2](x) = \begin{cases}
-%w_1(x-r-2c^*) & x \geq 0 \\
-%w_1(-x+r+2c^*) & x < 0 
-%\end{cases}
-%\end{equation}
-%
-%The preceding argument can be repeated inductively to obtain
-%\begin{equation}
-%u_{2n+1}(x) = w_1(|x|-r-2nc^*)
-%\end{equation}
-%and
-%\begin{equation}
-%u_{2n+2}(x) = w_2(|x|-r-2nc^*)
-%\end{equation}
-%for all $n\geq 0$.
-%\end{proof}
 
 \begin{figure}[h!] 
 \centering
@@ -587,14 +499,16 @@ UNFIN
 This theorem indicates that a solution with proper compactly supported initial data coverges to translations of periodic traveling waves with profiles $w_1(x)$ and $w_2(x)$ in the positive direction and profiles $w_1(-x)$ and $w_2(-x)$ in the negative direction.
 \end{rem}
 
-\subsection{Variability in wave speed}
+\subsection{Blossoming solution}
+
+In addition to the behavior mentioned earlier, we noticed the phenomena of blossoming solution. Whenever 
 
 \section{Examples}
 
 In this section, we construct the periodic traveling wave solution for several well-known disperal kernels in population biology, namely the uniform, Laplace, and normal distributions. For the uniform and Laplace kernels, we were able to construct a piecewise expression for the mean wave speed in terms of the model parameters. 
 
 \begin{ex}
-The Laplace kernel,
+The Laplace kernel is given by
 \begin{equation}\label{laplacekernel}
 k(x) = \frac{1}{2} e^{-|x|}
 \end{equation}
@@ -605,8 +519,8 @@ The periodic traveling wave profiles are given by
 
 \begin{equation} \label{w1laplace}
 w_1(x) =   \begin{cases} 
-1 - \frac{1}{2}e^{x} & x \leq 0 \\
-\frac{1}{2}e^{-x} & x > 0
+n_2 - \frac{1}{2} n_2 e^{x} & x \leq 0 \\
+\frac{1}{2} n_2 e^{-x} & x > 0
 \end{cases}
 \end{equation}
 and
@@ -627,22 +541,21 @@ and
 
 \begin{equation} \label{w2laplace}
 w_2(x) = \begin{cases}
-m + \left( \frac{1-\m}{2}e^{-x_\b} - \frac{1}{2}e^{-x_\a} \right) e^x & x < x_\b \\
-1 - \left( \frac{1}{2} e^{-x_\a} \right) e^x - \left( \frac{1-\m}{2} e^{x_\b} \right)  e^{-x} & x_\b \leq x \leq x_\a \\
-\left( \frac{1}{2} e^{x_\a} - \frac{1-\m}{2} e^{x_\b} \right) e^{-x} & x_\a < x 
+\m + \left( \frac{1}{2}(\mtwo-\m)e^{-x_\b} - \frac{1}{2}\mtwo e^{-x_\a} \right) e^x & x < x_\b \\
+\mtwo - \frac{1}{2} \mtwo e^{-x_\a} e^x - \frac{1}{2} (\mtwo-\m) e^{x_\b}   e^{-x} & x_\b \leq x \leq x_\a \\
+\left( \frac{1}{2} \mtwo e^{x_\a} - \frac{1}{2}\mtwo(\mtwo-\m) e^{x_\b} \right) e^{-x} & x_\a < x 
 \end{cases} \end{equation}
 
-where
+with $x_a = F(a)$, $x_b=F(b)$, and
 \begin{equation}
-x_\a = \begin{cases} -\ln(2\a) & \a\leq \frac{1}{2} \\ \ln(2-2\a) & \a > \frac{1}{2} \end{cases}, \quad
-x_\b = \begin{cases} -\ln(2\b) & \b\leq \frac{1}{2} \\ \ln(2-2\b) & \b > \frac{1}{2} \end{cases} 
+F(p) = \begin{cases} -\ln(2p) &p \leq \frac{1}{2} \\ \ln(2-2p) & p > \frac{1}{2} \end{cases}
 \end{equation}
 A necessary condition for formulas \eqref{w1laplace} and \eqref{w2laplace} to generate a periodic traveling wave solution are given in Lemma \ref{laplacebound}. This leads to an equation for the mean wave speed
 \begin{equation}
 c^* = \begin{cases}
-\frac{1}{2}x_\a  + \frac{1}{2}\log \left( \frac{1 - (1-\m) e^{x_\b-x_\a}}{2\a} \right) & \a \leq w_2(x_\a) \\
-\frac{1}{2}x_\a + \frac{1}{2} \log \left( 1-\a + \sqrt{(1-\a)^2 - (1-\mu) e^{x_\b-x_\a}} \right) & w_2(x_\a) < \a < w_2(x_\b) \\
-\frac{1}{2}x_\a + \frac{1}{2} \log \left( \frac{2(\a-\m)}{(1-\m)e^{x_\a-x_\b}-1} \right) & \a \geq w_2(x_\b)
+\frac{1}{2} \log \left( \frac{1}{2\a} \mtwo e^{x_\a} - \frac{1}{2\a}(\mtwo-\m)e^{x_\b} \right) & \a \leq w_2(x_\a) \\
+\frac{1}{2} \log \left( \frac{1}{\mtwo} e^{-x_\a} \left( \m - \a + \sqrt{(\m-\a)^2-\mtwo(\mtwo-\m)e^{x_\b-x_\a}}\right)\right) & w_2(x_\a) < \a < w_2(x_\b) \\
+\frac{1}{2} \log \left( \frac{2(\a-\m)}{(\mtwo-\m)\exp(-x_\b)-\mtwo \exp(-x_\a)}\right) & \a \geq w_2(x_\b)
 \end{cases} 
 \end{equation}
 %and
