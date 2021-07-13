@@ -136,56 +136,23 @@ In this section, we construct a periodic traveling wave solution to the recurren
 %\end{enumerate}
 %\end{prop}
 
- Let $w_1$ and $w_2$ be two functions defined by
-\begin{equation} \label{w1}
-w_1(x) := \int_x^\infty \mtwo k(y) \, dy
-\end{equation}
-and
-\begin{equation} \label{w2}
-w_2(x) = \int_x^\infty \left( \mtwo k(y-x_\a) - (\mtwo-\m)k(y-x_\b)\right) \, dy 
-\end{equation} 
-where $x_\a$ and $x_\b$ constants constants given by
-\begin{equation}
-x_\a =\sup\left\{x\in\mathbb R\mid \int_{-\infty}^{x} k(y) \, dy \leq \frac{\a}{\mtwo} \right\}, \quad
-x_\b =\sup\left\{x\in\mathbb R\mid \int_{-\infty}^{x} k(y) \, dy \leq \frac{\b}{\mtwo} \right\}
-\end{equation}
-
-
-\begin{thm} \label{theorem1}
-If $|| w_2 ||_\infty\leq \b$, then equation \eqref{q} has a periodic traveling wave solution given by %$(u_n)_{n=0}^{\infty}$ satisfying
-%\begin{equation} \label{ptw}
-%u_n(x) = \begin{cases}
-%w_1(x-nc^*) & n \text{ even} \\
-%w_2(x-nc^*) & n \text{ odd}
-%\end{cases}
-%\end{equation}
-
-\begin{equation} \label{ptw}
-u_n(x) = \begin{cases}
-w_1(x-nc^*) & n \text{ even} \\
-w_2(x-nc^*+c^*) & n \text{ odd}
-\end{cases}
-\end{equation}
-for all $n \geq 0$.
-\end{thm}
-
 
 \begin{lem} \label{lemmamain}
-If $ || w_2 ||_\infty \leq \b $, then $w_1$ and $w_2$ satisfy
+Let $w(x) = \int_x^\infty k(y) \, dy$. Define
 \begin{equation}
-Q[w_1](x) = w_2(x)
+c^* = \frac{1}{2} \sup \{ x\in\mathbb R | Q[\mtwo w](x) \geq \a \}
+\end{equation}
+Let $w_1(x) = w(x)$ and $w_2(x) = Q[w](x+c^*)$. If $|| w_2 ||_\infty \leq \b $, then $w_1$ and $w_2$ satisfy
+\begin{equation} \label{lemma1claim1}
+Q[w_1](x) = w_2(x-c^*)
 \end{equation}
 and
-\begin{equation}
-Q[w_2](x) = w_1(x-2c^*)
+\begin{equation}\label{lemma1claim2}
+Q[w_2](x) = w_1(x-c^*)
 \end{equation}
-for all $x\in\mathbb R$, where $c^*$ is a constant given by
-\begin{equation} \label{c}
-c^* = \frac{1}{2} \sup\{x\in\mathbb R\mid w_2(x)\geq \a\}
-\end{equation}
+for all $x \in \mathbb R$.
 \end{lem}
 
-%
 %
 %\begin{lem} \label{lemma0.5}
 %$Q[w_1](x) = w_2(x)$ for all $x\in\mathbb R$.
@@ -195,7 +162,13 @@ c^* = \frac{1}{2} \sup\{x\in\mathbb R\mid w_2(x)\geq \a\}
 
 
 \begin{proof}
-$w_1$ is monotonically decreasing with $w_1(-\infty)=\mtwo$ and $w_1(\infty)=0$. It follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$. This yields
+Equation \ref{lemma1claim1} follows directly from the definition of $w_2(x)$.
+
+To prove \ref{lemma1claim2}, observer that $w_1$ is monotonically decreasing with $w_1(-\infty)=\mtwo$ and $w_1(\infty)=0$. It follows that $w_1(x)>\b$ for $x<x_\b$, $\a\leq w_1(x)\leq\b$ for $x_\b\leq x\leq x_\a$, and $w_1(x)<\a$ for $x>x_\a$, where $x_a$ and $x_b$ are the solutions of
+\begin{equation}
+w_1(x_\a) = \a, \quad w_1(x_\b) = \b
+\end{equation}
+This yields
 \begin{equation}
 g(w_1(x)) = \begin{cases}
 \m & x < x_\b \\
@@ -263,8 +236,7 @@ To prove the second half, we differentiate $w_2$ with respect to $x$:
 \end{equation}
 A transformation of coordinates shows that equation \eqref{dqw1} is proportional to $k(x) - \frac{\mtwo-\m}{\mtwo} k(x+x_\a-x_\b)$; by hypothesis (H4), $\frac{dw_2}{dx}$ has at most one real zero.
 
-It can be shown by cases that $w_2$ is either monotonically decreasing or has a unique turning point $x_0 \in \mathbb R$. In both cases, the curve $u=w_2(x)$ crosses the horizontal line $u=\a$ exactly once at the point $x=2c^*$, where $c^*$ is defined by \eqref{c}. In the latter case, we make the additional assumption that $|| w_2 ||_\infty \leq \b$ .
-In all the cases, 
+It can be shown by cases that $w_2$ is either monotonically decreasing or has a unique turning point $x_0 \in \mathbb R$. In both cases, the curve $u=w_2(x)$ crosses the horizontal line $u=\a$ exactly once at the point $x=2c^*$. In the latter case, we utilize the assumption that $|| w_2 ||_\infty \leq \b$ . In all cases, 
 
 
 %By Hypothesis (H4), we have assumed that the integrand on the right hand side has at most one zero. We can now proceed in cases. $w_2(x)$ has either zero or one turning point(s). In the first case, $w_2(x)$ is monotonically decreasing and satisfies $w_2(x) \geq \a$ for $x \leq 2c^*$ and $w_2(x) < \a$ for $x > 2c^*$. In the second case, $w_2(x)$ has a unique turning point $x_0 \in \mathbb R$; it follows that $w_2(x)$ is monotonically increasing on $(-\infty,x_0)$ and monotonically decreasing on $(x_0,\infty)$, and $x_0$ is a global maximum. By the assumption $w_2(x)\leq\beta$ for all $x$, we have $w_2(x_0)\leq\beta$. It follows that $c^* \in (\frac{x_0}{2},\infty)$, and $w_2(x)$ satisfies $g(w_2(x))=1$ for $x<2c^*$ and $g(w_2(x)) = 0$ for $x>2c^*$. In each case, we have
@@ -358,8 +330,18 @@ By Lemma \ref{lemmamain}, the wave functions $w_1(x)$ and $w_2(x)$ satisfy $Q^2[
 
 
 
-\begin{proof}[Proof of Theorem \ref{theorem1}]
-It suffices to show that equation \eqref{ptw} satisfies $u_{n+1}=Q[u_n]$ for all $n \geq 0$. If $n$ is even, then $n+1$ is odd, so $u_n(x)=w_1(x-nc^*)$ and $u_{n+1}(x)=w_2(x-nc^*)$. Applying the integro-difference operator, we obtain
+\begin{thm} \label{theorem1}
+Let $u_n(x)$ be a sequence of functions defined by
+\begin{equation}
+u_n(x) = \begin{cases} \label{ptw}
+w_1(x-nc^*) & n \text{ even} \\
+w_2(x-nc^*) & n \text{ odd}
+\end{cases} \end{equation}
+If $|| w_2 ||_\infty \leq \b $, then $u_n(x)$ satisfies $u_{n+1}(x) = Q[u_n](x)$ for all $n\geq 0$.
+\end{thm}
+
+\begin{proof}
+Let $n \geq 0$. If $n$ is even, then $n+1$ is odd, so $u_n(x)=w_1(x-nc^*)$ and $u_{n+1}(x)=w_2(x-nc^*)$. Applying the integro-difference operator, we obtain
 \begin{equation} \begin{aligned}
 Q[u_n](x) &= Q[w_1](x-nc^*) \\
 &= w_2(x-nc^*) \\
@@ -380,6 +362,9 @@ by Lemma \ref{lemmamain}.
 
 The previous theorem shows that our model can exhibit a periodic traveling wave solution with alternating wave profiles. Furthermore, we derived a constant wave speed at which the oscillating pair of waves travels. We now turn our attention to the magnitude of the oscillation in the wave speed. For a sufficiently small $\ell > 0$, we may label the point of intersection of the curve $u=u_n(x)$ with the horizontal line $u=\ell$ by $\xi_{n,\ell}$, or simply $\xi_n$. It follows that $\xi_1,\xi_2,\xi_3,\dots\to\infty$ as $n\to\infty$; furthermore, the previous theorem implies that for any $\ell$, we have $\xi_{n+2}-\xi_n=2c^*$ for every $n\geq 1$.
 
+$$
+w_i(x) = \int_\Omega k(x-y+2c^*) g\left( \int_\Omega k(y-y') g(w_i(y')) \, dy' \right) \, dy
+$$
 For every $n\geq 1$, let $c_n = \xi_n - \xi_{n-1}$.
 
 We now introduce an additional hypothesis for the spread of solutions with compactly supported initial condition.
@@ -391,9 +376,9 @@ $$ k(x+r_a) - k(x-r_a) - \lambda k(x+r_b) + \lambda k(x-r_b) $$
 has at most 3 solutions.
 
 \begin{thm}  \label{theorem2}
-If $\sup_{x\in\mathbb R}w_2(x)\leq \b$, then for all $\epsilon>0$, the sequence \ref{ptw} satisfies
+If $||w_2|| \b$, then for all $\epsilon>0$, the sequence \ref{ptw} satisfies
 \begin{equation}
-\lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n}(x)=1
+\lim_{n\to\infty}\inf_{x<2n(c^*-\epsilon)}u_{2n}(x)=\mtwo
 \end{equation}
 and
 \begin{equation}
@@ -433,51 +418,51 @@ In the last calculation, the left hand side is known to be non-negative; therefo
 
 \subsection{Spreading solutions}
 
-Let $u_n(x)$ be a sequence of continuous functions. For every $c \in \mathbb R$, define the sequence $a_n(x,c)$ by
-$$ a_n(x,c) = u_n(x+nc) $$
-Now, define
-$$ a(x,c) = \limsup_{n\to\infty} a_n(x,c). $$
-Note that since $a_n$ is bounded, this quantity must be finite.
-
-We say the rightware spreading speed of $u_0$ is defined by
-$$ c^*_+ = \inf \{ c \in \mathbb R \mid \lim_{x\to\infty} a(x,c) = 0 \} $$
-
-\begin{thm}
-Let $w(x) = \int_x^\infty k(y) \, dy$. Define
-$$ c^* = \frac{1}{2} \sup \{ x\in\mathbb R | Q[w](x) \geq \a \} $$
-Let $w_1(x) = w(x)$ and $w_2(x) = Q[w](x+c^*)$. Define the sequence
-$$ u_n(x) = \begin{cases}
-w_1(x-nc^*) & n \text{ even} \\
-w_2(x-nc^*) & n \text{ odd}
-\end{cases} $$
-Then $u_n(x)$ satisfies $u_{n+1}(x) = Q[u_n](x)$ for $n\geq 0$ and has a rightward spreading speed of $c^*$.
-\end{thm}
-
-\begin{proof}
-We have
-$$ a_n(x,c) = \begin{cases}
-w_1(x + n(c-c^*))  & n \text{ even} \\
-w_2(x + n(c-c^*)) & n \text{ odd}
-\end{cases} $$
-Thus,
-$$ \begin{aligned}
-a(x,c) &= \limsup_{n\to\infty} a_n(x,c) \\
-&= \limsup_{n\to\infty} \max \{ w_1(x + n(c-c^*)), w_2(x + n(c-c^*)) \} \\
-&= \begin{cases}
-1 & c < c^* \\
-\max\{w_1(x),w_2(x)\} & c=c^* \\
-0 & c>c^*
-\end{cases} \end{aligned} $$
-Taking the limit as $x\to\infty$,
-$$ a(\infty,c) = \begin{cases}
-1 & c < c^* \\
-0 & c \geq c^*
-\end{cases} $$
-\end{proof}
+\textbf{Note: this section contains incomplete results.}
 
 
+In this section, we consider how the periodic traveling wave solutions in the preceding results correspond to solutions with a compactly supported initial population density. For simplicity, we restrict our attention to initial conditions where the maximum population value does not exceed the overcompensation threshold.
 
-For a given $r \geq 0$, let $\phi(x,r) = \chi_{[-r,r]}(x)$, where $\chi$ is the indicator function, or simply $\phi_r$ for brevity. Define the operator $R[u] = g\left( Q[k*u](x) \right)$.
+Let $\chi_{[-r,r]}$ denote the indicator function on $[-r,r]$. Suppose $u_0$ is a continuous function with compact support, and suppose $u_0$ satisfies $\a \leq u_0(x) \leq \b$ for $|x| \leq r$ and $u_0(x) < \a$ otherwise. It follows that
+$$ g(u_0(x)) = \chi_{[-r,r]}(x) $$
+
+%
+%Let $u_n(x)$ be a sequence of continuous functions. For every $c \in \mathbb R$, define the sequence $a_n(x,c)$ by
+%$$ a_n(x,c) = u_n(x+nc) $$
+%Now, define
+%$$ a(x,c) = \limsup_{n\to\infty} a_n(x,c). $$
+%Note that since $a_n$ is bounded, this quantity must be finite. We say the rightware spreading speed of $u_0$ is defined by
+%$$ c^*_+ = \inf \{ c \in \mathbb R \mid \lim_{x\to\infty} a(x,c) = 0 \} $$
+%
+%\begin{lem}
+%If $||w_2||_\infty\leq\b$, the sequence \eqref{ptw} has a rightward spreading speed of $c^*$.
+%\end{lem}
+%
+%\begin{proof}
+%We have
+%$$ a_n(x,c) = \begin{cases}
+%w_1(x + n(c-c^*))  & n \text{ even} \\
+%w_2(x + n(c-c^*)) & n \text{ odd}
+%\end{cases} $$
+%Thus,
+%$$ \begin{aligned}
+%a(x,c) &= \limsup_{n\to\infty} a_n(x,c) \\
+%&= \limsup_{n\to\infty} \max \{ w_1(x + n(c-c^*)), w_2(x + n(c-c^*)) \} \\
+%&= \begin{cases}
+%1 & c < c^* \\
+%\max\{w_1(x),w_2(x)\} & c=c^* \\
+%0 & c>c^*
+%\end{cases} \end{aligned} $$
+%Taking the limit as $x\to\infty$,
+%$$ a(\infty,c) = \begin{cases}
+%1 & c < c^* \\
+%0 & c \geq c^*
+%\end{cases} $$
+%\end{proof}
+
+
+
+For a given $r \geq 0$, let $\phi(x,r) = \chi_{[-r,r]}(x)$, or simply $\phi_r$ for brevity. Define the operator $R[u] = g\left( Q[k*u](x) \right)$.
 
 \begin{equation}
 R[u](x) = g\left( \int k(x-y) g\left( \int k(y-z) u(z) \, dz \right) \, dy \right)
@@ -490,28 +475,6 @@ Let $u_n(x)$ be a sequence of functions satisfying $u_{n+1}(x)=Q[u_n](x)$ for al
 \begin{lem}
 For sufficiently large $r \geq 0$, we have $R[\phi_r] = \phi_{r+\delta(r)}$, where $\delta(r)$ is a scalar function of $r$. It can be expressed as
 $$ \delta(r) = \int R[\phi_r](x)  \, dx $$
-\end{lem}
-
-\begin{lem}
-$\lim_{r\to\infty} \delta(r) = 2c^* $
-\end{lem}
-
-Consider the sequence $A_n(x,r)=R^n[\phi_r](x)$. 
-
-\begin{lem}
-If $r$ is sufficiently large, then $A_1(x,r)=R[\phi_r](x) = \phi_{r+\delta(r)}(x)$. Similarly, $A_2(x,r) = \phi_{r+\delta(r)+\delta(r+\delta(r))}$.
-\end{lem}
-
-Consider the sequence $\xi_n$ defined by $\xi_0 = r_0$ and $\xi_{n+1} = \xi_n + \delta(\xi_n)$. Then $\xi_n = 2c^*n + O(1)$. 
-
-Consider the operator $R[u] = g \circ (k * u)$. Observer that $k*R[g \circ u] = Q^2 [u]$; equivalently $g \circ Q[k*u] = R^2[u]$.
-
-Or just define dimensionless parameters $a=A/N_2$, $b=B/N_2$, and $m = N_1/N_2$.
-
-For each $r \geq 0$, let $\phi_r = \chi_{[-r,r]}$, where $\chi$ is the indicator function.
-
-\begin{lem}
-If $r$ is sufficiently large, then $R^2[\phi_r] = \phi_s$, where $s=s(r)$ is a function of $r$, and $\lim_{r\to\infty}(s-r) = 2c^*$.
 \end{lem}
 
 \begin{proof}
@@ -537,46 +500,9 @@ We now require the following hypothesis on the disperal kernel:
 $$ k(x+r_2) - k(x-r_2) - \lambda k(x+r_1) + \lambda k(x-r_1) = 0 $$
 has at most 3 solutions.
 
-If hypothesis (H5) holds, we can then deduce that $k*R[\phi_r]$ has at most 3 turning points. This leaves only two cases: either $k*R[\phi_r]$ has a single turning point at $x=0$, or has 3 turning points, one at $x=0$, and two diametrically opposed turning points $+t$ and $-t$. In both cases, there is a unique $r_3>0$ satisfying $(k*R[\phi_r])(x) \geq \a$ for $|x| \leq r_3$ and $(k*R[\phi_r])(x) < \a$ otherwise. If $r_3 < r$, then the conclusion does not follow. But if $r_2 \geq r$, then the 
-$$
-\delta (r) = || Q[\chi_{[-r,r]}] ||_1 = \int_{-\infty}^{\infty} Q[\chi_{[-r,r]}](x) \, dx
-$$
+If hypothesis (H5) holds, we can then deduce that $k*R[\phi_r]$ has at most 3 turning points. This leaves only two cases: either $k*R[\phi_r]$ has a single turning point at $x=0$, or has 3 turning points, one at $x=0$, and two diametrically opposed turning points $+t$ and $-t$. In both cases, there is a unique $r_3>0$ satisfying $(k*R[\phi_r])(x) \geq \a$ for $|x| \leq r_3$ and $(k*R[\phi_r])(x) < \a$ otherwise. 
 
-\begin{lem}
-$ \lim_{r \to \infty} ( \delta(r) - r ) = 4c^* $
-\begin{equation}
-\lim_{r\to\infty} \left( \left( \int_{-\infty}^{\infty}Q^2[\chi_{[-r,r]}(x) \, dx \right) -r \right) = 4c^* 
-\end{equation}
-\end{lem}
-
-In this section, we consider how the periodic traveling wave solutions in the preceding results correspond to solutions with a compactly supported initial population density. For simplicity, we restrict our attention to initial conditions where the maximum population value does not exceed the overcompensation threshold.
-
-Let $\chi_{[-r,r]}$ denote the indicator function on $[-r,r]$. Suppose $u_0$ is a continuous function with compact support, and suppose $u_0$ satisfies $\a \leq u_0(x) \leq \b$ for $|x| \leq r$ and $u_0(x) < \a$ otherwise. It follows that
-$$ g(u_0(x)) = \mathbf 1_{[-r_0,r_0]}(x) $$
-We have
-$$ Q[u_0](x) = (k*(g \circ u_0))(x) = K(x+r_0) - K(x-r_0) $$
-Assuming $r_0$ is large enough so that $ Q[u_0](x) = 2K(r_0)-1 \geq \b$, it follows that
-$$ g(Q[u_0](x)) = \begin{cases}
-n_1 & |x| < r_1 \\
-n_2 & r_1 \leq |x| \leq r_2 \\
-0 & |x| > r_2
-\end{cases} $$
-It follows that
-$$ Q^2 [u_0] (x) = n_2 \int_{-r_2}^{r_2} k(x-y)\,dy - (n_2-n_1) \int_{-r_1}^{r_1} k(x-y) \, dy $$
-$$ = n_2 K(x+r_2) - n_2K(x-r_2) - (n_2-n_1) K(x+r_1) + (n_2-n_1) K(x-r_1) $$
-Taking the derivative, we find
-$$ \frac{d}{dx} Q^2 [u_0](x) = n_2 k(x+r_2) - n_2k(x-r_2) - (n_2-n_1) k(x+r_1) + (n_2-n_1) k(x-r_1) $$
-
-We now require the following hypothesis on the disperal kernel:
-
-(H5) For all $r_2>r_1>0$ and $\lambda \in (0,1)$, the equation
-$$ k(x+r_2) - k(x-r_2) - \lambda k(x+r_1) + \lambda k(x-r_1) = 0 $$
-has at most 3 solutions.
-
-If hypothesis (H5) holds, we can then deduce that $\frac{d}{dx}Q^2[u_0]$ has at most 3 zero-crossings, hence, $Q^2[u_0]$ has at most 3 turning points. This leaves only two cases: either $Q^2[u_0]$ has a single turning point at $x=0$, or $Q^2[u_0]$ has 3 turning points, one at $x=0$, and two diametrically opposed turning points $+t$ and $-t$. In both cases, there is a unique $r_2>0$ satisfying $Q^2[u_0](x) \geq \a$ for $|x| \leq r_2$ and $Q^2[u_0](x) < \a$ otherwise. If $r_2 < r$, then the conclusion does not follow. But if $r_2 \geq r$, then the 
-
-
-The next theorem concerns the spreading behavior of solutions to the IDE \eqref{q} with compactly supported initial data.
+\textbf{Note: the above section contains unfinished proofs.}
 
 
 
@@ -592,9 +518,6 @@ The next theorem concerns the spreading behavior of solutions to the IDE \eqref{
 This theorem indicates that a solution with proper compactly supported initial data coverges to translations of periodic traveling waves with profiles $w_1(x)$ and $w_2(x)$ in the positive direction and profiles $w_1(-x)$ and $w_2(-x)$ in the negative direction.
 \end{rem}
 
-\subsection{Blossoming solution}
-
-In addition to the behavior mentioned earlier, we noticed the phenomena of blossoming solution. Whenever 
 
 \section{Examples}
 
