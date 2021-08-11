@@ -17,37 +17,29 @@ ricker_map = lambda u : u * np.exp(r*(1-u))
 std_normal = lambda x : 1/np.sqrt(2*np.pi) * np.exp(-x**2/2)
 ```
 
-An IDE model can be created with two functions as parameters
+An IDE model can be created as follows:
 
 ```
-model = ide(growth_function = ricker,
-            dispersal_kernel = std_normal)
+model = pyide.IDEModel(growthFunction=pyide.GrowthFunction(g),
+                  dispersalKernel=pyide.DisperalKernel(k))
 ```
 
-Determine the spatial domain to run the model on. I chose the interval [-20,20] with a step size of 0.01:
-
+We then create a simulation object:
 ```
-model.set_domain(xmin=-20, xmax=20, step_size=0.01)
-```
-
-The initial data is defined by a function. Assuming the growth function has an equilibrium at zero, a common choice is the unit plateau or the unit heaviside step function.
-
-```
-# u0 is the unit plateau
-u0 = lambda x : np.heaviside(1 - np.abs(x), 1)
-model.set_initial_density(u0)
+sim = pyide.IDESimulation(model)
 ```
 
-Run the model for 10 time steps:
-
 ```
-model.run(time_steps=10)
+sim.setDomain(xmin=-10, xmax=10, dx=0.01)
+sim.setInitialCondition(lambda x : H(-x))
+sim.setBoundaryCondition('static')
 ```
 
-Plot the results using matplotlib:
-
+Run the model:
 ```
-model.plot()
+sim.run(n = 11)
+
+sim.plot()
 ```
 
 
