@@ -42,6 +42,7 @@ sim.run(n = 11)
 sim.plot()
 ```
 
+![Alt text](figures/fig3.png?raw=true "Title")
 
 
 
