@@ -27,7 +27,7 @@ model = pyide.IDEModel(growthFunction=pyide.GrowthFunction(g),
                 
 sim = pyide.IDESimulation(model)
 sim.setDomain(xmin=-10, xmax=10, dx=0.005)
-r=.58
+r=0.58
 sim.setInitialCondition(lambda x : H(x+r)-H(x-r))
 sim.setBoundaryCondition('static')
 
@@ -38,10 +38,5 @@ plt1 = sim.plot_wavespeed(times=np.arange(1, n),
 predictedcstar = 0.8568,
 predictedc1 = 2*0.8568 + np.log(2/5),
 predictedc2 = -np.log(2/5),
-level=0.2,
-file='fig_accelerating_wave2.png')
-plt1.show()
-import matplotlib.pyplot as plt
-plt.plot([1,11], [.444, .444])
-#print(sim.timeSeries)
-
+level=alpha,
+                         file='fig_accelerating_wave2.png')

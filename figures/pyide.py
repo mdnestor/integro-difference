@@ -325,16 +325,32 @@ class IDESimulation:
             C.append((d1-d0))
             d0 = d1
             
-        axs.plot(times[1:], C)
-        axs.set_xlabel('t')
-        axs.set_ylabel('c_n(t)')
-        try:
-            plt.savefig(file)
-        except:
-            pass
+        axs.plot(times[1:], C, color='black')
+        #axs.plot(times[1:], C, 'o', color='blue')
+        axs.set_xlabel('$n$')
+        axs.set_ylabel('$c_n(a)$', rotation=0, labelpad=40)
+        
         plt.plot([1, max(times)], [predictedcstar, predictedcstar], 'b--')
         plt.plot([1, max(times)], [predictedc1, predictedc1], 'b:')
         plt.plot([1, max(times)], [predictedc2, predictedc2], 'b:')
+        
+        ax2 = axs.twinx() 
+  
+        axs.set_ylim(0.5, 1)
+        ax2.set_ylim(0.5, 1)
+    
+        #color = 'tab:green'
+        #ax2.set_ylabel('Y2-axis', color = color) 
+        ax2.plot(times[1:], C, 'o', color='black')
+        #ax2.tick_params(axis ='y', labelcolor = color) 
+        ax2.set_xticks([])
+        ax2.set_yticks([predictedc1,predictedcstar,predictedc2])
+        ax2.set_yticklabels(['$c_1^*(a)$','$c^*$','$c_2^*(a)$'])
+
+        try:
+            plt.savefig(file,bbox_inches='tight')
+        except:
+            pass
         return plt
         
     def plot(self, times=[], file=None):
@@ -351,10 +367,10 @@ class IDESimulation:
         for t in times:
             U = U_seq[t]
             axs.plot(X, U, color=(t/T,1-t/T,0))
-        axs.set_xlabel('x')
-        axs.set_ylabel('u_n(x)')
+        axs.set_xlabel('$x$')
+        axs.set_ylabel('$u_n(x)$', rotation=0, labelpad=40)
         try:
-            plt.savefig(file)
+            plt.savefig(file,bbox_inches='tight')
         except:
             pass
         return plt
