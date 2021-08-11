@@ -8,7 +8,7 @@ from integro_difference import ide
 ```
 
 # Usage
-IDEs are defined in terms of two parameters, a growth function and a dispersal kernel. Common choices in population biology for the growth function are the Ricker map g(u)=u\*exp(r(1-u)) and the logistic map g(u)=r*\u\*(1-u), where r > 0 is a free parameter.
+IDEs are defined in terms of two parameters, a growth function and a dispersal kernel. Common choices in population biology for the growth function are the Ricker map g(u)=u\*exp(r(1-u)) and the logistic map $g(u)=ru(1-u)$, where $r > 0$ is a free parameter.
 
 The dispersal kernel is a probability density function with mean zero. Common choices are the Gaussian kernel and the Laplace kernel.
 
